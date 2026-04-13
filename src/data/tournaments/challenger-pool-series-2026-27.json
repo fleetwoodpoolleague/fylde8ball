@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "name": "Challenger Pool Series 2026/27",
+    "venue": "Q's Sports Lounge",
+    "organiser": "Q's Sports Lounge",
+    "logo": ""
+  },
+  "dates": [
+    { "name": "Event 1",     "date": "2026-04-18", "completed": false },
+    { "name": "Event 2",     "date": "2026-05-09", "completed": false },
+    { "name": "Event 3",     "date": "2026-06-06", "completed": false },
+    { "name": "Event 4",     "date": "2026-08-01", "completed": false },
+    { "name": "Event 5",     "date": "2026-09-26", "completed": false },
+    { "name": "Event 6",     "date": "2026-11-14", "completed": false },
+    { "name": "Event 7",     "date": "2027-01-09", "completed": false },
+    { "name": "Event 8",     "date": "2027-02-20", "completed": false },
+    { "name": "Event 9",     "date": "2027-03-06", "completed": false },
+    { "name": "Grand Final", "date": "2027-04-17", "completed": false }
+  ]
+}
