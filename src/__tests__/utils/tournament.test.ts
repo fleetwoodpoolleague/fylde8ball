@@ -37,4 +37,16 @@ describe('getNextEvent', () => {
   it('returns undefined for an empty array', () => {
     expect(getNextEvent([])).toBeUndefined()
   })
+
+  it('returns an incomplete event that appears before completed ones', () => {
+    const dates: TournamentDate[] = [
+      { name: 'Event 1', date: '2026-04-18', completed: false },
+      { name: 'Event 2', date: '2026-05-09', completed: true },
+    ]
+    expect(getNextEvent(dates)).toEqual({
+      name: 'Event 1',
+      date: '2026-04-18',
+      completed: false,
+    })
+  })
 })
