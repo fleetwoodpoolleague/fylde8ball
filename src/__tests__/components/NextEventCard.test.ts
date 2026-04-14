@@ -30,4 +30,9 @@ describe('NextEventCard', () => {
     const wrapper = mount(NextEventCard, { props: defaultProps })
     expect(wrapper.text()).toContain('2026')
   })
+
+  it('renders 6 pool table pockets', () => {
+    const wrapper = mount(NextEventCard, { props: defaultProps })
+    expect(wrapper.findAll('.pocket')).toHaveLength(6)
+  })
 })
