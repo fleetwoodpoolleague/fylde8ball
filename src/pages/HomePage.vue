@@ -3,7 +3,7 @@ import { useTournaments } from '../composables/useTournaments'
 import { getNextEvent } from '../utils/tournament'
 import NextEventCard from '../components/NextEventCard.vue'
 import UpcomingEventsList from '../components/UpcomingEventsList.vue'
-import type { Tournament, TournamentDate } from '../types/tournament'
+import type { Tournament, TournamentDate, UpcomingEventInfo } from '../types/tournament'
 
 const tournaments = useTournaments()
 
@@ -28,11 +28,27 @@ function findGlobalNextEvent(): NextEventInfo | null {
 
 const nextEventInfo = findGlobalNextEvent()
 
-function getUpcomingEvents(): TournamentDate[] {
-  if (!nextEventInfo) return []
-  const dates = nextEventInfo.tournament.dates
-  const idx = dates.indexOf(nextEventInfo.event)
-  return dates.slice(idx + 1, idx + 4)
+function getUpcomingEvents(): UpcomingEventInfo[] {
+  const upcoming: UpcomingEventInfo[] = []
+  for (const tournament of tournaments) {
+    for (const date of tournament.dates) {
+      if (date.completed) continue
+      if (
+        nextEventInfo &&
+        date === nextEventInfo.event
+      ) continue
+      upcoming.push({
+        event: date,
+        tournamentName: tournament.meta.name,
+        tournamentSlug: tournament.slug,
+      })
+    }
+  }
+  return upcoming.sort((a, b) => {
+    const aDate = a.event.date === 'TBC' ? 'Z' : a.event.date
+    const bDate = b.event.date === 'TBC' ? 'Z' : b.event.date
+    return aDate.localeCompare(bDate)
+  })
 }
 
 const upcomingEvents = getUpcomingEvents()
@@ -55,7 +71,6 @@ const upcomingEvents = getUpcomingEvents()
       <UpcomingEventsList
         v-if="upcomingEvents.length"
         :events="upcomingEvents"
-        :tournament-slug="nextEventInfo.tournament.slug"
       />
     </template>
     <p v-else class="text-gray-500">No upcoming events.</p>

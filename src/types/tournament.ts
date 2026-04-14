@@ -17,3 +17,9 @@ export interface Tournament {
   dates: TournamentDate[]
   slug: string
 }
+
+export interface UpcomingEventInfo {
+  event: TournamentDate
+  tournamentName: string
+  tournamentSlug: string
+}

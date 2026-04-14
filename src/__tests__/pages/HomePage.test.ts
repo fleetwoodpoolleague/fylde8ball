@@ -10,7 +10,7 @@ vi.mock('../../composables/useTournaments', () => ({
 import { useTournaments } from '../../composables/useTournaments'
 import HomePage from '../../pages/HomePage.vue'
 
-const mockTournament: Tournament = {
+const mockTournamentA: Tournament = {
   slug: 'challenger-series',
   meta: { name: 'Challenger Series', venue: "Q's Sports Lounge", organiser: "Q's Sports Lounge", logo: '' },
   dates: [
@@ -20,17 +20,27 @@ const mockTournament: Tournament = {
   ],
 }
 
+const mockTournamentB: Tournament = {
+  slug: 'international-rules',
+  meta: { name: 'International Rules', venue: 'The Venue', organiser: 'The Organiser', logo: '' },
+  dates: [
+    { name: 'Round 1', date: '2026-05-03', completed: false },
+    { name: 'Round 2', date: '2026-06-07', completed: false },
+  ],
+}
+
 const router = createRouter({
   history: createMemoryHistory(),
   routes: [
     { path: '/', component: { template: '<div />' } },
+    { path: '/tournaments', component: { template: '<div />' } },
     { path: '/tournaments/:slug', component: { template: '<div />' } },
   ],
 })
 
 describe('HomePage', () => {
   beforeEach(async () => {
-    vi.mocked(useTournaments).mockReturnValue([mockTournament])
+    vi.mocked(useTournaments).mockReturnValue([mockTournamentA])
     await router.push('/')
     await router.isReady()
   })
@@ -54,5 +64,41 @@ describe('HomePage', () => {
     vi.mocked(useTournaments).mockReturnValue([])
     const wrapper = mount(HomePage, { global: { plugins: [router] } })
     expect(wrapper.text().toLowerCase()).toContain('no upcoming')
+  })
+
+  describe('with multiple tournaments', () => {
+    beforeEach(() => {
+      vi.mocked(useTournaments).mockReturnValue([mockTournamentA, mockTournamentB])
+    })
+
+    it('shows upcoming events from all tournaments in the list', () => {
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      // Event 1 from Challenger Series is "next", so upcoming should include both tournaments' remaining events
+      expect(wrapper.text()).toContain('International Rules')
+      expect(wrapper.text()).toContain('Challenger Series')
+    })
+
+    it('shows upcoming events sorted by date across tournaments', () => {
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      const text = wrapper.text()
+      // International Rules Round 1 (May 3) should appear before Challenger Series Event 2 (May 9)
+      const roundOnePos = text.indexOf('Round 1')
+      const event2Pos = text.indexOf('Event 2')
+      expect(roundOnePos).toBeLessThan(event2Pos)
+    })
+
+    it('prepends tournament name to each event in the upcoming list', () => {
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.text()).toContain('International Rules — Round 1')
+      expect(wrapper.text()).toContain('Challenger Series — Event 2')
+    })
+
+    it('picks the earliest event across tournaments as the next event', () => {
+      // mockTournamentA Event 1 is 2026-04-18, mockTournamentB Round 1 is 2026-05-03
+      // so next event should be Challenger Series Event 1
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.text()).toContain('Event 1')
+      expect(wrapper.text()).toContain('Challenger Series')
+    })
   })
 })

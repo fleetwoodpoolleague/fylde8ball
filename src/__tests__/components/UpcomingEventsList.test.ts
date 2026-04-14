@@ -1,42 +1,50 @@
 import { mount } from '@vue/test-utils'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import UpcomingEventsList from '../../components/UpcomingEventsList.vue'
-import type { TournamentDate } from '../../types/tournament'
+import type { UpcomingEventInfo } from '../../types/tournament'
 
-const events: TournamentDate[] = [
-  { name: 'Event 2', date: '2026-05-09', completed: false },
-  { name: 'Event 3', date: '2026-06-06', completed: false },
+const events: UpcomingEventInfo[] = [
+  {
+    event: { name: 'Event 2', date: '2026-05-09', completed: false },
+    tournamentName: 'Challenger Series',
+    tournamentSlug: 'challenger-series',
+  },
+  {
+    event: { name: 'Event 2', date: '2026-05-03', completed: false },
+    tournamentName: 'International Rules',
+    tournamentSlug: 'international-rules',
+  },
 ]
 
 const router = createRouter({
   history: createMemoryHistory(),
   routes: [
     { path: '/', component: { template: '<div />' } },
-    { path: '/tournaments/:slug', component: { template: '<div />' } },
+    { path: '/tournaments', component: { template: '<div />' } },
   ],
 })
 
 describe('UpcomingEventsList', () => {
   beforeEach(() => router.push('/'))
 
-  it('renders each event name', async () => {
+  it('renders each event name with its tournament name prepended', async () => {
     await router.isReady()
     const wrapper = mount(UpcomingEventsList, {
-      props: { events, tournamentSlug: 'test-series' },
+      props: { events },
       global: { plugins: [router] },
     })
-    expect(wrapper.text()).toContain('Event 2')
-    expect(wrapper.text()).toContain('Event 3')
+    expect(wrapper.text()).toContain('Challenger Series — Event 2')
+    expect(wrapper.text()).toContain('International Rules — Event 2')
   })
 
-  it('renders a "View all" link pointing to the tournament', async () => {
+  it('renders a "View all" link pointing to the tournaments page', async () => {
     await router.isReady()
     const wrapper = mount(UpcomingEventsList, {
-      props: { events, tournamentSlug: 'test-series' },
+      props: { events },
       global: { plugins: [router] },
     })
     expect(wrapper.text()).toContain('View all')
-    const link = wrapper.find('a[href*="test-series"]')
+    const link = wrapper.find('a[href="/tournaments"]')
     expect(link.exists()).toBe(true)
   })
 })
