@@ -1,19 +1,11 @@
 <script setup lang="ts">
 import type { TournamentDate } from '../types/tournament'
+import { formatDate, SHORT_DATE } from '../utils/format'
 
 const props = defineProps<{
   date: TournamentDate
   isNext: boolean
 }>()
-
-function formatDate(iso: string): string {
-  const [year, month, day] = iso.split('-').map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  })
-}
 </script>
 
 <template>
@@ -49,7 +41,7 @@ function formatDate(iso: string): string {
           Next
         </span>
       </span>
-      <span class="text-sm text-gray-500 shrink-0">{{ formatDate(date.date) }}</span>
+      <span class="text-sm text-gray-500 shrink-0">{{ formatDate(date.date, SHORT_DATE) }}</span>
     </div>
   </div>
 </template>

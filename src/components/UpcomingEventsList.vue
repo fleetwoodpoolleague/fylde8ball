@@ -1,19 +1,11 @@
 <script setup lang="ts">
 import type { TournamentDate } from '../types/tournament'
+import { formatDate, SHORT_DATE } from '../utils/format'
 
 defineProps<{
   events: TournamentDate[]
   tournamentSlug: string
 }>()
-
-function formatDate(iso: string): string {
-  const [year, month, day] = iso.split('-').map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  })
-}
 </script>
 
 <template>
@@ -26,7 +18,7 @@ function formatDate(iso: string): string {
         class="py-2 flex justify-between text-sm"
       >
         <span class="text-gray-700">{{ event.name }}</span>
-        <span class="text-gray-500">{{ formatDate(event.date) }}</span>
+        <span class="text-gray-500">{{ formatDate(event.date, SHORT_DATE) }}</span>
       </div>
     </div>
     <RouterLink
