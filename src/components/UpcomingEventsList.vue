@@ -15,17 +15,18 @@ function logoSrc(logo: string): string {
   <div>
     <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Upcoming</h3>
     <div class="divide-y divide-gray-100">
-      <div
+      <RouterLink
         v-for="item in events"
         :key="`${item.tournamentSlug}-${item.event.date}`"
-        class="py-2 flex justify-between items-center text-sm"
+        :to="`/tournaments/${item.tournamentSlug}`"
+        class="py-2 flex justify-between items-center text-sm -mx-2 px-2 rounded hover:bg-gray-50 transition-colors"
       >
         <span class="flex items-center gap-2 text-gray-700">
-          <img :src="logoSrc(item.logo)" :alt="item.tournamentName" class="h-6 w-auto object-contain" />
+          <img v-if="item.logo" :src="logoSrc(item.logo)" :alt="item.tournamentName" class="h-6 w-auto object-contain" />
           {{ item.tournamentName }} — {{ item.event.name }}
         </span>
         <span class="text-gray-500 shrink-0 ml-4">{{ formatDate(item.event.date, SHORT_DATE) }}</span>
-      </div>
+      </RouterLink>
     </div>
     <RouterLink
       to="/tournaments"
