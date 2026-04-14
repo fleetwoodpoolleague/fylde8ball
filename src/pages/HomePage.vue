@@ -19,7 +19,11 @@ function findGlobalNextEvent(): NextEventInfo | null {
     if (next) candidates.push({ event: next, tournament })
   }
   if (!candidates.length) return null
-  return candidates.sort((a, b) => a.event.date.localeCompare(b.event.date))[0]
+  return candidates.sort((a, b) => {
+    const aDate = a.event.date === 'TBC' ? 'Z' : a.event.date
+    const bDate = b.event.date === 'TBC' ? 'Z' : b.event.date
+    return aDate.localeCompare(bDate)
+  })[0]
 }
 
 const nextEventInfo = findGlobalNextEvent()
