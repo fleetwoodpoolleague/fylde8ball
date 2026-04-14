@@ -32,13 +32,13 @@ function formatDate(iso: string): string {
     <!-- Row -->
     <div class="flex justify-between items-baseline gap-4">
       <span
-        class="text-sm font-medium"
+        class="text-sm"
         :class="
           isNext
             ? 'text-accent font-semibold'
             : date.completed
-            ? 'text-gray-400 line-through'
-            : 'text-gray-700'
+            ? 'text-gray-400 font-medium line-through'
+            : 'text-gray-700 font-medium'
         "
       >
         {{ date.name }}
