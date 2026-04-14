@@ -1,1 +1,59 @@
-<template><div>Home</div></template>
+<script setup lang="ts">
+import { useTournaments } from '../composables/useTournaments'
+import { getNextEvent } from '../utils/tournament'
+import NextEventCard from '../components/NextEventCard.vue'
+import UpcomingEventsList from '../components/UpcomingEventsList.vue'
+import type { Tournament, TournamentDate } from '../types/tournament'
+
+const tournaments = useTournaments()
+
+interface NextEventInfo {
+  event: TournamentDate
+  tournament: Tournament
+}
+
+function findGlobalNextEvent(): NextEventInfo | null {
+  const candidates: NextEventInfo[] = []
+  for (const tournament of tournaments) {
+    const next = getNextEvent(tournament.dates)
+    if (next) candidates.push({ event: next, tournament })
+  }
+  if (!candidates.length) return null
+  return candidates.sort((a, b) => a.event.date.localeCompare(b.event.date))[0]
+}
+
+const nextEventInfo = findGlobalNextEvent()
+
+function getUpcomingEvents(): TournamentDate[] {
+  if (!nextEventInfo) return []
+  const dates = nextEventInfo.tournament.dates
+  const idx = dates.indexOf(nextEventInfo.event)
+  return dates.slice(idx + 1, idx + 4)
+}
+
+const upcomingEvents = getUpcomingEvents()
+</script>
+
+<template>
+  <div class="max-w-3xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold text-gray-900 mb-1">Fylde 8 Ball</h1>
+      <p class="text-gray-500">Pool fixtures for the Fylde area</p>
+    </div>
+
+    <template v-if="nextEventInfo">
+      <NextEventCard
+        class="mb-6"
+        :event="nextEventInfo.event"
+        :tournament-name="nextEventInfo.tournament.meta.name"
+        :venue="nextEventInfo.tournament.meta.venue"
+      />
+      <UpcomingEventsList
+        v-if="upcomingEvents.length"
+        :events="upcomingEvents"
+        :tournament-slug="nextEventInfo.tournament.slug"
+      />
+    </template>
+    <p v-else class="text-gray-500">No upcoming events.</p>
+  </div>
+</template>
