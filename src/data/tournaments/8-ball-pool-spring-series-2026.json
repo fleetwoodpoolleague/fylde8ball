@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "name": "8 Ball Pool Spring Series 2026",
+    "venue": "The Cue Lounge",
+    "organiser": "The Cue Lounge",
+    "logo": "cuelounge_logo.jpg"
+  },
+  "dates": [
+    { "name": "Week 1", "date": "2026-04-01", "completed": true },
+    { "name": "Week 2", "date": "2026-04-08", "completed": true },
+    { "name": "Week 3", "date": "2026-04-15", "completed": false },
+    { "name": "Week 4", "date": "2026-04-22", "completed": false },
+    { "name": "Week 5", "date": "2026-04-29", "completed": false },
+    { "name": "Week 6", "date": "2026-05-06", "completed": false },
+    { "name": "Grand Final", "date": "TBC", "completed": false }
+  ]
+}
