@@ -41,6 +41,7 @@ function getUpcomingEvents(): UpcomingEventInfo[] {
         event: date,
         tournamentName: tournament.meta.name,
         tournamentSlug: tournament.slug,
+        logo: tournament.meta.logo,
       })
     }
   }
@@ -67,6 +68,7 @@ const upcomingEvents = getUpcomingEvents()
         :event="nextEventInfo.event"
         :tournament-name="nextEventInfo.tournament.meta.name"
         :venue="nextEventInfo.tournament.meta.venue"
+        :logo="nextEventInfo.tournament.meta.logo"
       />
       <UpcomingEventsList
         v-if="upcomingEvents.length"

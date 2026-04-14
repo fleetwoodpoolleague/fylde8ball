@@ -22,4 +22,5 @@ export interface UpcomingEventInfo {
   event: TournamentDate
   tournamentName: string
   tournamentSlug: string
+  logo: string
 }
