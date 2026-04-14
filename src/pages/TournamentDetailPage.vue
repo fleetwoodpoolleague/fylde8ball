@@ -7,13 +7,25 @@ const props = defineProps<{
 }>()
 
 const tournament = useTournament(props.slug)
+
+function logoSrc(logo: string): string | null {
+  return logo ? new URL(`../assets/img/${logo}`, import.meta.url).href : null
+}
 </script>
 
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8">
     <template v-if="tournament">
       <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ tournament.meta.name }}</h1>
+        <div class="flex justify-between items-center">
+          <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ tournament.meta.name }}</h1>
+          <img
+            v-if="logoSrc(tournament.meta.logo)"
+            :src="logoSrc(tournament.meta.logo)!"
+            :alt="tournament.meta.name"
+            class="h-12 w-12 object-contain shrink-0"
+          />
+        </div>
         <p class="text-sm text-gray-500">
           {{ tournament.meta.venue }} · Organised by {{ tournament.meta.organiser }}
         </p>
