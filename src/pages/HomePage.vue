@@ -67,6 +67,7 @@ const upcomingEvents = getUpcomingEvents()
         class="mb-6"
         :event="nextEventInfo.event"
         :tournament-name="nextEventInfo.tournament.meta.name"
+        :tournament-slug="nextEventInfo.tournament.slug"
         :venue="nextEventInfo.tournament.meta.venue"
         :logo="nextEventInfo.tournament.meta.logo"
       />
