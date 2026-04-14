@@ -61,7 +61,7 @@ const upcomingEvents = getUpcomingEvents()
   <div class="max-w-3xl mx-auto px-4 py-8">
     <div class="mb-8">
       <h1 class="text-2xl font-bold text-gray-900 mb-1">Fylde <EightBallIcon size="1.2em" /> Ball</h1>
-      <p class="text-gray-500">Pool fixtures for the Fylde area</p>
+      <p class="text-gray-500">Pool events and fixtures for the Fylde coast</p>
     </div>
 
     <template v-if="nextEventInfo">

@@ -33,8 +33,8 @@ const logoSrc = computed(() =>
         <p class="text-xs font-semibold uppercase tracking-wider opacity-75">Next Event</p>
         <img v-if="logoSrc" :src="logoSrc" :alt="tournamentName" class="h-10 w-auto object-contain" />
       </div>
-      <p class="text-sm opacity-90 mb-1">{{ tournamentName }}</p>
-      <h2 class="text-xl font-bold mb-3">{{ event.name }}</h2>
+      <p class="text-xl font-bold opacity-90 mb-1">{{ tournamentName }}</p>
+      <h2 class="text-sm mb-3">{{ event.name }}</h2>
       <p class="text-sm opacity-75">{{ formatDate(event.date, LONG_DATE) }}</p>
       <p class="text-sm opacity-75 mb-3">{{ venue }}</p>
       <div class="flex justify-end">
