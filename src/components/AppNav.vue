@@ -1,7 +1,7 @@
 <template>
   <nav class="bg-white border-b border-gray-200">
     <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-      <RouterLink to="/" class="font-bold text-lg text-gray-900 hover:text-accent">
+      <RouterLink to="/" class="font-bold text-lg text-gray-900 hover:text-accent" active-class="">
         Fylde 8 Ball
       </RouterLink>
       <div class="flex gap-6 text-sm font-medium">
