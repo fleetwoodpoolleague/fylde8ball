@@ -14,10 +14,13 @@ const router = createRouter({
 describe('AppNav', () => {
   beforeEach(() => router.push('/'))
 
-  it('renders the site name', async () => {
+  it('renders the site name with an 8-ball icon', async () => {
     await router.isReady()
     const wrapper = mount(AppNav, { global: { plugins: [router] } })
-    expect(wrapper.text()).toContain('Fylde 8 Ball')
+    const link = wrapper.find('a[href="/"]')
+    expect(link.text()).toContain('Fylde')
+    expect(link.text()).toContain('Ball')
+    expect(link.find('svg').exists()).toBe(true)
   })
 
   it('has a link to /tournaments', async () => {

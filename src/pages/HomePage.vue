@@ -3,6 +3,7 @@ import { useTournaments } from '../composables/useTournaments'
 import { getNextEvent } from '../utils/tournament'
 import NextEventCard from '../components/NextEventCard.vue'
 import UpcomingEventsList from '../components/UpcomingEventsList.vue'
+import EightBallIcon from '../components/EightBallIcon.vue'
 import type { Tournament, TournamentDate, UpcomingEventInfo } from '../types/tournament'
 
 const tournaments = useTournaments()
@@ -58,7 +59,7 @@ const upcomingEvents = getUpcomingEvents()
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8">
     <div class="mb-8">
-      <h1 class="text-2xl font-bold text-gray-900 mb-1">Fylde 8 Ball</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mb-1">Fylde <EightBallIcon size="1.2em" /> Ball</h1>
       <p class="text-gray-500">Pool fixtures for the Fylde area</p>
     </div>
 
