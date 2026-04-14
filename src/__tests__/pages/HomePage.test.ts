@@ -40,9 +40,15 @@ const router = createRouter({
 
 describe('HomePage', () => {
   beforeEach(async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-04-14'))
     vi.mocked(useTournaments).mockReturnValue([mockTournamentA])
     await router.push('/')
     await router.isReady()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
   })
 
   it('renders the next event name', () => {
@@ -64,6 +70,22 @@ describe('HomePage', () => {
     vi.mocked(useTournaments).mockReturnValue([])
     const wrapper = mount(HomePage, { global: { plugins: [router] } })
     expect(wrapper.text().toLowerCase()).toContain('no upcoming')
+  })
+
+  it('excludes upcoming events more than 3 months away', () => {
+    vi.mocked(useTournaments).mockReturnValue([
+      {
+        slug: 'test-series',
+        meta: { name: 'Test Series', venue: 'Venue', organiser: 'Org', logo: '' },
+        dates: [
+          { name: 'Near Event', date: '2026-05-01', completed: false },
+          { name: 'Far Event', date: '2026-09-01', completed: false },
+        ],
+      },
+    ])
+    const wrapper = mount(HomePage, { global: { plugins: [router] } })
+    expect(wrapper.text()).toContain('Near Event')
+    expect(wrapper.text()).not.toContain('Far Event')
   })
 
   describe('with multiple tournaments', () => {

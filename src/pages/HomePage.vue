@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTournaments } from '../composables/useTournaments'
-import { getNextEvent } from '../utils/tournament'
+import { getNextEvent, isWithinMonths } from '../utils/tournament'
 import NextEventCard from '../components/NextEventCard.vue'
 import UpcomingEventsList from '../components/UpcomingEventsList.vue'
 import EightBallIcon from '../components/EightBallIcon.vue'
@@ -34,6 +34,7 @@ function getUpcomingEvents(): UpcomingEventInfo[] {
   for (const tournament of tournaments) {
     for (const date of tournament.dates) {
       if (date.completed) continue
+      if (!isWithinMonths(date.date, 3)) continue
       if (
         nextEventInfo &&
         date === nextEventInfo.event

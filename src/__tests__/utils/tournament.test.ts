@@ -1,4 +1,4 @@
-import { getNextEvent } from '../../utils/tournament'
+import { getNextEvent, isWithinMonths } from '../../utils/tournament'
 import type { TournamentDate } from '../../types/tournament'
 
 describe('getNextEvent', () => {
@@ -48,5 +48,29 @@ describe('getNextEvent', () => {
       date: '2026-04-18',
       completed: false,
     })
+  })
+})
+
+describe('isWithinMonths', () => {
+  const from = new Date('2026-04-14')
+
+  it('returns true for a date within the window', () => {
+    expect(isWithinMonths('2026-07-13', 3, from)).toBe(true)
+  })
+
+  it('returns true for a date exactly on the cutoff day', () => {
+    expect(isWithinMonths('2026-07-14', 3, from)).toBe(true)
+  })
+
+  it('returns false for a date one day past the cutoff', () => {
+    expect(isWithinMonths('2026-07-15', 3, from)).toBe(false)
+  })
+
+  it('returns false for TBC dates', () => {
+    expect(isWithinMonths('TBC', 3, from)).toBe(false)
+  })
+
+  it('returns true for a date today', () => {
+    expect(isWithinMonths('2026-04-14', 3, from)).toBe(true)
   })
 })
