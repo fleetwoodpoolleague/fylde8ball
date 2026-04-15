@@ -3,6 +3,22 @@ export interface TournamentMeta {
   venue: string
   organiser: string
   logo: string
+  address?: string
+  contact?: {
+    phone?: string
+    whatsapp?: string
+    email?: string
+  }
+  urls?: {
+    venue?: string
+    organiser?: string
+    scoreboard?: string
+  }
+  socials?: {
+    facebook?: string
+    twitter?: string
+    instagram?: string
+  }
 }
 
 export interface TournamentDate {
@@ -14,8 +30,20 @@ export interface TournamentDate {
   completed: boolean
 }
 
+export interface TournamentFormat {
+  rules?: string | null
+  type?: string | null
+  raceToWin?: number | null
+  entryFee?: string | null
+  handicap?: string | null
+  maxPlayers?: number | null
+}
+
 export interface Tournament {
+  /** When true, the tournament is finished and should be hidden from the homepage. */
+  completed?: boolean
   meta: TournamentMeta
+  format?: TournamentFormat
   dates: TournamentDate[]
   slug: string
 }
