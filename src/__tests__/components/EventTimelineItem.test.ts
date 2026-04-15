@@ -32,6 +32,24 @@ describe('EventTimelineItem', () => {
     expect(wrapper.html()).toContain('line-through')
   })
 
+  it('shows the time when date.time is present', () => {
+    const timedDate: TournamentDate = { ...date, time: '1900' }
+    const wrapper = mount(EventTimelineItem, { props: { date: timedDate, isNext: false } })
+    expect(wrapper.text()).toContain('· 1900')
+  })
+
+  it('does not show a time separator when date.time is absent', () => {
+    const wrapper = mount(EventTimelineItem, { props: { date, isNext: false } })
+    expect(wrapper.text()).not.toContain('·')
+  })
+
+  it('normalises 8pm to 2000 in the timeline', () => {
+    const timedDate: TournamentDate = { ...date, time: '8pm' }
+    const wrapper = mount(EventTimelineItem, { props: { date: timedDate, isNext: false } })
+    expect(wrapper.text()).toContain('· 2000')
+    expect(wrapper.text()).not.toContain('8pm')
+  })
+
   it("shows 'Today' when the event date is today", () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date(2026, 3, 18)) // 18 Apr 2026 — matches mock event date
