@@ -4,6 +4,9 @@ import EventTimeline from '../components/EventTimeline.vue'
 import FacebookIcon from '../components/icons/FacebookIcon.vue'
 import TwitterIcon from '../components/icons/TwitterIcon.vue'
 import InstagramIcon from '../components/icons/InstagramIcon.vue'
+import GlobeIcon from '../components/icons/GlobeIcon.vue'
+import PhoneIcon from '../components/icons/PhoneIcon.vue'
+import MailIcon from '../components/icons/MailIcon.vue'
 
 const props = defineProps<{
   slug: string
@@ -21,6 +24,10 @@ function hasValue(v: unknown): boolean {
 
 function telHref(phone: string): string {
   return `tel:${phone.replace(/\s/g, '')}`
+}
+
+function displayUrl(url: string): string {
+  return url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 }
 </script>
 
@@ -47,14 +54,7 @@ function telHref(phone: string): string {
 
         <!-- Venue / organiser -->
         <p class="text-sm text-gray-500">
-          <a
-            v-if="hasValue(tournament.meta.urls?.venue)"
-            :href="tournament.meta.urls!.venue"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-accent underline"
-          >{{ tournament.meta.venue }}</a>
-          <template v-else>{{ tournament.meta.venue }}</template>
+          {{ tournament.meta.venue }}
           · Organised by
           <a
             v-if="hasValue(tournament.meta.urls?.organiser)"
@@ -76,18 +76,25 @@ function telHref(phone: string): string {
           <a
             v-if="hasValue(tournament.meta.contact.phone)"
             :href="telHref(tournament.meta.contact.phone!)"
-            class="hover:text-accent"
-          >{{ tournament.meta.contact.phone }}</a>
+            class="flex items-center gap-1 hover:text-accent"
+          ><PhoneIcon size="0.9em" />{{ tournament.meta.contact.phone }}</a>
           <span v-if="hasValue(tournament.meta.contact.whatsapp)">WhatsApp: {{ tournament.meta.contact.whatsapp }}</span>
           <a
             v-if="hasValue(tournament.meta.contact.email)"
             :href="`mailto:${tournament.meta.contact.email}`"
-            class="hover:text-accent"
-          >{{ tournament.meta.contact.email }}</a>
+            class="flex items-center gap-1 hover:text-accent"
+          ><MailIcon size="0.9em" />{{ tournament.meta.contact.email }}</a>
         </div>
 
-        <!-- Social icons + scoreboard link -->
+        <!-- Social icons + venue/scoreboard links -->
         <div class="flex items-center gap-3 mt-2">
+          <a
+            v-if="hasValue(tournament.meta.urls?.venue)"
+            :href="tournament.meta.urls!.venue"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-1 text-sm text-accent hover:underline"
+          ><GlobeIcon size="0.9em" />{{ displayUrl(tournament.meta.urls!.venue!) }}</a>
           <template v-if="tournament.meta.socials">
             <a
               v-if="hasValue(tournament.meta.socials.facebook)"
@@ -133,31 +140,31 @@ function telHref(phone: string): string {
       <!-- Format section -->
       <div v-if="tournament.format" class="mb-6 p-4 bg-gray-50 rounded-lg">
         <h2 class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Competition Format</h2>
-        <dl class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-sm">
-          <template v-if="hasValue(tournament.format.rules)">
-            <dt class="text-gray-500">Rules</dt>
+        <dl class="space-y-1 text-sm">
+          <div v-if="hasValue(tournament.format.rules)" class="flex gap-2">
+            <dt class="text-gray-500 w-24 shrink-0">Rules</dt>
             <dd class="text-gray-900 font-medium">{{ tournament.format.rules }}</dd>
-          </template>
-          <template v-if="hasValue(tournament.format.type)">
-            <dt class="text-gray-500">Type</dt>
+          </div>
+          <div v-if="hasValue(tournament.format.type)" class="flex gap-2">
+            <dt class="text-gray-500 w-24 shrink-0">Type</dt>
             <dd class="text-gray-900 font-medium">{{ tournament.format.type }}</dd>
-          </template>
-          <template v-if="hasValue(tournament.format.raceToWin)">
-            <dt class="text-gray-500">Race to</dt>
+          </div>
+          <div v-if="hasValue(tournament.format.raceToWin)" class="flex gap-2">
+            <dt class="text-gray-500 w-24 shrink-0">Race to</dt>
             <dd class="text-gray-900 font-medium">{{ tournament.format.raceToWin }}</dd>
-          </template>
-          <template v-if="hasValue(tournament.format.entryFee)">
-            <dt class="text-gray-500">Entry fee</dt>
+          </div>
+          <div v-if="hasValue(tournament.format.entryFee)" class="flex gap-2">
+            <dt class="text-gray-500 w-24 shrink-0">Entry fee</dt>
             <dd class="text-gray-900 font-medium">{{ tournament.format.entryFee }}</dd>
-          </template>
-          <template v-if="hasValue(tournament.format.handicap)">
-            <dt class="text-gray-500">Handicap</dt>
+          </div>
+          <div v-if="hasValue(tournament.format.handicap)" class="flex gap-2">
+            <dt class="text-gray-500 w-24 shrink-0">Handicap</dt>
             <dd class="text-gray-900 font-medium">{{ tournament.format.handicap }}</dd>
-          </template>
-          <template v-if="hasValue(tournament.format.maxPlayers)">
-            <dt class="text-gray-500">Max players</dt>
+          </div>
+          <div v-if="hasValue(tournament.format.maxPlayers)" class="flex gap-2">
+            <dt class="text-gray-500 w-24 shrink-0">Max players</dt>
             <dd class="text-gray-900 font-medium">{{ tournament.format.maxPlayers }}</dd>
-          </template>
+          </div>
         </dl>
       </div>
 

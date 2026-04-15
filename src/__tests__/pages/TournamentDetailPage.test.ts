@@ -115,11 +115,11 @@ describe('TournamentDetailPage', () => {
   })
 
   describe('venue and organiser links', () => {
-    it('makes the venue a link when meta.urls.venue is set', () => {
+    it('shows a website link when meta.urls.venue is set', () => {
       const wrapper = mount(TournamentDetailPage, { props: { slug: 'full-series' } })
       const link = wrapper.find('a[href="https://venue.com"]')
       expect(link.exists()).toBe(true)
-      expect(link.text()).toBe('The Venue')
+      expect(link.text()).toContain('venue.com')
     })
 
     it('keeps venue as plain text when meta.urls.venue is absent', () => {
