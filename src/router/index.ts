@@ -3,6 +3,7 @@ import HomePage from '../pages/HomePage.vue'
 import TournamentsPage from '../pages/TournamentsPage.vue'
 import TournamentDetailPage from '../pages/TournamentDetailPage.vue'
 import LeaguesPage from '../pages/LeaguesPage.vue'
+import AboutPage from '../pages/AboutPage.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -15,6 +16,7 @@ const router = createRouter({
       props: true,
     },
     { path: '/leagues', component: LeaguesPage },
+    { path: '/about', component: AboutPage },
   ],
 })
 

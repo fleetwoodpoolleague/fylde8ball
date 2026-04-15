@@ -23,6 +23,13 @@ import EightBallIcon from './EightBallIcon.vue'
         >
           Leagues
         </RouterLink>
+        <RouterLink
+          to="/about"
+          class="text-gray-600 hover:text-accent"
+          active-class="text-accent border-b-2 border-accent"
+        >
+          About
+        </RouterLink>
       </div>
     </div>
   </nav>
