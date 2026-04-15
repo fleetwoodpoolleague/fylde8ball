@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EventTimelineItem from '../../components/EventTimelineItem.vue'
 import type { TournamentDate } from '../../types/tournament'
@@ -29,5 +30,14 @@ describe('EventTimelineItem', () => {
     const completedDate: TournamentDate = { ...date, completed: true }
     const wrapper = mount(EventTimelineItem, { props: { date: completedDate, isNext: false } })
     expect(wrapper.html()).toContain('line-through')
+  })
+
+  it("shows 'Today' when the event date is today", () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 18)) // 18 Apr 2026 — matches mock event date
+    const wrapper = mount(EventTimelineItem, { props: { date, isNext: false } })
+    expect(wrapper.text()).toContain('Today')
+    expect(wrapper.text()).not.toContain('18 Apr 2026')
+    vi.useRealTimers()
   })
 })

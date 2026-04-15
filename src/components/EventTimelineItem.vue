@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TournamentDate } from '../types/tournament'
-import { formatDate, SHORT_DATE } from '../utils/format'
+import { formatDate, SHORT_DATE, isToday } from '../utils/format'
 
 const props = defineProps<{
   date: TournamentDate
@@ -41,7 +41,7 @@ const props = defineProps<{
           Next
         </span>
       </span>
-      <span class="text-sm text-gray-500 shrink-0">{{ formatDate(date.date, SHORT_DATE) }}</span>
+      <span class="text-sm text-gray-500 shrink-0">{{ isToday(date.date) ? 'Today' : formatDate(date.date, SHORT_DATE) }}</span>
     </div>
   </div>
 </template>
