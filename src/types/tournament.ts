@@ -9,6 +9,8 @@ export interface TournamentDate {
   name: string
   /** ISO 8601 date string, e.g. "2026-04-18" */
   date: string
+  /** Optional start time. May be 4-digit military ("1900") or 12h ("8pm"). */
+  time?: string
   completed: boolean
 }
 

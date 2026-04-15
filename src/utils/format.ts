@@ -31,3 +31,23 @@ export function isToday(iso: string): boolean {
   const today = new Date()
   return year === today.getFullYear() && month === today.getMonth() + 1 && day === today.getDate()
 }
+
+/**
+ * Normalise a time string to 4-digit military format (HHMM).
+ * Accepts "1900" (already normalised) or "8pm"/"8PM" style.
+ * Returns the input unchanged if the format is not recognised.
+ */
+export function formatTime(raw: string): string {
+  if (/^\d{4}$/.test(raw)) return raw
+
+  const match = raw.match(/^(1[0-2]|[1-9])(am|pm)$/i)
+  if (match) {
+    let hour = parseInt(match[1], 10)
+    const period = match[2].toLowerCase()
+    if (period === 'pm' && hour !== 12) hour += 12
+    if (period === 'am' && hour === 12) hour = 0
+    return `${String(hour).padStart(2, '0')}00`
+  }
+
+  return raw
+}
