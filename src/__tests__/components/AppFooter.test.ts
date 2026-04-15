@@ -10,6 +10,6 @@ describe('AppFooter', () => {
 
   it('renders the logo/name disclaimer', () => {
     const wrapper = mount(AppFooter)
-    expect(wrapper.text()).toContain('Tournament logos and names are property of their respective organisations')
+    expect(wrapper.text()).toContain('Tournament logos and names are property of their respective companies and/or organisations')
   })
 })
