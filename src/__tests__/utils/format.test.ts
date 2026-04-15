@@ -1,4 +1,5 @@
-import { formatDate, SHORT_DATE, LONG_DATE } from '../../utils/format'
+import { vi } from 'vitest'
+import { formatDate, SHORT_DATE, LONG_DATE, isToday } from '../../utils/format'
 
 describe('formatDate', () => {
   it('formats a date in short format', () => {
@@ -17,5 +18,25 @@ describe('formatDate', () => {
     // in negative-offset timezones. Local parsing must be used.
     const result = formatDate('2026-01-01', SHORT_DATE)
     expect(result).toContain('1 Jan 2026')
+  })
+})
+
+describe('isToday', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15)) // 15 Apr 2026
+  })
+  afterEach(() => vi.useRealTimers())
+
+  it("returns true for today's ISO date", () => {
+    expect(isToday('2026-04-15')).toBe(true)
+  })
+
+  it('returns false for a different date', () => {
+    expect(isToday('2026-04-16')).toBe(false)
+  })
+
+  it('returns false for a non-date string', () => {
+    expect(isToday('TBC')).toBe(false)
   })
 })

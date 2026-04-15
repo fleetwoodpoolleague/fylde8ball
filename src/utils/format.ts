@@ -24,3 +24,10 @@ export const LONG_DATE: Intl.DateTimeFormatOptions = {
   month: 'long',
   year: 'numeric',
 }
+
+export function isToday(iso: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false
+  const [year, month, day] = iso.split('-').map(Number)
+  const today = new Date()
+  return year === today.getFullYear() && month === today.getMonth() + 1 && day === today.getDate()
+}
