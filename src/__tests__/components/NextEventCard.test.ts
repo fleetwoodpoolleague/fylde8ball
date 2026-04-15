@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import NextEventCard from '../../components/NextEventCard.vue'
@@ -40,6 +41,14 @@ describe('NextEventCard', () => {
 
   it('renders 6 pool table pockets', () => {
     expect(mountCard().findAll('.pocket')).toHaveLength(6)
+  })
+
+  it("shows 'Today' when the event date is today", () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 18)) // 18 Apr 2026 — matches mock event date
+    const wrapper = mountCard()
+    expect(wrapper.text()).toContain('Today')
+    vi.useRealTimers()
   })
 
   it('renders a details link to the tournament page', () => {
