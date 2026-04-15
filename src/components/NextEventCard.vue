@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { TournamentDate } from '../types/tournament'
-import { formatDate, LONG_DATE, isToday } from '../utils/format'
+import { formatDate, LONG_DATE, isToday, formatTime } from '../utils/format'
 
 const props = defineProps<{
   event: TournamentDate
@@ -36,6 +36,7 @@ const logoSrc = computed(() =>
       <p class="text-xl font-bold opacity-90 mb-1">{{ tournamentName }}</p>
       <h2 class="text-sm mb-3">{{ event.name }}</h2>
       <p class="text-sm opacity-75">{{ isToday(event.date) ? 'Today' : formatDate(event.date, LONG_DATE) }}</p>
+      <p v-if="event.time" class="text-sm opacity-75">{{ formatTime(event.time) }}</p>
       <p class="text-sm opacity-75 mb-3">{{ venue }}</p>
       <div class="flex justify-end">
         <RouterLink

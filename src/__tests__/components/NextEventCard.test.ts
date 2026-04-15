@@ -51,6 +51,30 @@ describe('NextEventCard', () => {
     vi.useRealTimers()
   })
 
+  it('shows the time when event.time is present', () => {
+    const timedEvent: TournamentDate = { ...event, time: '1900' }
+    const wrapper = mount(NextEventCard, {
+      props: { ...defaultProps, event: timedEvent },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('1900')
+  })
+
+  it('does not show a time when event.time is absent', () => {
+    const wrapper = mountCard()
+    expect(wrapper.text()).not.toContain('1900')
+  })
+
+  it('normalises 8pm to 2000 in the display', () => {
+    const timedEvent: TournamentDate = { ...event, time: '8pm' }
+    const wrapper = mount(NextEventCard, {
+      props: { ...defaultProps, event: timedEvent },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('2000')
+    expect(wrapper.text()).not.toContain('8pm')
+  })
+
   it('renders a details link to the tournament page', () => {
     const link = mountCard().find('a[href="/tournaments/challenger-series"]')
     expect(link.exists()).toBe(true)
