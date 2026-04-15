@@ -7,6 +7,7 @@ import EightBallIcon from '../components/EightBallIcon.vue'
 import type { Tournament, TournamentDate, UpcomingEventInfo } from '../types/tournament'
 
 const tournaments = useTournaments()
+const activeTournaments = tournaments.filter(t => !t.completed)
 
 interface NextEventInfo {
   event: TournamentDate
@@ -15,7 +16,7 @@ interface NextEventInfo {
 
 function findGlobalNextEvent(): NextEventInfo | null {
   const candidates: NextEventInfo[] = []
-  for (const tournament of tournaments) {
+  for (const tournament of activeTournaments) {
     const next = getNextEvent(tournament.dates)
     if (next) candidates.push({ event: next, tournament })
   }
@@ -31,7 +32,7 @@ const nextEventInfo = findGlobalNextEvent()
 
 function getUpcomingEvents(): UpcomingEventInfo[] {
   const upcoming: UpcomingEventInfo[] = []
-  for (const tournament of tournaments) {
+  for (const tournament of activeTournaments) {
     for (const date of tournament.dates) {
       if (date.completed) continue
       if (!isWithinMonths(date.date, 3)) continue

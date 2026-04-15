@@ -88,6 +88,52 @@ describe('HomePage', () => {
     expect(wrapper.text()).not.toContain('Far Event')
   })
 
+  describe('completed tournament filtering', () => {
+    it('does not show a completed tournament as the next event', () => {
+      vi.mocked(useTournaments).mockReturnValue([
+        {
+          slug: 'done-series',
+          completed: true,
+          meta: { name: 'Done Series', venue: 'Venue', organiser: 'Org', logo: '' },
+          dates: [{ name: 'Final', date: '2026-04-20', completed: false }],
+        },
+      ])
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.text()).not.toContain('Done Series')
+      expect(wrapper.text().toLowerCase()).toContain('no upcoming')
+    })
+
+    it('does not include completed tournament events in the upcoming list', () => {
+      vi.mocked(useTournaments).mockReturnValue([
+        mockTournamentA,
+        {
+          slug: 'done-series',
+          completed: true,
+          meta: { name: 'Done Series', venue: 'Venue', organiser: 'Org', logo: '' },
+          dates: [{ name: 'Final', date: '2026-04-20', completed: false }],
+        },
+      ])
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.text()).not.toContain('Done Series')
+      expect(wrapper.text()).not.toContain('Final')
+    })
+
+    it('still shows active tournaments when a completed one is present', () => {
+      vi.mocked(useTournaments).mockReturnValue([
+        {
+          slug: 'done-series',
+          completed: true,
+          meta: { name: 'Done Series', venue: 'Venue', organiser: 'Org', logo: '' },
+          dates: [{ name: 'Final', date: '2026-04-20', completed: false }],
+        },
+        mockTournamentA,
+      ])
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.text()).toContain('Challenger Series')
+      expect(wrapper.text()).toContain('Event 1')
+    })
+  })
+
   describe('with multiple tournaments', () => {
     beforeEach(() => {
       vi.mocked(useTournaments).mockReturnValue([mockTournamentA, mockTournamentB])
