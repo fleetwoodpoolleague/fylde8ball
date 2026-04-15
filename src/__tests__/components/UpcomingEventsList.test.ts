@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import UpcomingEventsList from '../../components/UpcomingEventsList.vue'
@@ -49,6 +50,27 @@ describe('UpcomingEventsList', () => {
     expect(wrapper.text()).toContain('View all')
     const link = wrapper.find('a[href="/tournaments"]')
     expect(link.exists()).toBe(true)
+  })
+
+  it("shows 'Today' for an event on today's date", async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15)) // 15 Apr 2026
+    await router.isReady()
+    const todayEvents: UpcomingEventInfo[] = [
+      {
+        event: { name: 'Finals', date: '2026-04-15', completed: false },
+        tournamentName: 'Challenger Series',
+        tournamentSlug: 'challenger-series',
+        logo: '',
+      },
+    ]
+    const wrapper = mount(UpcomingEventsList, {
+      props: { events: todayEvents },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('Today')
+    expect(wrapper.text()).not.toContain('15 Apr 2026')
+    vi.useRealTimers()
   })
 
   it('renders each event as a link to its tournament page', async () => {

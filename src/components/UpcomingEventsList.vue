@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UpcomingEventInfo } from '../types/tournament'
-import { formatDate, SHORT_DATE } from '../utils/format'
+import { formatDate, SHORT_DATE, isToday } from '../utils/format'
 
 defineProps<{
   events: UpcomingEventInfo[]
@@ -25,7 +25,9 @@ function logoSrc(logo: string): string {
           <img v-if="item.logo" :src="logoSrc(item.logo)" :alt="item.tournamentName" class="h-6 w-auto object-contain" />
           {{ item.tournamentName }} — {{ item.event.name }}
         </span>
-        <span class="text-gray-500 shrink-0 ml-4">{{ formatDate(item.event.date, SHORT_DATE) }}</span>
+        <span :class="isToday(item.event.date) ? 'text-accent font-medium shrink-0 ml-4' : 'text-gray-500 shrink-0 ml-4'">
+          {{ isToday(item.event.date) ? 'Today' : formatDate(item.event.date, SHORT_DATE) }}
+        </span>
       </RouterLink>
     </div>
     <RouterLink
