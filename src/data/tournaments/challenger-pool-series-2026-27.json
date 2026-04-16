@@ -1,20 +1,45 @@
 {
+  "completed": false,
   "meta": {
     "name": "Challenger Pool Series 2026/27",
     "venue": "Q's Sports Lounge",
     "organiser": "Q's Sports Lounge",
-    "logo": "qs_logo.jpg"
+    "logo": "qs_logo.jpg",
+    "address": "249 Lytham Road, Blackpool, United Kingdom, FY1 6",
+    "contact": {
+      "phone": "01253 346578",
+      "whatsapp": "",
+      "email": "qslcustomer@gmail.com"
+    },
+    "urls": {
+      "venue": null,
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=100063657548884",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "Double Elimination",
+    "raceToWin": 5,
+    "entryFee": "£25",
+    "handicap": true,
+    "maxPlayers": 24
   },
   "dates": [
-    { "name": "Event 1",     "date": "2026-04-18", "completed": false },
-    { "name": "Event 2",     "date": "2026-05-09", "completed": false },
-    { "name": "Event 3",     "date": "2026-06-06", "completed": false },
-    { "name": "Event 4",     "date": "2026-08-01", "completed": false },
-    { "name": "Event 5",     "date": "2026-09-26", "completed": false },
-    { "name": "Event 6",     "date": "2026-11-14", "completed": false },
-    { "name": "Event 7",     "date": "2027-01-09", "completed": false },
-    { "name": "Event 8",     "date": "2027-02-20", "completed": false },
-    { "name": "Event 9",     "date": "2027-03-06", "completed": false },
-    { "name": "Grand Final", "date": "2027-04-17", "completed": false }
+    { "name": "Event 1",     "date": "2026-04-18", "time": "1030", "completed": false },
+    { "name": "Event 2",     "date": "2026-05-09", "time": "1030", "completed": false },
+    { "name": "Event 3",     "date": "2026-06-06", "time": "1030", "completed": false },
+    { "name": "Event 4",     "date": "2026-08-01", "time": "1030", "completed": false },
+    { "name": "Event 5",     "date": "2026-09-26", "time": "1030", "completed": false },
+    { "name": "Event 6",     "date": "2026-11-14", "time": "1030", "completed": false },
+    { "name": "Event 7",     "date": "2027-01-09", "time": "1030", "completed": false },
+    { "name": "Event 8",     "date": "2027-02-20", "time": "1030", "completed": false },
+    { "name": "Event 9",     "date": "2027-03-06", "time": "1030", "completed": false },
+    { "name": "Grand Final", "date": "2027-04-17", "time": "1030", "completed": false }
   ]
 }

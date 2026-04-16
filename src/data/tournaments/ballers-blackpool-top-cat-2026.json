@@ -1,18 +1,43 @@
 {
+  "completed": false,
   "meta": {
     "name": "Ballers Blackpool: Top Cat 2026",
     "venue": "Ballers Blackpool",
     "organiser": "Ballers Blackpool",
-    "logo": "ballers_logo.jpg"
+    "logo": "ballers_logo.jpg",
+    "address": "21-27 Bethesda Road, Blackpool, United Kingdom, FY1 5DT",
+    "contact": {
+      "phone": "01253 584711",
+      "whatsapp": "",
+      "email": "admin@ballersblackpool.co.uk"
+    },
+    "urls": {
+      "venue": "https://https://ballersblackpool.co.uk/",
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=61577596779388",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "7 Round Robin weeks, then seeded KO Final",
+    "raceToWin": 7,
+    "entryFee": "£100",
+    "handicap": null,
+    "maxPlayers": null
   },
   "dates": [
-    { "name": "Week 1", "date": "2026-04-30", "completed": false },
-    { "name": "Week 2", "date": "2026-05-07", "completed": false },
-    { "name": "Week 3", "date": "2026-05-14", "completed": false },
-    { "name": "Week 4", "date": "2026-05-21", "completed": false },
-    { "name": "Week 5", "date": "2026-05-28", "completed": false },
-    { "name": "Week 6", "date": "2026-06-04", "completed": false },
-    { "name": "Week 7", "date": "2026-06-11", "completed": false },
-    { "name": "Week 8: KO Final", "date": "2026-06-18", "completed": false }
+    { "name": "Week 1", "date": "2026-04-30", "time": "2000", "completed": false },
+    { "name": "Week 2", "date": "2026-05-07", "time": "2000", "completed": false },
+    { "name": "Week 3", "date": "2026-05-14", "time": "2000", "completed": false },
+    { "name": "Week 4", "date": "2026-05-21", "time": "2000", "completed": false },
+    { "name": "Week 5", "date": "2026-05-28", "time": "2000", "completed": false },
+    { "name": "Week 6", "date": "2026-06-04", "time": "2000", "completed": false },
+    { "name": "Week 7", "date": "2026-06-11", "time": "2000", "completed": false },
+    { "name": "Week 8: KO Final", "date": "2026-06-18", "time": "2000", "completed": false }
   ]
 }

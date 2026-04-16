@@ -1,15 +1,40 @@
 {
+  "completed": false,
   "meta": {
     "name": "Precision Cue Series: Masters 2026",
     "venue": "Ballers Blackpool",
     "organiser": "Ballers Blackpool",
-    "logo": "ballers_logo.jpg"
+    "logo": "ballers_logo.jpg",
+    "address": "21-27 Bethesda Road, Blackpool, United Kingdom, FY1 5DT",
+    "contact": {
+      "phone": "01253 584711",
+      "whatsapp": "",
+      "email": "admin@ballersblackpool.co.uk"
+    },
+    "urls": {
+      "venue": "https://https://ballersblackpool.co.uk/",
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=61577596779388",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "Round Robin, then Double Elimination",
+    "raceToWin": 4,
+    "entryFee": "£20",
+    "handicap": null,
+    "maxPlayers": 32
   },
   "dates": [
-    { "name": "Event 1", "date": "2026-01-25", "completed": true },
-    { "name": "Event 2", "date": "2026-03-01", "completed": true },
-    { "name": "Event 3", "date": "2026-03-29", "completed": true },
-    { "name": "Event 4", "date": "2026-04-26", "completed": false },
-    { "name": "Grand Final", "date": "2026-05-24", "completed": false }
+    { "name": "Event 1", "date": "2026-01-25", "time": "1300", "completed": true },
+    { "name": "Event 2", "date": "2026-03-01", "time": "1300", "completed": true },
+    { "name": "Event 3", "date": "2026-04-19", "time": "1300", "completed": false},
+    { "name": "Event 4", "date": "2026-04-26", "time": "1300", "completed": false },
+    { "name": "Grand Final", "date": "2026-05-24", "time": "1300", "completed": false }
   ]
 }

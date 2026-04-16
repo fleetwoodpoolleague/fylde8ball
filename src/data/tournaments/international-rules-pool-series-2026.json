@@ -1,9 +1,34 @@
 {
+  "completed": false,
   "meta": {
     "name": "International Rules Pool Series 2026",
     "venue": "Q's Sports Lounge",
     "organiser": "Q's Sports Lounge",
-    "logo": "qs_logo.jpg"
+    "logo": "qs_logo.jpg",
+    "address": "249 Lytham Road, Blackpool, United Kingdom, FY1 6",
+    "contact": {
+      "phone": "01253 346578",
+      "whatsapp": "",
+      "email": "qslcustomer@gmail.com"
+    },
+    "urls": {
+      "venue": null,
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=100063657548884",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "International Rules",
+    "type": "Double Elimination",
+    "raceToWin": 5,
+    "entryFee": "£20",
+    "handicap": true,
+    "maxPlayers": 24
   },
   "dates": [
     { "name": "Event 1", "date": "2026-04-12", "completed": true },
