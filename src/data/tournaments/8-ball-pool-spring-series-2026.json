@@ -26,7 +26,7 @@
     "rules": "Blackball",
     "type": "Double Elimination",
     "raceToWin": 3,
-    "entryFee": "£15",
+    "entryFee": "\u00A315",
     "handicap": null,
     "maxPlayers": 24
   },
@@ -47,7 +47,7 @@
       "name": "Week 3",
       "date": "2026-04-15",
       "time": "1900",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Week 4",
@@ -67,6 +67,10 @@
       "time": "1900",
       "completed": false
     },
-    { "name": "Grand Final", "date": "TBC", "completed": false }
+    {
+      "name": "Grand Final",
+      "date": "TBC",
+      "completed": false
+    }
   ]
 }
