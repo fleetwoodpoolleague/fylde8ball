@@ -6,7 +6,7 @@ import LeaguesPage from '../pages/LeaguesPage.vue'
 import AboutPage from '../pages/AboutPage.vue'
 
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', component: HomePage },
     { path: '/tournaments', component: TournamentsPage },
