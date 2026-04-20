@@ -30,6 +30,8 @@ jobs:
         run: npm ci
 
       - name: Build project
+        env:
+          VITE_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
         run: npm run build
 
       - name: Upload Pages artifact
