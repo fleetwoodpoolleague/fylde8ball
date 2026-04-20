@@ -1,0 +1,36 @@
+{
+  "completed": false,
+  "meta": {
+    "name": "Ballers Blackpool One off competitions 2026",
+    "venue": "Ballers Blackpool",
+    "organiser": "Ballers Blackpool",
+    "logo": "ballers_logo.jpg",
+    "address": "21-27 Bethesda Road, Blackpool, United Kingdom, FY1 5DT",
+    "contact": {
+      "phone": "01253 584711",
+      "whatsapp": "",
+      "email": "admin@ballersblackpool.co.uk"
+    },
+    "urls": {
+      "venue": "https://https://ballersblackpool.co.uk/",
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=61577596779388",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "Double Elimination",
+    "raceToWin": null,
+    "entryFee": "£10",
+    "handicap": null,
+    "maxPlayers": null
+  },
+  "dates": [
+    { "name": "St George's Day", "date": "2026-04-23", "time": "1900", "completed": false },
+  ]
+}
