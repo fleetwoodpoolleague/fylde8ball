@@ -141,3 +141,4 @@ Each tournament is a JSON file in `src/data/tournaments/`. The file name becomes
 4. Open a pull request
 
 Please keep tournament data accurate and up to date.
+
