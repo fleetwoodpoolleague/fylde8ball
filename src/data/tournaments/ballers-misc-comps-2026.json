@@ -31,6 +31,6 @@
     "maxPlayers": null
   },
   "dates": [
-    { "name": "St George's Day", "date": "2026-04-23", "time": "1900", "completed": false },
+    { "name": "St George's Day", "date": "2026-04-23", "time": "1900", "completed": false }
   ]
 }
