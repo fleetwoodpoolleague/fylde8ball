@@ -26,15 +26,40 @@
     "rules": "Blackball",
     "type": "Round Robin, then Double Elimination",
     "raceToWin": 4,
-    "entryFee": "£20",
+    "entryFee": "\u00A320",
     "handicap": null,
     "maxPlayers": 32
   },
   "dates": [
-    { "name": "Event 1", "date": "2026-01-25", "time": "1300", "completed": true },
-    { "name": "Event 2", "date": "2026-03-01", "time": "1300", "completed": true },
-    { "name": "Event 3", "date": "2026-04-19", "time": "1300", "completed": false},
-    { "name": "Event 4", "date": "2026-04-26", "time": "1300", "completed": false },
-    { "name": "Grand Final", "date": "2026-05-24", "time": "1300", "completed": false }
+    {
+      "name": "Event 1",
+      "date": "2026-01-25",
+      "time": "1300",
+      "completed": true
+    },
+    {
+      "name": "Event 2",
+      "date": "2026-03-01",
+      "time": "1300",
+      "completed": true
+    },
+    {
+      "name": "Event 3",
+      "date": "2026-04-19",
+      "time": "1300",
+      "completed": true
+    },
+    {
+      "name": "Event 4",
+      "date": "2026-04-26",
+      "time": "1300",
+      "completed": false
+    },
+    {
+      "name": "Grand Final",
+      "date": "2026-05-24",
+      "time": "1300",
+      "completed": false
+    }
   ]
 }
