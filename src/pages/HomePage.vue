@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
+import { useSeo, BASE_URL } from '../composables/useSeo'
 import { getNextEvent, isWithinMonths } from '../utils/tournament'
 import NextEventCard from '../components/NextEventCard.vue'
 import UpcomingEventsList from '../components/UpcomingEventsList.vue'
@@ -56,6 +58,32 @@ function getUpcomingEvents(): UpcomingEventInfo[] {
 }
 
 const upcomingEvents = getUpcomingEvents()
+
+useSeo({
+  title: 'Fylde 8 Ball | Pool Events on the Fylde Coast',
+  description: 'Home of pool on the Fylde Coast. Upcoming 8-ball tournaments and fixtures at venues across Blackpool and Poulton-le-Fylde.',
+  path: '/',
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SportsOrganization',
+        name: 'Fylde 8 Ball',
+        url: BASE_URL,
+        sport: 'Pool',
+        description: 'Home of pool on the Fylde Coast, covering tournaments, leagues, and local competition.',
+        areaServed: {
+          '@type': 'Place',
+          name: 'Fylde Coast, Lancashire, England',
+        },
+      }),
+    },
+  ],
+})
 </script>
 
 <template>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue'
 import { useTournament } from '../composables/useTournament'
+import { useSeo, BASE_URL } from '../composables/useSeo'
 import EventTimeline from '../components/EventTimeline.vue'
 import FacebookIcon from '../components/icons/FacebookIcon.vue'
 import TwitterIcon from '../components/icons/TwitterIcon.vue'
@@ -28,6 +30,100 @@ function telHref(phone: string): string {
 
 function displayUrl(url: string): string {
   return url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+}
+
+function toIsoTime(raw: string): string {
+  if (/^\d{4}$/.test(raw)) return `T${raw.slice(0, 2)}:${raw.slice(2, 4)}:00`
+  return ''
+}
+
+const metaTitle = tournament
+  ? `${tournament.meta.name} | Fylde 8 Ball`
+  : 'Fylde 8 Ball'
+
+const metaDesc = (() => {
+  if (!tournament) return 'Pool tournament on the Fylde Coast.'
+  const { meta, format } = tournament
+  const city = meta.address?.split(',').find(p => p.trim().match(/^[A-Za-z]/))?.trim() ?? meta.venue
+  const parts = [`${meta.name} at ${meta.venue}, ${city}`]
+  if (format?.type) parts.push(format.type)
+  if (format?.rules) parts.push(`${format.rules} rules`)
+  if (format?.entryFee) parts.push(`entry ${format.entryFee}`)
+  return parts.join(' · ') + '.'
+})()
+
+useSeo({ title: metaTitle, description: metaDesc, path: `/tournaments/${props.slug}` })
+
+if (tournament) {
+  const { meta, format, dates } = tournament
+  const canonicalUrl = `${BASE_URL}/tournaments/${props.slug}`
+
+  const venueAddress = {
+    '@type': 'PostalAddress',
+    streetAddress: meta.address ?? meta.venue,
+    addressLocality: 'Fylde Coast',
+    addressRegion: 'Lancashire',
+    addressCountry: 'GB',
+  }
+
+  const location = {
+    '@type': 'SportsActivityLocation',
+    name: meta.venue,
+    address: venueAddress,
+    ...(meta.contact?.phone ? { telephone: meta.contact.phone } : {}),
+  }
+
+  const upcomingDates = dates.filter(d => !d.completed && d.date !== 'TBC')
+
+  const sportsEvents = upcomingDates.map(d => ({
+    '@context': 'https://schema.org',
+    '@type': 'SportsEvent',
+    name: `${meta.name} – ${d.name}`,
+    startDate: `${d.date}${d.time ? toIsoTime(d.time) : ''}`,
+    location,
+    organizer: { '@type': 'Organization', name: meta.organiser },
+    sport: 'Pool',
+    ...(format?.entryFee
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: format.entryFee.replace(/[^0-9.]/g, ''),
+            priceCurrency: 'GBP',
+          },
+        }
+      : {}),
+  }))
+
+  const localBusiness = {
+    '@context': 'https://schema.org',
+    '@type': 'SportsActivityLocation',
+    name: meta.venue,
+    address: venueAddress,
+    ...(meta.contact?.phone ? { telephone: meta.contact.phone } : {}),
+    ...(meta.contact?.email ? { email: meta.contact.email } : {}),
+    ...(meta.urls?.venue ? { url: meta.urls.venue } : {}),
+  }
+
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Tournaments', item: `${BASE_URL}/tournaments` },
+      { '@type': 'ListItem', position: 3, name: meta.name, item: canonicalUrl },
+    ],
+  }
+
+  useHead({
+    script: [
+      { type: 'application/ld+json', innerHTML: JSON.stringify(breadcrumb) },
+      { type: 'application/ld+json', innerHTML: JSON.stringify(localBusiness) },
+      ...sportsEvents.map(e => ({
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(e),
+      })),
+    ],
+  })
 }
 </script>
 

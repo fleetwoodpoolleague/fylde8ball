@@ -1,3 +1,34 @@
+<script setup lang="ts">
+import { useHead } from '@unhead/vue'
+import { useSeo, BASE_URL } from '../composables/useSeo'
+
+useSeo({
+  title: 'About | Fylde 8 Ball',
+  description: 'Fylde 8 Ball is the home of pool on the Fylde Coast, covering tournaments, leagues, and local competition across Blackpool and Poulton-le-Fylde.',
+  path: '/about',
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SportsOrganization',
+        name: 'Fylde 8 Ball',
+        url: BASE_URL,
+        sport: 'Pool',
+        description: 'Home of pool on the Fylde Coast, covering tournaments, leagues, and local competition across Blackpool and Poulton-le-Fylde.',
+        areaServed: {
+          '@type': 'Place',
+          name: 'Fylde Coast, Lancashire, England',
+        },
+      }),
+    },
+  ],
+})
+</script>
+
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold text-gray-900 mb-4">About</h1>

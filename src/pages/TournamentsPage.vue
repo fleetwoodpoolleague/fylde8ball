@@ -1,11 +1,38 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
+import { useSeo, BASE_URL } from '../composables/useSeo'
 
 const tournaments = useTournaments()
 
 function logoSrc(logo: string): string | null {
   return logo ? new URL(`../assets/img/${logo}`, import.meta.url).href : null
 }
+
+useSeo({
+  title: 'Tournaments | Fylde 8 Ball',
+  description: 'Browse all 8-ball pool tournaments on the Fylde Coast — Challenger Pool Series, Precision Cue Series, Ballers Blackpool events and more.',
+  path: '/tournaments',
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Pool Tournaments on the Fylde Coast',
+        itemListElement: tournaments.map((t, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: t.meta.name,
+          url: `${BASE_URL}/tournaments/${t.slug}`,
+        })),
+      }),
+    },
+  ],
+})
 </script>
 
 <template>

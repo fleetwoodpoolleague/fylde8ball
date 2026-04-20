@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fylde8ball.co.uk/sitemap.xml
