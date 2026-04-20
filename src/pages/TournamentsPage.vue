@@ -2,6 +2,7 @@
 import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
 import { useSeo, BASE_URL } from '../composables/useSeo'
+import CalendarIcon from '../components/icons/CalendarIcon.vue'
 
 const tournaments = useTournaments()
 
@@ -37,7 +38,18 @@ useHead({
 
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold text-gray-900 mb-6">Tournaments</h1>
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold text-gray-900">Tournaments</h1>
+      <a
+        href="https://calendar.google.com/calendar/r?cid=webcal://fylde8ball.co.uk/fylde8ball.ics"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-1.5 text-sm text-accent hover:underline"
+      >
+        <CalendarIcon size="1.1em" />
+        Subscribe
+      </a>
+    </div>
     <div class="divide-y divide-gray-100">
       <RouterLink
         v-for="tournament in tournaments"

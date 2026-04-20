@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite-ssg build",
+    "build": "vue-tsc && node scripts/generate-ics.mjs && vite-ssg build",
+    "generate-ics": "node scripts/generate-ics.mjs",
     "preview": "vite preview",
     "test": "vitest"
   },
