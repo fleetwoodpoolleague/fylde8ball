@@ -19,7 +19,7 @@
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^20.9.0",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3",
     "vite": "^8.0.8",
     "vite-ssg": "^28.3.0",
