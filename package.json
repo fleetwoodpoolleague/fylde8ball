@@ -20,7 +20,7 @@
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^20.8.9",
     "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2",
+    "typescript": "^6.0.3",
     "vite": "^8.0.8",
     "vite-ssg": "^28.3.0",
     "vitest": "^4.1.4",
