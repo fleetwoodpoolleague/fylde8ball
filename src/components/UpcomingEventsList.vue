@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { UpcomingEventInfo } from '../types/tournament'
 import { formatDate, SHORT_DATE, isToday } from '../utils/format'
+import CalendarIcon from './icons/CalendarIcon.vue'
 
 defineProps<{
   events: UpcomingEventInfo[]
@@ -13,7 +14,18 @@ function logoSrc(logo: string): string {
 
 <template>
   <div>
-    <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Upcoming</h3>
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Upcoming</h3>
+      <a
+        href="https://calendar.google.com/calendar/r?cid=webcal://fylde8ball.co.uk/fylde8ball.ics"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-1 text-xs text-accent hover:underline"
+      >
+        <CalendarIcon size="1em" />
+        Subscribe
+      </a>
+    </div>
     <div class="divide-y divide-gray-100">
       <RouterLink
         v-for="item in events"
