@@ -1,5 +1,5 @@
 {
-  "completed": false,
+  "completed": true,
   "meta": {
     "name": "Ballers Blackpool One off competitions 2026",
     "venue": "Ballers Blackpool",
@@ -26,11 +26,16 @@
     "rules": "Blackball",
     "type": "Double Elimination",
     "raceToWin": null,
-    "entryFee": "£10",
+    "entryFee": "\u00A310",
     "handicap": null,
     "maxPlayers": null
   },
   "dates": [
-    { "name": "St George's Day", "date": "2026-04-23", "time": "1900", "completed": false }
+    {
+      "name": "St George\u0027s Day",
+      "date": "2026-04-23",
+      "time": "1900",
+      "completed": true
+    }
   ]
 }
