@@ -80,4 +80,18 @@ describe('NextEventCard', () => {
     expect(link.exists()).toBe(true)
     expect(link.text()).toContain('Details')
   })
+
+  it('does not render a logo image when logo prop is omitted', () => {
+    expect(mountCard().find('img').exists()).toBe(false)
+  })
+
+  it('renders a logo image when logo prop is provided', () => {
+    const wrapper = mount(NextEventCard, {
+      props: { ...defaultProps, logo: 'qs_logo.jpg' },
+      global: { plugins: [router] },
+    })
+    const img = wrapper.find('img')
+    expect(img.exists()).toBe(true)
+    expect(img.attributes('alt')).toBe('Challenger Series')
+  })
 })

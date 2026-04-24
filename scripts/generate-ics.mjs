@@ -1,53 +1,12 @@
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { fold, esc, toIcsTime, toIcsDate, addFourHours } from './ics-utils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
 const dataDir = resolve(root, 'src/data/tournaments')
 const outFile = resolve(root, 'public/fylde8ball.ics')
-
-// RFC 5545 §3.1: fold lines longer than 75 octets
-function fold(line) {
-  const bytes = Buffer.from(line, 'utf8')
-  if (bytes.length <= 75) return line
-  const chunks = []
-  let offset = 0
-  let first = true
-  while (offset < bytes.length) {
-    const limit = first ? 75 : 74
-    chunks.push(bytes.slice(offset, offset + limit).toString('utf8'))
-    offset += limit
-    first = false
-  }
-  return chunks.join('\r\n ')
-}
-
-function esc(str) {
-  if (!str) return ''
-  return str.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n')
-}
-
-// "1030" → "103000", "2000" → "200000"
-function toIcsTime(raw) {
-  if (/^\d{4}$/.test(raw)) return raw + '00'
-  return null
-}
-
-// "2026-05-09" → "20260509"
-function toIcsDate(iso) {
-  return iso.replace(/-/g, '')
-}
-
-// Add 4 hours to a YYYYMMDDTHHMMSS string (floating)
-function addFourHours(dtstart) {
-  const [datePart, timePart] = dtstart.split('T')
-  const h = parseInt(timePart.slice(0, 2), 10)
-  const m = timePart.slice(2, 4)
-  const s = timePart.slice(4, 6)
-  const newH = String(h + 4).padStart(2, '0')
-  return `${datePart}T${newH}${m}${s}`
-}
 
 const lines = [
   'BEGIN:VCALENDAR',

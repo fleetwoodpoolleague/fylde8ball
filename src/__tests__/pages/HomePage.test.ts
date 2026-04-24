@@ -134,6 +134,50 @@ describe('HomePage', () => {
     })
   })
 
+  describe('TBC dates', () => {
+    it('prefers a real-dated event over a TBC event as the next event', () => {
+      vi.mocked(useTournaments).mockReturnValue([
+        {
+          slug: 'tbc-series',
+          meta: { name: 'TBC Series', venue: 'Venue', organiser: 'Org', logo: '' },
+          dates: [{ name: 'Round 1', date: 'TBC', completed: false }],
+        },
+        mockTournamentA,
+      ])
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      const text = wrapper.text()
+      // Challenger Series wins the hero spot; TBC Series should not appear at all
+      // because TBC is excluded from the upcoming list.
+      expect(text).toContain('Challenger Series')
+      expect(text).not.toContain('TBC Series')
+    })
+
+    it('excludes TBC events from the upcoming list', () => {
+      vi.mocked(useTournaments).mockReturnValue([
+        mockTournamentA,
+        {
+          slug: 'tbc-series',
+          meta: { name: 'TBC Series', venue: 'Venue', organiser: 'Org', logo: '' },
+          dates: [{ name: 'Round 1', date: 'TBC', completed: false }],
+        },
+      ])
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.text()).not.toContain('TBC Series')
+    })
+
+    it('falls back to a TBC event as next when no real dates exist', () => {
+      vi.mocked(useTournaments).mockReturnValue([
+        {
+          slug: 'tbc-series',
+          meta: { name: 'TBC Series', venue: 'Venue', organiser: 'Org', logo: '' },
+          dates: [{ name: 'Round 1', date: 'TBC', completed: false }],
+        },
+      ])
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.text()).toContain('TBC Series')
+    })
+  })
+
   describe('with multiple tournaments', () => {
     beforeEach(() => {
       vi.mocked(useTournaments).mockReturnValue([mockTournamentA, mockTournamentB])
