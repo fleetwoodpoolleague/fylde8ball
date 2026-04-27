@@ -1,0 +1,41 @@
+{
+  "completed": false,
+  "meta": {
+    "name": "KC's Competitions 2026",
+    "venue": "KC's Pool & Sports Club",
+    "organiser": "KC's",
+    "logo": "kcs_logo.jpg",
+    "address": "9 Mornington Road , Preston, United Kingdom, Pr1 4ul ",
+    "contact": {
+      "phone": "07858 044804",
+      "whatsapp": "",
+      "email": "enquiries@kcpool.club"
+    },
+    "urls": {
+      "venue": "https://https://kcpool.club/",
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/kcpoolclub",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "3 person team (32 teams max), Double Elimination",
+    "raceToWin": null,
+    "entryFee": "\u00A360",
+    "handicap": null,
+    "maxPlayers": null
+  },
+  "dates": [
+    {
+      "name": "Joe Kenyon Cup 2026",
+      "date": "2026-05-23",
+      "time": "1130",
+      "completed": false 
+    }
+  ]
+}
