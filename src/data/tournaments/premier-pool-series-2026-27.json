@@ -1,0 +1,75 @@
+{
+  "completed": false,
+  "meta": {
+    "name": "Premier Pool Series 2026/27",
+    "venue": "Q\u0027s Sports Lounge",
+    "organiser": "Q\u0027s Sports Lounge",
+    "logo": "qs_logo.jpg",
+    "address": "249 Lytham Road, Blackpool, United Kingdom, FY1 6",
+    "contact": {
+      "phone": "01253 346578",
+      "whatsapp": "",
+      "email": "qslcustomer@gmail.com"
+    },
+    "urls": {
+      "venue": null,
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=100063657548884",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "Double Elimination",
+    "raceToWin": 5,
+    "entryFee": "\u00A325",
+    "handicap": null,
+    "maxPlayers": null
+  },
+"dates": [
+    {
+      "name": "Event 1",
+      "date": "2026-05-16",
+      "completed": false
+    },
+    {
+      "name": "Event 2",
+      "date": "2026-07-25",
+      "completed": false
+    },
+    {
+      "name": "Event 3",
+      "date": "2026-08-29",
+      "completed": false
+    },
+    {
+      "name": "Event 4",
+      "date": "2026-10-17",
+      "completed": false
+    },
+    {
+      "name": "Event 5",
+      "date": "2026-11-28",
+      "completed": false
+    },
+    {
+      "name": "Event 6",
+      "date": "2027-01-16",
+      "completed": false
+    },
+    {
+      "name": "Event 7",
+      "date": "2027-02-13",
+      "completed": false
+    },
+    {
+      "name": "Grand Final",
+      "date": "2027-03-27",
+      "completed": false
+    }
+  ]
+}
