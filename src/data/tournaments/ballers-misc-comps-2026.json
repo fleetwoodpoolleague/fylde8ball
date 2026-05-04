@@ -1,5 +1,5 @@
 {
-  "completed": true,
+  "completed": false,
   "meta": {
     "name": "Ballers Blackpool One off competitions 2026",
     "venue": "Ballers Blackpool",
@@ -24,11 +24,11 @@
   },
   "format": {
     "rules": "Blackball",
-    "type": "Double Elimination",
+    "type": "Knockout",
     "raceToWin": null,
-    "entryFee": "\u00A310",
+    "entryFee": "£100",
     "handicap": null,
-    "maxPlayers": null
+    "maxPlayers": 16
   },
   "dates": [
     {
@@ -36,6 +36,12 @@
       "date": "2026-04-23",
       "time": "1900",
       "completed": true
+    },
+    {
+      "name": "£100 a man",
+      "date": "2026-06-06",
+      "time": null,
+      "completed": false
     }
   ]
 }

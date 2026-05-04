@@ -2,8 +2,8 @@
   "completed": false,
   "meta": {
     "name": "International Rules Pool Series 2026",
-    "venue": "Q's Sports Lounge",
-    "organiser": "Q's Sports Lounge",
+    "venue": "Q\u0027s Sports Lounge",
+    "organiser": "Q\u0027s Sports Lounge",
     "logo": "qs_logo.jpg",
     "address": "249 Lytham Road, Blackpool, United Kingdom, FY1 6",
     "contact": {
@@ -26,19 +26,55 @@
     "rules": "International Rules",
     "type": "Double Elimination",
     "raceToWin": 5,
-    "entryFee": "£20",
+    "entryFee": "\u00A320",
     "handicap": true,
     "maxPlayers": 24
   },
   "dates": [
-    { "name": "Event 1", "date": "2026-04-12", "completed": true },
-    { "name": "Event 2", "date": "2026-05-03", "completed": false },
-    { "name": "Event 3", "date": "2026-06-07", "completed": false },
-    { "name": "Event 4", "date": "2026-07-12", "completed": false },
-    { "name": "Event 5", "date": "2026-08-09", "completed": false },
-    { "name": "Event 6", "date": "2026-09-06", "completed": false },
-    { "name": "Event 7", "date": "2026-09-20", "completed": false },
-    { "name": "Event 8", "date": "2026-10-11", "completed": false },
-    { "name": "Grand Final", "date": "TBC", "completed": false }
+    {
+      "name": "Event 1",
+      "date": "2026-04-12",
+      "completed": true
+    },
+    {
+      "name": "Event 2",
+      "date": "2026-05-03",
+      "completed": true
+    },
+    {
+      "name": "Event 3",
+      "date": "2026-06-07",
+      "completed": false
+    },
+    {
+      "name": "Event 4",
+      "date": "2026-07-12",
+      "completed": false
+    },
+    {
+      "name": "Event 5",
+      "date": "2026-08-09",
+      "completed": false
+    },
+    {
+      "name": "Event 6",
+      "date": "2026-09-06",
+      "completed": false
+    },
+    {
+      "name": "Event 7",
+      "date": "2026-09-20",
+      "completed": false
+    },
+    {
+      "name": "Event 8",
+      "date": "2026-10-11",
+      "completed": false
+    },
+    {
+      "name": "Grand Final",
+      "date": "TBC",
+      "completed": false
+    }
   ]
 }

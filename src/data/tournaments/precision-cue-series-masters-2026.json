@@ -53,7 +53,7 @@
       "name": "Event 4",
       "date": "2026-05-02",
       "time": "1300",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Grand Final",
