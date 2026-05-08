@@ -41,7 +41,7 @@
       "name": "Week 2",
       "date": "2026-05-07",
       "time": "2000",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Week 3",
