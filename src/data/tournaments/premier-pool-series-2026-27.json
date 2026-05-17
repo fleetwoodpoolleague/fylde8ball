@@ -30,11 +30,11 @@
     "handicap": null,
     "maxPlayers": null
   },
-"dates": [
+  "dates": [
     {
       "name": "Event 1",
       "date": "2026-05-16",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Event 2",
