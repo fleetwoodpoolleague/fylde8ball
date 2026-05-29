@@ -2,7 +2,7 @@
 import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
 import { useSeo, BASE_URL } from '../composables/useSeo'
-import { getNextEvent, isWithinMonths } from '../utils/tournament'
+import { getNextEvent, isUpcomingOrInProgress } from '../utils/tournament'
 import NextEventCard from '../components/NextEventCard.vue'
 import UpcomingEventsList from '../components/UpcomingEventsList.vue'
 import EightBallIcon from '../components/EightBallIcon.vue'
@@ -37,7 +37,7 @@ function getUpcomingEvents(): UpcomingEventInfo[] {
   for (const tournament of activeTournaments) {
     for (const date of tournament.dates) {
       if (date.completed) continue
-      if (!isWithinMonths(date.date, 3)) continue
+      if (!isUpcomingOrInProgress(date, 3)) continue
       if (
         nextEventInfo &&
         date === nextEventInfo.event
