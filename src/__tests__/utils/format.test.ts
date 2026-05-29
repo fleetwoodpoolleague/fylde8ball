@@ -1,5 +1,5 @@
 import { vi } from 'vitest'
-import { formatDate, SHORT_DATE, LONG_DATE, isToday, formatTime } from '../../utils/format'
+import { formatDate, formatDateRange, SHORT_DATE, LONG_DATE, isToday, formatTime } from '../../utils/format'
 
 describe('formatDate', () => {
   it('formats a date in short format', () => {
@@ -69,5 +69,30 @@ describe('isToday', () => {
 
   it('returns false for a non-date string', () => {
     expect(isToday('TBC')).toBe(false)
+  })
+})
+
+describe('formatDateRange', () => {
+  it('formats a range within the same month', () => {
+    expect(formatDateRange('2026-06-01', '2026-06-08', SHORT_DATE)).toBe('1 Jun 2026 - 8 Jun 2026')
+  })
+
+  it('formats a cross-year range', () => {
+    expect(formatDateRange('2026-12-30', '2027-01-03', SHORT_DATE)).toBe('30 Dec 2026 - 3 Jan 2027')
+  })
+
+  it('formats with LONG_DATE options (contains month name and separator)', () => {
+    const result = formatDateRange('2026-06-01', '2026-06-08', LONG_DATE)
+    expect(result).toContain('June')
+    expect(result).toContain(' - ')
+    expect(result).toContain('2026')
+  })
+
+  it('returns the start string unchanged when start is not ISO', () => {
+    expect(formatDateRange('TBC', '2026-06-08', SHORT_DATE)).toBe('TBC')
+  })
+
+  it('returns the start string unchanged when end is not ISO', () => {
+    expect(formatDateRange('2026-06-01', 'TBC', SHORT_DATE)).toBe('2026-06-01')
   })
 })

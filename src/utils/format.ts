@@ -51,3 +51,13 @@ export function formatTime(raw: string): string {
 
   return raw
 }
+
+/**
+ * Format an inclusive date range for display.
+ * If either date is not ISO 8601 format, returns the start value unchanged.
+ * Otherwise, returns both dates formatted and separated by " - ".
+ */
+export function formatDateRange(startIso: string, endIso: string, options: Intl.DateTimeFormatOptions): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(startIso) || !/^\d{4}-\d{2}-\d{2}$/.test(endIso)) return startIso
+  return `${formatDate(startIso, options)} - ${formatDate(endIso, options)}`
+}
