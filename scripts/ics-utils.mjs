@@ -41,3 +41,12 @@ export function addFourHours(dtstart) {
   const newH = String(h + 4).padStart(2, '0')
   return `${datePart}T${newH}${m}${s}`
 }
+
+// Add one calendar day to a YYYYMMDD string. Uses UTC arithmetic to avoid DST drift.
+export function addOneDay(yyyymmdd) {
+  const y = +yyyymmdd.slice(0, 4)
+  const m = +yyyymmdd.slice(4, 6)
+  const d = +yyyymmdd.slice(6, 8)
+  const next = new Date(Date.UTC(y, m - 1, d + 1))
+  return `${next.getUTCFullYear()}${String(next.getUTCMonth() + 1).padStart(2, '0')}${String(next.getUTCDate()).padStart(2, '0')}`
+}

@@ -1,5 +1,5 @@
 // @ts-expect-error - importing a plain .mjs utility module without a .d.ts
-import { fold, esc, toIcsTime, toIcsDate, addFourHours } from '../../../scripts/ics-utils.mjs'
+import { fold, esc, toIcsTime, toIcsDate, addFourHours, addOneDay } from '../../../scripts/ics-utils.mjs'
 
 describe('fold', () => {
   it('returns a short line unchanged', () => {
@@ -88,5 +88,23 @@ describe('addFourHours', () => {
 
   it('preserves minutes and seconds', () => {
     expect(addFourHours('20260509T193045')).toBe('20260509T233045')
+  })
+})
+
+describe('addOneDay', () => {
+  it('increments a normal day', () => {
+    expect(addOneDay('20260601')).toBe('20260602')
+  })
+
+  it('crosses a month boundary (Jan 31 → Feb 1)', () => {
+    expect(addOneDay('20260131')).toBe('20260201')
+  })
+
+  it('crosses a year boundary (Dec 31 → Jan 1)', () => {
+    expect(addOneDay('20261231')).toBe('20270101')
+  })
+
+  it('handles a leap day (Feb 28 → Feb 29 in a leap year)', () => {
+    expect(addOneDay('20240228')).toBe('20240229')
   })
 })
