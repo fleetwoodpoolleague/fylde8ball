@@ -1,11 +1,19 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { TournamentDate } from '../types/tournament'
-import { formatDate, SHORT_DATE, isToday, formatTime } from '../utils/format'
+import { formatDate, formatDateRange, SHORT_DATE, isToday, formatTime } from '../utils/format'
+import { isInProgress } from '../utils/tournament'
 
 const props = defineProps<{
   date: TournamentDate
   isNext: boolean
 }>()
+
+const dateLabel = computed(() => {
+  if (isInProgress(props.date)) return 'In progress'
+  if (props.date.endDate) return formatDateRange(props.date.date, props.date.endDate, SHORT_DATE)
+  return isToday(props.date.date) ? 'Today' : formatDate(props.date.date, SHORT_DATE)
+})
 </script>
 
 <template>
@@ -42,7 +50,7 @@ const props = defineProps<{
         </span>
       </span>
       <span class="text-sm text-gray-500 shrink-0">
-        {{ isToday(date.date) ? 'Today' : formatDate(date.date, SHORT_DATE) }}<template v-if="date.time"> · {{ formatTime(date.time) }}</template>
+        {{ dateLabel }}<template v-if="date.time && !date.endDate"> · {{ formatTime(date.time) }}</template>
       </span>
     </div>
   </div>
