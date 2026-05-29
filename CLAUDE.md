@@ -21,6 +21,7 @@ Because the ICS file is emitted into `public/` it is served from the site root a
 
 - `dates[].date` is ISO `YYYY-MM-DD` or the literal string `"TBC"` (no other sentinels). TBC dates are excluded from the 3-month "upcoming" window and sorted last when picking the global next event.
 - `dates[].time` is optional; `"1900"` (24h, 4 digits) or `"8pm"`/`"8PM"` (12h). Normalise for display with `formatTime()` in `src/utils/format.ts`.
+- `dates[].endDate` is optional. If set, the entry represents an inclusive consecutive range from `date` to `endDate`. Both must be ISO format (never "TBC"); `endDate` must be strictly after `date`. When `endDate` is set, the `time` field is ignored by all renderers and the ICS generator (multi-day events are emitted as all-day blocks).
 - `meta.logo` is a filename referenced against `src/assets/img/<filename>` via `new URL('../assets/img/...', import.meta.url)`.
 - Empty string or missing optional fields (`meta.contact.email`, `meta.socials.twitter`, etc.) are both treated as "absent" by the `hasValue()` helper in `TournamentDetailPage.vue`.
 - Setting `completed: true` at the tournament root hides it from the homepage hero card and upcoming list. Completing individual `dates[]` entries uses `completed: true` on the date itself.
