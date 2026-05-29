@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { fold, esc, toIcsTime, toIcsDate, addFourHours } from './ics-utils.mjs'
+import { fold, esc, toIcsTime, toIcsDate, addFourHours, addOneDay } from './ics-utils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -44,6 +44,22 @@ for (const file of files) {
 
     const uid = `${date.date}-${slug}-${eventIndex}@fylde8ball.co.uk`
     const summary = `${meta.name} – ${date.name}`
+
+    if (date.endDate) {
+      const dtstart = toIcsDate(date.date)
+      const dtend = addOneDay(toIcsDate(date.endDate))
+      lines.push('BEGIN:VEVENT')
+      lines.push(fold(`UID:${uid}`))
+      lines.push(`DTSTART;VALUE=DATE:${dtstart}`)
+      lines.push(`DTEND;VALUE=DATE:${dtend}`)
+      lines.push(fold(`SUMMARY:${esc(summary)}`))
+      if (location) lines.push(fold(`LOCATION:${location}`))
+      lines.push(fold(`DESCRIPTION:${esc(description)}`))
+      lines.push(fold(`URL:${url}`))
+      lines.push('END:VEVENT')
+      eventIndex++
+      continue
+    }
 
     let dtstart, dtend, allDay = false
     const icsTime = date.time ? toIcsTime(date.time) : null
