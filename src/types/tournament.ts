@@ -23,9 +23,17 @@ export interface TournamentMeta {
 
 export interface TournamentDate {
   name: string
-  /** ISO 8601 date string, e.g. "2026-04-18" */
+  /** ISO 8601 date string ("2026-04-18") or the literal "TBC". */
   date: string
-  /** Optional start time. May be 4-digit military ("1900") or 12h ("8pm"). */
+  /**
+   * Optional inclusive end date for a consecutive multi-day event.
+   * ISO 8601 only — never "TBC". When set:
+   *   - Must be strictly greater than `date` (same day = use no endDate).
+   *   - `date` must also be ISO (cannot be "TBC").
+   *   - `time` is ignored by all renderers and the ICS generator.
+   */
+  endDate?: string
+  /** Optional start time. May be 4-digit military ("1900") or 12h ("8pm"). Ignored when endDate is set. */
   time?: string
   completed: boolean
 }
