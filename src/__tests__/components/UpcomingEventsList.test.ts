@@ -84,4 +84,45 @@ describe('UpcomingEventsList', () => {
     expect(links[0].attributes('href')).toBe('/tournaments/challenger-series')
     expect(links[1].attributes('href')).toBe('/tournaments/international-rules')
   })
+
+  it('shows formatted range for a range event', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 4, 29)) // 29 May 2026
+    await router.isReady()
+    const rangeEvents: UpcomingEventInfo[] = [
+      {
+        event: { name: 'Tournament Week', date: '2026-06-01', endDate: '2026-06-08', completed: false },
+        tournamentName: 'Fylde Summer Open',
+        tournamentSlug: 'fylde-summer-open-2026',
+        logo: '',
+      },
+    ]
+    const wrapper = mount(UpcomingEventsList, {
+      props: { events: rangeEvents },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('1 Jun 2026')
+    expect(wrapper.text()).toContain('8 Jun 2026')
+    vi.useRealTimers()
+  })
+
+  it("shows 'In progress' for a mid-range event", async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 5, 4)) // 4 Jun 2026
+    await router.isReady()
+    const rangeEvents: UpcomingEventInfo[] = [
+      {
+        event: { name: 'Tournament Week', date: '2026-06-01', endDate: '2026-06-08', completed: false },
+        tournamentName: 'Fylde Summer Open',
+        tournamentSlug: 'fylde-summer-open-2026',
+        logo: '',
+      },
+    ]
+    const wrapper = mount(UpcomingEventsList, {
+      props: { events: rangeEvents },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('In progress')
+    vi.useRealTimers()
+  })
 })

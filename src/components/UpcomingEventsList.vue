@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { UpcomingEventInfo } from '../types/tournament'
-import { formatDate, SHORT_DATE, isToday } from '../utils/format'
+import type { TournamentDate, UpcomingEventInfo } from '../types/tournament'
+import { formatDate, formatDateRange, SHORT_DATE, isToday } from '../utils/format'
+import { isInProgress } from '../utils/tournament'
 import CalendarIcon from './icons/CalendarIcon.vue'
 
 defineProps<{
@@ -9,6 +10,12 @@ defineProps<{
 
 function logoSrc(logo: string): string {
   return new URL(`../assets/img/${logo}`, import.meta.url).href
+}
+
+function eventDateLabel(event: TournamentDate): string {
+  if (isInProgress(event)) return 'In progress'
+  if (event.endDate) return formatDateRange(event.date, event.endDate, SHORT_DATE)
+  return isToday(event.date) ? 'Today' : formatDate(event.date, SHORT_DATE)
 }
 </script>
 
@@ -37,8 +44,8 @@ function logoSrc(logo: string): string {
           <img v-if="item.logo" :src="logoSrc(item.logo)" :alt="item.tournamentName" class="h-6 w-auto object-contain" />
           {{ item.tournamentName }} — {{ item.event.name }}
         </span>
-        <span :class="isToday(item.event.date) ? 'text-accent font-medium shrink-0 ml-4' : 'text-gray-500 shrink-0 ml-4'">
-          {{ isToday(item.event.date) ? 'Today' : formatDate(item.event.date, SHORT_DATE) }}
+        <span :class="(isInProgress(item.event) || isToday(item.event.date)) ? 'text-accent font-medium shrink-0 ml-4' : 'text-gray-500 shrink-0 ml-4'">
+          {{ eventDateLabel(item.event) }}
         </span>
       </RouterLink>
     </div>
