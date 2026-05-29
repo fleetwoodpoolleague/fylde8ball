@@ -12,6 +12,7 @@ export default defineConfig({
         'ballers-blackpool-top-cat-2026',
         'ballers-misc-comps-2026',
         'challenger-pool-series-2026-27',
+        'fylde-summer-open-2026',
         'international-rules-pool-series-2026',
         'precision-cue-series-contenders-2026',
         'precision-cue-series-masters-2026',

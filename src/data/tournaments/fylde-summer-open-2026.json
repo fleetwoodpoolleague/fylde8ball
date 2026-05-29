@@ -1,0 +1,46 @@
+{
+  "completed": false,
+  "meta": {
+    "name": "Fylde Summer Open 2026",
+    "venue": "Ballers Blackpool",
+    "organiser": "Fylde 8 Ball",
+    "logo": "ballers_logo.jpg",
+    "address": "21-27 Bethesda Road, Blackpool, FY1 5DT",
+    "contact": {
+      "phone": "",
+      "whatsapp": "",
+      "email": ""
+    },
+    "urls": {
+      "venue": "",
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "Open singles knockout",
+    "raceToWin": 5,
+    "entryFee": "£20",
+    "handicap": null,
+    "maxPlayers": 64
+  },
+  "dates": [
+    {
+      "name": "Registration deadline",
+      "date": "2026-05-31",
+      "completed": false
+    },
+    {
+      "name": "Tournament Week",
+      "date": "2026-06-01",
+      "endDate": "2026-06-08",
+      "completed": false
+    }
+  ]
+}
