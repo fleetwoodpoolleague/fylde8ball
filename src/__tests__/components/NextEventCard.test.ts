@@ -94,4 +94,45 @@ describe('NextEventCard', () => {
     expect(img.exists()).toBe(true)
     expect(img.attributes('alt')).toBe('Challenger Series')
   })
+
+  describe('range events', () => {
+    const rangeEvent: TournamentDate = {
+      name: 'Tournament Week',
+      date: '2026-06-01',
+      endDate: '2026-06-08',
+      completed: false,
+    }
+
+    afterEach(() => vi.useRealTimers())
+
+    it('shows the formatted range when event has not yet started', () => {
+      vi.useFakeTimers()
+      vi.setSystemTime(new Date(2026, 4, 29)) // 29 May 2026
+      const wrapper = mount(NextEventCard, {
+        props: { ...defaultProps, event: rangeEvent },
+        global: { plugins: [router] },
+      })
+      expect(wrapper.text()).toContain('1 June 2026')
+      expect(wrapper.text()).toContain('8 June 2026')
+    })
+
+    it('shows "In progress" when today is mid-range', () => {
+      vi.useFakeTimers()
+      vi.setSystemTime(new Date(2026, 5, 4)) // 4 Jun 2026
+      const wrapper = mount(NextEventCard, {
+        props: { ...defaultProps, event: rangeEvent },
+        global: { plugins: [router] },
+      })
+      expect(wrapper.text()).toContain('In progress')
+    })
+
+    it('does not show a time row when endDate is set', () => {
+      const rangeWithTime: TournamentDate = { ...rangeEvent, time: '1900' }
+      const wrapper = mount(NextEventCard, {
+        props: { ...defaultProps, event: rangeWithTime },
+        global: { plugins: [router] },
+      })
+      expect(wrapper.text()).not.toContain('1900')
+    })
+  })
 })

@@ -2,7 +2,8 @@
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { TournamentDate } from '../types/tournament'
-import { formatDate, LONG_DATE, isToday, formatTime } from '../utils/format'
+import { formatDate, formatDateRange, LONG_DATE, isToday, formatTime } from '../utils/format'
+import { isInProgress } from '../utils/tournament'
 
 const props = defineProps<{
   event: TournamentDate
@@ -15,6 +16,12 @@ const props = defineProps<{
 const logoSrc = computed(() =>
   props.logo ? new URL(`../assets/img/${props.logo}`, import.meta.url).href : null
 )
+
+const dateLabel = computed(() => {
+  if (isInProgress(props.event)) return 'In progress'
+  if (props.event.endDate) return formatDateRange(props.event.date, props.event.endDate, LONG_DATE)
+  return isToday(props.event.date) ? 'Today' : formatDate(props.event.date, LONG_DATE)
+})
 </script>
 
 <template>
@@ -35,8 +42,8 @@ const logoSrc = computed(() =>
       </div>
       <p class="text-xl font-bold opacity-90 mb-1">{{ tournamentName }}</p>
       <h2 class="text-sm mb-3">{{ event.name }}</h2>
-      <p class="text-sm opacity-75">{{ isToday(event.date) ? 'Today' : formatDate(event.date, LONG_DATE) }}</p>
-      <p v-if="event.time" class="text-sm opacity-75">{{ formatTime(event.time) }}</p>
+      <p class="text-sm opacity-75">{{ dateLabel }}</p>
+      <p v-if="event.time && !event.endDate" class="text-sm opacity-75">{{ formatTime(event.time) }}</p>
       <p class="text-sm opacity-75 mb-3">{{ venue }}</p>
       <div class="flex justify-end">
         <RouterLink
