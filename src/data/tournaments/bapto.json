@@ -1,10 +1,10 @@
 {
   "completed": false,
   "meta": {
-    "name": "Golden 8 Ball",
+    "name": "BAPTO",
     "venue": "Norbreck Castle Hotel",
-    "organiser": "Golden 8 Ball",
-    "logo": "golden-8-ball-tournament-logo.png",
+    "organiser": "BAPTO",
+    "logo": "bapto-logo-1.png",
     "address": null,
     "contact": {
       "phone": "",
@@ -13,7 +13,7 @@
     },
     "urls": {
       "venue": "",
-      "organiser": "https://www.golden8ball.co.uk/",
+      "organiser": "https://www.bapto.co.uk/",
       "scoreboard": ""
     },
     "socials": {
@@ -32,15 +32,15 @@
   },
   "dates": [
     {
-      "name": "3 Player Novice Team Series",
-      "date": "2026-06-11",
-      "endDate": "2026-06-14",
+      "name": "Three Player ‘Halloween’ Novice Event",
+      "date": "2026-10-29",
+      "endDate": "2026-11-01",
       "completed": false
     },
     {
-      "name": "Player Pro-Am Team Series",
-      "date": "2026-06-18",
-      "endDate": "2026-06-21",
+      "name": "Five Player Amateur Team Trophy Event",
+      "date": "2026-11-05",
+      "endDate": "2026-11-08",
       "completed": false
     }
   ]
