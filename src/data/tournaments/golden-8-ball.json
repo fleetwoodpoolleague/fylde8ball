@@ -1,0 +1,52 @@
+{
+  "completed": false,
+  "meta": {
+    "name": "Golden 8 Ball",
+    "venue": "Norbreck Castle Hotel",
+    "organiser": "Golden 8 Ball",
+    "logo": "golden-8-ball-tournament-logo.png",
+    "address": null,
+    "contact": {
+      "phone": "",
+      "whatsapp": "",
+      "email": ""
+    },
+    "urls": {
+      "venue": "",
+      "organiser": "https://www.golden8ball.co.uk/",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": null,
+    "raceToWin": null,
+    "entryFee": null,
+    "handicap": null,
+    "maxPlayers": null 
+  },
+  "dates": [
+    {
+      "name": "Registration deadline",
+      "date": "2026-05-31",
+      "completed": true
+    },
+    {
+      "name": "3 Player Novice Team Series",
+      "date": "2026-06-11",
+      "endDate": "2026-06-14",
+      "completed": false
+    },
+    {
+      "name": "Player Pro-Am Team Series",
+      "date": "2026-06-18",
+      "endDate": "2026-06-21",
+      "completed": false
+    }
+  ]
+}
