@@ -47,7 +47,7 @@
       "name": "Event 3",
       "date": "2026-06-06",
       "time": "1030",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Event 4",
