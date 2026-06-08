@@ -1,5 +1,5 @@
 {
-  "completed": false,
+  "completed": true,
   "meta": {
     "name": "Precision Cue Series: Masters 2026",
     "venue": "Ballers Blackpool",
@@ -59,7 +59,7 @@
       "name": "Grand Final",
       "date": "2026-06-27",
       "time": "1300",
-      "completed": false
+      "completed": true
     }
   ]
 }
