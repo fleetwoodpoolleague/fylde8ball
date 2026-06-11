@@ -7,8 +7,17 @@
     aria-hidden="true"
     focusable="false"
   >
+    <defs>
+      <!-- Same sheen treatment as BallBadge / the Leagues rack -->
+      <radialGradient id="eight-ball-sheen" cx="0.32" cy="0.26" r="0.9">
+        <stop offset="0" stop-color="#fff" stop-opacity="0.75" />
+        <stop offset="0.35" stop-color="#fff" stop-opacity="0" />
+      </radialGradient>
+    </defs>
     <!-- Black ball -->
     <circle cx="16" cy="16" r="15" fill="#111" />
+    <!-- Specular highlight so the silhouette reads on dark surfaces -->
+    <circle cx="16" cy="16" r="15" fill="url(#eight-ball-sheen)" />
     <!-- White circle -->
     <circle cx="16" cy="16" r="8" fill="white" />
     <!-- Number 8 -->
