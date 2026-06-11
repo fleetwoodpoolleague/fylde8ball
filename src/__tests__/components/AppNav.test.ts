@@ -44,4 +44,19 @@ describe('AppNav', () => {
     const links = wrapper.findAll('a')
     expect(links.some(l => l.attributes('href') === '/about')).toBe(true)
   })
+
+  it('marks the active link with aria-current="page"', async () => {
+    await router.push('/tournaments')
+    await router.isReady()
+    const wrapper = mount(AppNav, { global: { plugins: [router] } })
+    const active = wrapper.findAll('a').filter(l => l.attributes('aria-current') === 'page')
+    expect(active).toHaveLength(1)
+    expect(active[0].attributes('href')).toBe('/tournaments')
+  })
+
+  it('includes the theme toggle', async () => {
+    await router.isReady()
+    const wrapper = mount(AppNav, { global: { plugins: [router] } })
+    expect(wrapper.find('button[aria-label="Toggle colour theme"]').exists()).toBe(true)
+  })
 })
