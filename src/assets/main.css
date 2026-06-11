@@ -1,11 +1,135 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/*
+ * Two-layer theming:
+ *  1. Semantic vars (--surface, --ink, …) are plain CSS custom properties,
+ *     defined per theme below and switched by [data-theme] on <html>.
+ *  2. The `@theme inline` block maps them to Tailwind utilities (bg-surface,
+ *     text-ink, …). `inline` makes utilities embed var(--surface) at the use
+ *     site so they re-resolve when the theme flips. Never theme a --color-*
+ *     name directly — Tailwind emits those on :root and would win the cascade.
+ */
+
+:root {
+  /* Raw palette — constants, never themed */
+  --felt-500: #237a4c;
+  --felt-700: #1a5c3a;
+  --felt-900: #0f3b25;
+  --charcoal-800: #1a2620;
+  --charcoal-900: #111814;
+  --wood-300: #c47832;
+  --wood-500: #8b4a14;
+  --wood-700: #5a3010;
+  --wood-900: #3d1f08;
+  --brass-300: #e2c277;
+  --brass-400: #d9b25f;
+  --brass-700: #8a6a1f;
+  --chalk-300: #8fc3e3;
+  --chalk-400: #6fa8c9;
+  --chalk-700: #2c5a78;
+}
+
+/* Semantic tokens — light theme ("light, felt accents") */
+:root,
+[data-theme='light'] {
+  --surface: #f4f6f2;
+  --surface-raised: #ffffff;
+  --surface-sunken: #e9eee6;
+  --ink: #1c2420;
+  --ink-muted: #4d5b54;
+  --line: #dde4da;
+  --accent: var(--felt-700);
+  --accent-ink: #ffffff;
+  --felt: var(--felt-700);
+  --felt-ink: #ffffff;
+  --felt-ink-muted: #cfe8da;
+  --wood: var(--wood-500);
+  --brass: var(--brass-700);
+  --chalk: var(--chalk-700);
+  --chalk-tint: #ddebf4;
+  --focus: var(--chalk-700);
+}
+
+/* Semantic tokens — dark theme ("pool-hall dark") */
+[data-theme='dark'] {
+  --surface: var(--charcoal-900);
+  --surface-raised: var(--charcoal-800);
+  --surface-sunken: #0c100e;
+  --ink: #edf2ee;
+  --ink-muted: #a3b8ab;
+  --line: rgba(255, 255, 255, 0.1);
+  --accent: #4cb97e;
+  --accent-ink: var(--felt-900);
+  --felt: #14492e;
+  --felt-ink: #f0f7f2;
+  --felt-ink-muted: #b9d9c6;
+  --wood: var(--wood-700);
+  --brass: var(--brass-300);
+  --chalk: var(--chalk-300);
+  --chalk-tint: rgba(143, 195, 227, 0.14);
+  --focus: var(--chalk-300);
+}
+
 @theme {
-  --color-accent: #1a5c3a;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Barlow', system-ui, sans-serif;
+  --font-display: 'Alfa Slab One', 'Georgia', serif;
+
+  /* Ball colours — constants shared by both themes */
+  --color-ball-yellow: #f2b705;
+  --color-ball-blue: #1f4e9c;
+  --color-ball-red: #c0392b;
+  --color-ball-purple: #5e3a87;
+  --color-ball-orange: #d35400;
+  --color-ball-green: #1e7a4c;
+  --color-ball-maroon: #7b241c;
+  --color-ball-black: #111111;
+
+  --animate-rise: rise-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-raised: var(--surface-raised);
+  --color-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-felt: var(--felt);
+  --color-felt-ink: var(--felt-ink);
+  --color-felt-ink-muted: var(--felt-ink-muted);
+  --color-wood: var(--wood);
+  --color-brass: var(--brass);
+  --color-chalk: var(--chalk);
+  --color-chalk-tint: var(--chalk-tint);
+  --color-focus: var(--focus);
+}
+
+/* Subtle cloth grain for felt surfaces — layered over the element's bg colour */
+@utility texture-felt {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
 }
 
 body {
   font-family: var(--font-sans);
+  background-color: var(--surface);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
 }

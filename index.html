@@ -2,10 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Fylde 8 Ball</title>
-    <meta name="theme-color" content="#1a5c3a" />
+    <meta name="theme-color" content="#f4f6f2" />
+    <!-- Anti-FOUC: set theme before first paint. Keep key/colours in sync with src/composables/useTheme.ts -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('f8b-theme')
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          }
+          document.documentElement.dataset.theme = t
+          var m = document.querySelector('meta[name="theme-color"]')
+          if (m) m.content = t === 'dark' ? '#111814' : '#f4f6f2'
+        } catch (e) {}
+      })()
+    </script>
     <meta property="og:site_name" content="Fylde 8 Ball" />
     <meta name="geo.region" content="GB-LAN" />
     <meta name="geo.placename" content="Fylde Coast" />

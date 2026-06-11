@@ -1,0 +1,28 @@
+<template>
+  <svg
+    class="moon-icon"
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+</template>
+
+<script setup lang="ts">
+withDefaults(defineProps<{ size?: string | number }>(), { size: '1em' })
+</script>
+
+<style scoped>
+.moon-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+</style>
