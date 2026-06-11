@@ -35,20 +35,20 @@ const dateLabel = computed(() => {
     <div class="pocket pocket-tm" aria-hidden="true"></div>
     <div class="pocket pocket-bm" aria-hidden="true"></div>
     <!-- Felt surface -->
-    <div class="felt text-white p-6">
+    <div class="felt text-felt-ink p-6">
       <div class="flex justify-between items-start mb-3">
-        <p class="text-xs font-semibold uppercase tracking-wider opacity-75">Next Event</p>
+        <p class="text-xs font-semibold uppercase tracking-wider text-felt-ink-muted">Next Event</p>
         <img v-if="logoSrc" :src="logoSrc" :alt="tournamentName" class="h-10 w-auto object-contain" />
       </div>
-      <p class="text-xl font-bold opacity-90 mb-1">{{ tournamentName }}</p>
+      <p class="text-xl font-bold mb-1">{{ tournamentName }}</p>
       <h2 class="text-sm mb-3">{{ event.name }}</h2>
-      <p class="text-sm opacity-75">{{ dateLabel }}</p>
-      <p v-if="event.time && !event.endDate" class="text-sm opacity-75">{{ formatTime(event.time) }}</p>
-      <p class="text-sm opacity-75 mb-3">{{ venue }}</p>
+      <p class="text-sm text-felt-ink-muted">{{ dateLabel }}</p>
+      <p v-if="event.time && !event.endDate" class="text-sm text-felt-ink-muted">{{ formatTime(event.time) }}</p>
+      <p class="text-sm text-felt-ink-muted mb-3">{{ venue }}</p>
       <div class="flex justify-end">
         <RouterLink
           :to="`/tournaments/${tournamentSlug}`"
-          class="text-sm font-semibold opacity-80 hover:opacity-100 underline underline-offset-2"
+          class="text-sm font-semibold text-felt-ink-muted hover:text-felt-ink underline underline-offset-2"
         >Details &rarr;</RouterLink>
       </div>
     </div>
@@ -84,7 +84,7 @@ const dateLabel = computed(() => {
 }
 
 .felt {
-  background: #1a5c3a;
+  background: var(--felt);
   border-radius: 4px;
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }

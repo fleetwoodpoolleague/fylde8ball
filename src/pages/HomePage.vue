@@ -89,8 +89,8 @@ useHead({
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8">
     <div class="mb-8">
-      <h1 class="text-2xl font-bold text-gray-900 mb-1">Fylde <EightBallIcon size="1.2em" /> Ball</h1>
-      <p class="text-gray-500">Pool events and fixtures for the Fylde coast</p>
+      <h1 class="text-2xl font-bold text-ink mb-1">Fylde <EightBallIcon size="1.2em" /> Ball</h1>
+      <p class="text-muted">Pool events and fixtures for the Fylde coast</p>
     </div>
 
     <template v-if="nextEventInfo">
@@ -107,6 +107,6 @@ useHead({
         :events="upcomingEvents"
       />
     </template>
-    <p v-else class="text-gray-500">No upcoming events.</p>
+    <p v-else class="text-muted">No upcoming events.</p>
   </div>
 </template>

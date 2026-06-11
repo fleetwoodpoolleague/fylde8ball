@@ -16,8 +16,8 @@ const lastUpdated = (() => {
 </script>
 
 <template>
-  <footer class="bg-white border-t border-gray-200 mt-12">
-    <div class="max-w-3xl mx-auto px-4 py-4 text-xs text-gray-400 flex flex-col gap-1 sm:flex-row sm:justify-between">
+  <footer class="bg-raised border-t border-line mt-12">
+    <div class="max-w-3xl mx-auto px-4 py-4 text-xs text-muted flex flex-col gap-1 sm:flex-row sm:justify-between">
       <span>© 2026 Fylde 8 Ball</span>
       <span>Last updated: {{ lastUpdated }}</span>
       <span>Data provided for informational purposes only. Please verify details with the respective organisers.</span>

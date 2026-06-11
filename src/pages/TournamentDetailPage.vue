@@ -135,10 +135,10 @@ if (tournament) {
       <div class="mb-6">
         <div class="flex justify-between items-start">
           <div>
-            <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ tournament.meta.name }}</h1>
+            <h1 class="text-2xl font-bold text-ink mb-1">{{ tournament.meta.name }}</h1>
             <span
               v-if="tournament.completed"
-              class="inline-block text-xs font-medium bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full mb-2"
+              class="inline-block text-xs font-medium bg-sunken text-muted px-2 py-0.5 rounded-full mb-2"
             >Completed</span>
           </div>
           <img
@@ -150,7 +150,7 @@ if (tournament) {
         </div>
 
         <!-- Venue / organiser -->
-        <p class="text-sm text-gray-500">
+        <p class="text-sm text-muted">
           {{ tournament.meta.venue }}
           · Organised by
           <a
@@ -164,12 +164,12 @@ if (tournament) {
         </p>
 
         <!-- Address -->
-        <p v-if="hasValue(tournament.meta.address)" class="text-sm text-gray-500 mt-1">
+        <p v-if="hasValue(tournament.meta.address)" class="text-sm text-muted mt-1">
           {{ tournament.meta.address }}
         </p>
 
         <!-- Contact details -->
-        <div v-if="tournament.meta.contact" class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-gray-500">
+        <div v-if="tournament.meta.contact" class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-muted">
           <a
             v-if="hasValue(tournament.meta.contact.phone)"
             :href="telHref(tournament.meta.contact.phone!)"
@@ -198,7 +198,7 @@ if (tournament) {
               :href="tournament.meta.socials.facebook"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-400 hover:text-accent"
+              class="text-muted hover:text-accent"
               aria-label="Facebook"
             >
               <FacebookIcon size="1.25rem" />
@@ -208,7 +208,7 @@ if (tournament) {
               :href="tournament.meta.socials.twitter"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-400 hover:text-accent"
+              class="text-muted hover:text-accent"
               aria-label="X (Twitter)"
             >
               <TwitterIcon size="1.25rem" />
@@ -218,7 +218,7 @@ if (tournament) {
               :href="tournament.meta.socials.instagram"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-400 hover:text-accent"
+              class="text-muted hover:text-accent"
               aria-label="Instagram"
             >
               <InstagramIcon size="1.25rem" />
@@ -235,38 +235,38 @@ if (tournament) {
       </div>
 
       <!-- Format section -->
-      <div v-if="tournament.format" class="mb-6 p-4 bg-gray-50 rounded-lg">
-        <h2 class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Competition Format</h2>
+      <div v-if="tournament.format" class="mb-6 p-4 bg-sunken rounded-lg">
+        <h2 class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">Competition Format</h2>
         <dl class="space-y-1 text-sm">
           <div v-if="hasValue(tournament.format.rules)" class="flex gap-2">
-            <dt class="text-gray-500 w-24 shrink-0">Rules</dt>
-            <dd class="text-gray-900 font-medium">{{ tournament.format.rules }}</dd>
+            <dt class="text-muted w-24 shrink-0">Rules</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.rules }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.type)" class="flex gap-2">
-            <dt class="text-gray-500 w-24 shrink-0">Type</dt>
-            <dd class="text-gray-900 font-medium">{{ tournament.format.type }}</dd>
+            <dt class="text-muted w-24 shrink-0">Type</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.type }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.raceToWin)" class="flex gap-2">
-            <dt class="text-gray-500 w-24 shrink-0">Race to</dt>
-            <dd class="text-gray-900 font-medium">{{ tournament.format.raceToWin }}</dd>
+            <dt class="text-muted w-24 shrink-0">Race to</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.raceToWin }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.entryFee)" class="flex gap-2">
-            <dt class="text-gray-500 w-24 shrink-0">Entry fee</dt>
-            <dd class="text-gray-900 font-medium">{{ tournament.format.entryFee }}</dd>
+            <dt class="text-muted w-24 shrink-0">Entry fee</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.entryFee }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.handicap)" class="flex gap-2">
-            <dt class="text-gray-500 w-24 shrink-0">Handicap</dt>
-            <dd class="text-gray-900 font-medium">{{ tournament.format.handicap }}</dd>
+            <dt class="text-muted w-24 shrink-0">Handicap</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.handicap }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.maxPlayers)" class="flex gap-2">
-            <dt class="text-gray-500 w-24 shrink-0">Max players</dt>
-            <dd class="text-gray-900 font-medium">{{ tournament.format.maxPlayers }}</dd>
+            <dt class="text-muted w-24 shrink-0">Max players</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.maxPlayers }}</dd>
           </div>
         </dl>
       </div>
 
       <EventTimeline :dates="tournament.dates" />
     </template>
-    <p v-else class="text-gray-500">Tournament not found.</p>
+    <p v-else class="text-muted">Tournament not found.</p>
   </div>
 </template>

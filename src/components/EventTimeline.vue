@@ -13,7 +13,7 @@ const nextEvent = getNextEvent(props.dates)
 <template>
   <div class="relative">
     <!-- Vertical spine line -->
-    <div class="absolute left-1.5 top-2 bottom-2 w-px bg-gray-200" />
+    <div class="absolute left-1.5 top-2 bottom-2 w-px bg-line" />
     <EventTimelineItem
       v-for="date in dates"
       :key="date.date"
