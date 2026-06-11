@@ -3,14 +3,11 @@ import type { TournamentDate, UpcomingEventInfo } from '../types/tournament'
 import { formatDate, formatDateRange, SHORT_DATE, isToday } from '../utils/format'
 import { isInProgress } from '../utils/tournament'
 import CalendarIcon from './icons/CalendarIcon.vue'
+import { logoSrc } from '../utils/assets'
 
 defineProps<{
   events: UpcomingEventInfo[]
 }>()
-
-function logoSrc(logo: string): string {
-  return new URL(`../assets/img/${logo}`, import.meta.url).href
-}
 
 function eventDateLabel(event: TournamentDate): string {
   if (isInProgress(event)) return 'In progress'
@@ -41,7 +38,7 @@ function eventDateLabel(event: TournamentDate): string {
         class="py-2 flex justify-between items-center text-sm -mx-2 px-2 rounded hover:bg-sunken transition-colors"
       >
         <span class="flex items-center gap-2 text-ink">
-          <img v-if="item.logo" :src="logoSrc(item.logo)" :alt="item.tournamentName" class="h-6 w-auto object-contain" />
+          <img v-if="item.logo" :src="logoSrc(item.logo)!" :alt="item.tournamentName" class="h-6 w-auto object-contain" loading="lazy" decoding="async" height="24" />
           {{ item.tournamentName }} — {{ item.event.name }}
         </span>
         <span :class="(isInProgress(item.event) || isToday(item.event.date)) ? 'text-accent font-medium shrink-0 ml-4' : 'text-muted shrink-0 ml-4'">

@@ -1,25 +1,26 @@
+import { readdirSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import type { ViteSSGOptions } from 'vite-ssg'
 
+// Tournament slugs are the JSON basenames — same convention the app uses at
+// runtime (import.meta.glob in useTournaments), so every tournament gets a
+// static page without manual registration.
+const tournamentSlugs = readdirSync(
+  fileURLToPath(new URL('./src/data/tournaments', import.meta.url)),
+)
+  .filter(f => f.endsWith('.json'))
+  .map(f => f.replace(/\.json$/, ''))
+
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
   ssgOptions: {
     includedRoutes(paths) {
-      const slugs = [
-        '8-ball-pool-spring-series-2026',
-        'ballers-blackpool-top-cat-2026',
-        'ballers-misc-comps-2026',
-        'challenger-pool-series-2026-27',
-        'fylde-summer-open-2026',
-        'international-rules-pool-series-2026',
-        'precision-cue-series-contenders-2026',
-        'precision-cue-series-masters-2026',
-      ]
       return paths.flatMap(path =>
         path === '/tournaments/:slug'
-          ? slugs.map(s => `/tournaments/${s}`)
+          ? tournamentSlugs.map(s => `/tournaments/${s}`)
           : [path],
       )
     },

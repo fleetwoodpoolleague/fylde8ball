@@ -5,12 +5,9 @@ import { useSeo, BASE_URL } from '../composables/useSeo'
 import CalendarIcon from '../components/icons/CalendarIcon.vue'
 import BallBadge from '../components/BallBadge.vue'
 import { ballForSlug } from '../utils/ballColor'
+import { logoSrc } from '../utils/assets'
 
 const tournaments = useTournaments()
-
-function logoSrc(logo: string): string | null {
-  return logo ? new URL(`../assets/img/${logo}`, import.meta.url).href : null
-}
 
 useSeo({
   title: 'Tournaments | Fylde 8 Ball',
@@ -69,6 +66,10 @@ useHead({
           :src="logoSrc(tournament.meta.logo)!"
           :alt="tournament.meta.name"
           class="h-10 w-10 object-contain shrink-0"
+          loading="lazy"
+          decoding="async"
+          width="40"
+          height="40"
         />
         <BallBadge v-else :slug="tournament.slug" numbered size="2.5rem" />
         <div class="min-w-0 flex-1">

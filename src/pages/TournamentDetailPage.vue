@@ -2,6 +2,7 @@
 import { useHead } from '@unhead/vue'
 import { useTournament } from '../composables/useTournament'
 import { useSeo, BASE_URL } from '../composables/useSeo'
+import { logoSrc } from '../utils/assets'
 import EventTimeline from '../components/EventTimeline.vue'
 import FacebookIcon from '../components/icons/FacebookIcon.vue'
 import TwitterIcon from '../components/icons/TwitterIcon.vue'
@@ -15,10 +16,6 @@ const props = defineProps<{
 }>()
 
 const tournament = useTournament(props.slug)
-
-function logoSrc(logo: string): string | null {
-  return logo ? new URL(`../assets/img/${logo}`, import.meta.url).href : null
-}
 
 function hasValue(v: unknown): boolean {
   return v !== null && v !== undefined && v !== ''
@@ -146,6 +143,9 @@ if (tournament) {
             :src="logoSrc(tournament.meta.logo)!"
             :alt="tournament.meta.name"
             class="h-12 w-12 md:h-16 md:w-16 object-contain shrink-0 ml-4"
+            decoding="async"
+            width="64"
+            height="64"
           />
         </div>
 

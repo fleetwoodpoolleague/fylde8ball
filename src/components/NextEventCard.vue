@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 import type { TournamentDate } from '../types/tournament'
 import { formatDate, formatDateRange, LONG_DATE, isToday, formatTime } from '../utils/format'
 import { isInProgress } from '../utils/tournament'
+import { logoSrc as resolveLogo } from '../utils/assets'
 
 const props = defineProps<{
   event: TournamentDate
@@ -13,9 +14,7 @@ const props = defineProps<{
   logo?: string
 }>()
 
-const logoSrc = computed(() =>
-  props.logo ? new URL(`../assets/img/${props.logo}`, import.meta.url).href : null
-)
+const logoSrc = computed(() => resolveLogo(props.logo))
 
 const dateLabel = computed(() => {
   if (isInProgress(props.event)) return 'In progress'
