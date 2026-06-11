@@ -3,6 +3,8 @@ import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
 import { useSeo, BASE_URL } from '../composables/useSeo'
 import CalendarIcon from '../components/icons/CalendarIcon.vue'
+import BallBadge from '../components/BallBadge.vue'
+import { ballForSlug } from '../utils/ballColor'
 
 const tournaments = useTournaments()
 
@@ -39,7 +41,7 @@ useHead({
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8">
     <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold text-ink">Tournaments</h1>
+      <h1 class="font-display text-2xl md:text-3xl text-ink">Tournaments</h1>
       <a
         href="https://calendar.google.com/calendar/r?cid=webcal://fylde8ball.co.uk/fylde8ball.ics"
         target="_blank"
@@ -50,26 +52,30 @@ useHead({
         Subscribe
       </a>
     </div>
-    <div class="divide-y divide-line">
+    <div class="grid gap-3 sm:grid-cols-2">
       <RouterLink
         v-for="tournament in tournaments"
         :key="tournament.slug"
         :to="`/tournaments/${tournament.slug}`"
-        class="flex justify-between items-center py-4 hover:bg-sunken -mx-2 px-2 rounded transition-colors"
+        class="relative flex items-center gap-3 overflow-hidden rounded-xl border border-line bg-raised p-4 pl-5 shadow-sm transition hover:shadow-md motion-safe:hover:-translate-y-0.5"
       >
-        <div class="flex items-center gap-3">
-          <img
-            v-if="logoSrc(tournament.meta.logo)"
-            :src="logoSrc(tournament.meta.logo)!"
-            :alt="tournament.meta.name"
-            class="h-10 w-10 object-contain shrink-0"
-          />
-          <div>
-            <p class="font-semibold text-ink">{{ tournament.meta.name }}</p>
-            <p class="text-sm text-muted">{{ tournament.meta.venue }}</p>
-          </div>
+        <span
+          class="absolute inset-y-0 left-0 w-1.5"
+          :style="{ background: ballForSlug(tournament.slug).color }"
+          aria-hidden="true"
+        />
+        <img
+          v-if="logoSrc(tournament.meta.logo)"
+          :src="logoSrc(tournament.meta.logo)!"
+          :alt="tournament.meta.name"
+          class="h-10 w-10 object-contain shrink-0"
+        />
+        <BallBadge v-else :slug="tournament.slug" numbered size="2.5rem" />
+        <div class="min-w-0 flex-1">
+          <p class="font-semibold text-ink">{{ tournament.meta.name }}</p>
+          <p class="text-sm text-muted">{{ tournament.meta.venue }}</p>
         </div>
-        <div class="text-right ml-4">
+        <div class="text-right shrink-0">
           <p class="text-sm text-muted">
             {{ tournament.dates.length }}
             {{ tournament.dates.length === 1 ? 'event' : 'events' }}

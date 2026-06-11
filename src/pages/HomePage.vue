@@ -87,15 +87,16 @@ useHead({
 </script>
 
 <template>
-  <div class="max-w-3xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-2xl font-bold text-ink mb-1">Fylde <EightBallIcon size="1.2em" /> Ball</h1>
+  <div class="max-w-3xl mx-auto px-4 py-8 md:py-12">
+    <div class="mb-8 motion-safe:animate-rise">
+      <h1 class="font-display text-3xl md:text-4xl text-ink mb-1">Fylde <EightBallIcon size="1em" /> Ball</h1>
       <p class="text-muted">Pool events and fixtures for the Fylde coast</p>
     </div>
 
     <template v-if="nextEventInfo">
       <NextEventCard
-        class="mb-6"
+        class="mb-6 motion-safe:animate-rise"
+        style="animation-delay: 120ms"
         :event="nextEventInfo.event"
         :tournament-name="nextEventInfo.tournament.meta.name"
         :tournament-slug="nextEventInfo.tournament.slug"
@@ -105,6 +106,8 @@ useHead({
       <UpcomingEventsList
         v-if="upcomingEvents.length"
         :events="upcomingEvents"
+        class="motion-safe:animate-rise"
+        style="animation-delay: 240ms"
       />
     </template>
     <p v-else class="text-muted">No upcoming events.</p>

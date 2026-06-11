@@ -35,7 +35,7 @@ const dateLabel = computed(() => {
     <div class="pocket pocket-tm" aria-hidden="true"></div>
     <div class="pocket pocket-bm" aria-hidden="true"></div>
     <!-- Felt surface -->
-    <div class="felt text-felt-ink p-6">
+    <div class="felt texture-felt text-felt-ink p-6">
       <div class="flex justify-between items-start mb-3">
         <p class="text-xs font-semibold uppercase tracking-wider text-felt-ink-muted">Next Event</p>
         <img v-if="logoSrc" :src="logoSrc" :alt="tournamentName" class="h-10 w-auto object-contain" />
@@ -48,7 +48,7 @@ const dateLabel = computed(() => {
       <div class="flex justify-end">
         <RouterLink
           :to="`/tournaments/${tournamentSlug}`"
-          class="text-sm font-semibold text-felt-ink-muted hover:text-felt-ink underline underline-offset-2"
+          class="inline-flex items-center rounded-full bg-chalk text-chalk-ink px-4 py-1.5 text-sm font-semibold transition hover:brightness-110 motion-safe:hover:-translate-y-0.5"
         >Details &rarr;</RouterLink>
       </div>
     </div>
@@ -83,10 +83,33 @@ const dateLabel = computed(() => {
     inset 0 -1px 2px rgba(0, 0, 0, 0.4);
 }
 
+/* Deeper, less saturated wood under dark pool-hall lighting */
+[data-theme='dark'] .table-frame {
+  background: linear-gradient(
+    105deg,
+    #1f1004 0%,
+    #4a2509 8%,
+    #613311 15%,
+    #7a4a1e 22%,
+    #542d0c 30%,
+    #401f09 38%,
+    #613813 46%,
+    #7a4a1e 53%,
+    #542d0c 60%,
+    #401f09 68%,
+    #5f320e 76%,
+    #7a4a1e 84%,
+    #542d0c 92%,
+    #2a1404 100%
+  );
+}
+
 .felt {
   background: var(--felt);
   border-radius: 4px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(217, 178, 95, 0.5),
+    inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .pocket {

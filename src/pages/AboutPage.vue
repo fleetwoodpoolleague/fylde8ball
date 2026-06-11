@@ -31,7 +31,7 @@ useHead({
 
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold text-ink mb-4">About</h1>
+    <h1 class="font-display text-2xl md:text-3xl text-ink mb-4">About</h1>
     <div class="text-ink space-y-4">
       <p>
         Fylde 8 Ball is the home of pool in the Fylde Coast area, covering tournaments, leagues,

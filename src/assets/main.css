@@ -47,6 +47,7 @@
   --wood: var(--wood-500);
   --brass: var(--brass-700);
   --chalk: var(--chalk-700);
+  --chalk-ink: #ffffff;
   --chalk-tint: #ddebf4;
   --focus: var(--chalk-700);
 }
@@ -67,6 +68,7 @@
   --wood: var(--wood-700);
   --brass: var(--brass-300);
   --chalk: var(--chalk-300);
+  --chalk-ink: #0c2330;
   --chalk-tint: rgba(143, 195, 227, 0.14);
   --focus: var(--chalk-300);
 }
@@ -114,6 +116,7 @@
   --color-wood: var(--wood);
   --color-brass: var(--brass);
   --color-chalk: var(--chalk);
+  --color-chalk-ink: var(--chalk-ink);
   --color-chalk-tint: var(--chalk-tint);
   --color-focus: var(--focus);
 }

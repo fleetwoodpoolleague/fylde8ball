@@ -3,11 +3,17 @@ import { computed } from 'vue'
 import type { TournamentDate } from '../types/tournament'
 import { formatDate, formatDateRange, SHORT_DATE, isToday, formatTime } from '../utils/format'
 import { isInProgress } from '../utils/tournament'
+import BallBadge from './BallBadge.vue'
 
 const props = defineProps<{
   date: TournamentDate
   isNext: boolean
 }>()
+
+const dotColor = computed(() => {
+  if (props.isNext) return 'var(--accent)'
+  return props.date.completed ? 'var(--line)' : 'var(--ink-muted)'
+})
 
 const dateLabel = computed(() => {
   if (isInProgress(props.date)) return 'In progress'
@@ -18,17 +24,8 @@ const dateLabel = computed(() => {
 
 <template>
   <div class="relative pl-6 pb-6 last:pb-0">
-    <!-- Spine dot -->
-    <div
-      class="absolute left-0 top-1 w-3 h-3 rounded-full border-2 border-surface ring-2"
-      :class="
-        isNext
-          ? 'bg-accent ring-accent'
-          : date.completed
-          ? 'bg-line ring-line'
-          : 'bg-muted ring-muted'
-      "
-    />
+    <!-- Spine dot: a mini pool ball -->
+    <BallBadge :color="dotColor" size="12px" class="absolute left-0 top-1" />
     <!-- Row -->
     <div class="flex justify-between items-baseline gap-4">
       <span

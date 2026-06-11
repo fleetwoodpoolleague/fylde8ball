@@ -135,7 +135,7 @@ if (tournament) {
       <div class="mb-6">
         <div class="flex justify-between items-start">
           <div>
-            <h1 class="text-2xl font-bold text-ink mb-1">{{ tournament.meta.name }}</h1>
+            <h1 class="font-display text-2xl md:text-3xl text-ink mb-1">{{ tournament.meta.name }}</h1>
             <span
               v-if="tournament.completed"
               class="inline-block text-xs font-medium bg-sunken text-muted px-2 py-0.5 rounded-full mb-2"
@@ -145,7 +145,7 @@ if (tournament) {
             v-if="logoSrc(tournament.meta.logo)"
             :src="logoSrc(tournament.meta.logo)!"
             :alt="tournament.meta.name"
-            class="h-12 w-12 object-contain shrink-0 ml-4"
+            class="h-12 w-12 md:h-16 md:w-16 object-contain shrink-0 ml-4"
           />
         </div>
 
@@ -235,9 +235,9 @@ if (tournament) {
       </div>
 
       <!-- Format section -->
-      <div v-if="tournament.format" class="mb-6 p-4 bg-sunken rounded-lg">
+      <div v-if="tournament.format" class="mb-6 p-4 bg-sunken texture-felt rounded-xl border border-line">
         <h2 class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">Competition Format</h2>
-        <dl class="space-y-1 text-sm">
+        <dl class="space-y-1 text-sm sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-1">
           <div v-if="hasValue(tournament.format.rules)" class="flex gap-2">
             <dt class="text-muted w-24 shrink-0">Rules</dt>
             <dd class="text-ink font-medium">{{ tournament.format.rules }}</dd>

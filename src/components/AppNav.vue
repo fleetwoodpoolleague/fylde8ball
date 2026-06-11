@@ -6,7 +6,7 @@ import ThemeToggle from './ThemeToggle.vue'
 <template>
   <nav class="bg-raised border-b border-line">
     <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-      <RouterLink to="/" class="font-bold text-lg text-ink hover:text-accent" active-class="">
+      <RouterLink to="/" class="font-display text-lg text-ink hover:text-accent" active-class="">
         Fylde <EightBallIcon size="1.1em" /> Ball
       </RouterLink>
       <div class="flex items-center gap-4">
