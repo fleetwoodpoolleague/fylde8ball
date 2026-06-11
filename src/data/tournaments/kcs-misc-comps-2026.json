@@ -36,6 +36,12 @@
       "date": "2026-05-23",
       "time": "1130",
       "completed": true
+    },
+    {
+      "name": "KC’S AMATEUR OPEN",
+      "date": "2026-06-13",
+      "time": "1100",
+      "completed": false
     }
   ]
 }
