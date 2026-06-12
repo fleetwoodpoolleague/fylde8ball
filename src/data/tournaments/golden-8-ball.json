@@ -28,14 +28,14 @@
     "raceToWin": null,
     "entryFee": null,
     "handicap": null,
-    "maxPlayers": null 
+    "maxPlayers": null
   },
   "dates": [
     {
       "name": "3 Player Novice Team Series",
       "date": "2026-06-11",
       "endDate": "2026-06-14",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Player Pro-Am Team Series",
