@@ -8,6 +8,7 @@ const mockTournament: Tournament = {
 }
 
 vi.mock('../../composables/useTournaments', () => ({
+  getTournamentBySlug: (slug: string) => slug === mockTournament.slug ? mockTournament : undefined,
   useTournaments: () => [mockTournament],
 }))
 

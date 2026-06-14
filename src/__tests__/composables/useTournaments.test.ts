@@ -1,9 +1,19 @@
-import { useTournaments } from '../../composables/useTournaments'
+import { getTournamentBySlug, useTournaments } from '../../composables/useTournaments'
 
 describe('useTournaments', () => {
   it('returns an array', () => {
     const result = useTournaments()
     expect(Array.isArray(result)).toBe(true)
+  })
+
+  it('reuses the parsed tournament list between calls', () => {
+    expect(useTournaments()).toBe(useTournaments())
+  })
+
+  it('returns tournaments from the cached slug lookup', () => {
+    const tournaments = useTournaments()
+    const challenger = tournaments.find(t => t.slug === 'challenger-pool-series-2026-27')
+    expect(getTournamentBySlug('challenger-pool-series-2026-27')).toBe(challenger)
   })
 
   it('includes the Challenger Pool Series', () => {
