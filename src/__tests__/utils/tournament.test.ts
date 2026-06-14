@@ -63,6 +63,11 @@ describe('isWithinMonths', () => {
     expect(isWithinMonths('2026-07-14', 3, from)).toBe(true)
   })
 
+  it('uses the local cutoff date instead of UTC when checking the window', () => {
+    const bstFrom = new Date(2026, 5, 14, 0, 30) // 14 Jun 2026 00:30 local time
+    expect(isWithinMonths('2026-09-14', 3, bstFrom)).toBe(true)
+  })
+
   it('returns false for a date one day past the cutoff', () => {
     expect(isWithinMonths('2026-07-15', 3, from)).toBe(false)
   })

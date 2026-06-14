@@ -4,19 +4,23 @@ export function getNextEvent(dates: TournamentDate[]): TournamentDate | undefine
   return dates.find(d => !d.completed)
 }
 
+function toLocalDateString(date: Date): string {
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, '0')
+  const d = String(date.getDate()).padStart(2, '0')
+  return `${y}-${m}-${d}`
+}
+
 export function isWithinMonths(dateStr: string, months: number, from: Date = new Date()): boolean {
   if (dateStr === 'TBC') return false
   const cutoff = new Date(from)
   cutoff.setMonth(cutoff.getMonth() + months)
-  return dateStr <= cutoff.toISOString().slice(0, 10)
+  return dateStr <= toLocalDateString(cutoff)
 }
 
 export function isInProgress(date: TournamentDate, today: Date = new Date()): boolean {
   if (!date.endDate) return false
-  const y = today.getFullYear()
-  const m = String(today.getMonth() + 1).padStart(2, '0')
-  const d = String(today.getDate()).padStart(2, '0')
-  const todayStr = `${y}-${m}-${d}`
+  const todayStr = toLocalDateString(today)
   return date.date <= todayStr && todayStr <= date.endDate
 }
 
@@ -26,10 +30,7 @@ export function getEffectiveEndDate(date: TournamentDate): string {
 
 export function isUpcomingOrInProgress(date: TournamentDate, months: number, from: Date = new Date()): boolean {
   const end = getEffectiveEndDate(date)
-  const y = from.getFullYear()
-  const m = String(from.getMonth() + 1).padStart(2, '0')
-  const d = String(from.getDate()).padStart(2, '0')
-  const fromStr = `${y}-${m}-${d}`
+  const fromStr = toLocalDateString(from)
   // Exclude events entirely in the past (isWithinMonths has no lower bound).
   if (end !== 'TBC' && end < fromStr) return false
   return isWithinMonths(date.date, months, from)
