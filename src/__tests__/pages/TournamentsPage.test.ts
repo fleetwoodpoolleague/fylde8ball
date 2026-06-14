@@ -7,7 +7,12 @@ vi.mock('../../composables/useTournaments', () => ({
   useTournaments: vi.fn(),
 }))
 
+vi.mock('../../utils/assets', () => ({
+  logoSrc: vi.fn((logo: string | undefined) => logo ? `/assets/${logo}` : null),
+}))
+
 import { useTournaments } from '../../composables/useTournaments'
+import { logoSrc } from '../../utils/assets'
 import TournamentsPage from '../../pages/TournamentsPage.vue'
 
 const mockTournaments: Tournament[] = [
@@ -34,6 +39,7 @@ const router = createRouter({
 describe('TournamentsPage', () => {
   beforeEach(async () => {
     vi.mocked(useTournaments).mockReturnValue(mockTournaments)
+    vi.mocked(logoSrc).mockClear()
     await router.push('/tournaments')
   })
 
@@ -61,5 +67,11 @@ describe('TournamentsPage', () => {
     const imgs = wrapper.findAll('img')
     expect(imgs.length).toBe(1)
     expect(imgs[0].attributes('alt')).toBe('Challenger Series')
+  })
+
+  it('resolves each tournament logo at most once while rendering cards', async () => {
+    await router.isReady()
+    mount(TournamentsPage, { global: { plugins: [router] } })
+    expect(logoSrc).toHaveBeenCalledTimes(mockTournaments.length)
   })
 })

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
 import { useSeo, BASE_URL } from '../composables/useSeo'
@@ -8,6 +9,12 @@ import { ballForSlug } from '../utils/ballColor'
 import { logoSrc } from '../utils/assets'
 
 const tournaments = useTournaments()
+const tournamentCards = computed(() =>
+  tournaments.map(tournament => ({
+    ...tournament,
+    logoUrl: logoSrc(tournament.meta.logo),
+  }))
+)
 
 useSeo({
   title: 'Tournaments | Fylde 8 Ball',
@@ -51,7 +58,7 @@ useHead({
     </div>
     <div class="grid gap-3 sm:grid-cols-2">
       <RouterLink
-        v-for="tournament in tournaments"
+        v-for="tournament in tournamentCards"
         :key="tournament.slug"
         :to="`/tournaments/${tournament.slug}`"
         class="relative flex items-center gap-3 overflow-hidden rounded-xl border border-line bg-raised p-4 pl-5 shadow-sm transition hover:shadow-md motion-safe:hover:-translate-y-0.5"
@@ -62,8 +69,8 @@ useHead({
           aria-hidden="true"
         />
         <img
-          v-if="logoSrc(tournament.meta.logo)"
-          :src="logoSrc(tournament.meta.logo)!"
+          v-if="tournament.logoUrl"
+          :src="tournament.logoUrl"
           :alt="tournament.meta.name"
           class="h-10 w-10 object-contain shrink-0"
           loading="lazy"

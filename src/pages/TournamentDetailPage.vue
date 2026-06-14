@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useTournament } from '../composables/useTournament'
 import { useSeo, BASE_URL } from '../composables/useSeo'
@@ -16,6 +17,7 @@ const props = defineProps<{
 }>()
 
 const tournament = useTournament(props.slug)
+const logoUrl = computed(() => logoSrc(tournament?.meta.logo))
 
 function hasValue(v: unknown): boolean {
   return v !== null && v !== undefined && v !== ''
@@ -139,8 +141,8 @@ if (tournament) {
             >Completed</span>
           </div>
           <img
-            v-if="logoSrc(tournament.meta.logo)"
-            :src="logoSrc(tournament.meta.logo)!"
+            v-if="logoUrl"
+            :src="logoUrl"
             :alt="tournament.meta.name"
             class="h-12 w-12 md:h-16 md:w-16 object-contain shrink-0 ml-4"
             decoding="async"
