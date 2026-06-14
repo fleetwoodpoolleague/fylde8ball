@@ -29,6 +29,13 @@ describe('fold', () => {
     const folded = fold(line)
     expect(folded).toContain('\r\n ')
   })
+
+  it('preserves multi-byte UTF-8 characters when folded', () => {
+    const line = `SUMMARY:${'A'.repeat(66)}£TAIL`
+    const folded = fold(line)
+    expect(folded.split('\r\n ').join('')).toBe(line)
+    expect(folded).not.toContain('�')
+  })
 })
 
 describe('esc', () => {

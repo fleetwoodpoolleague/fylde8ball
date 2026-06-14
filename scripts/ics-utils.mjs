@@ -2,17 +2,25 @@
 // prefixed with CRLF + a single space and are capped at 74 octets so that the
 // leading space stays within the 75-octet limit.
 export function fold(line) {
-  const bytes = Buffer.from(line, 'utf8')
-  if (bytes.length <= 75) return line
+  if (Buffer.byteLength(line, 'utf8') <= 75) return line
   const chunks = []
-  let offset = 0
   let first = true
-  while (offset < bytes.length) {
+  let chunk = ''
+  let chunkBytes = 0
+
+  for (const char of line) {
     const limit = first ? 75 : 74
-    chunks.push(bytes.slice(offset, offset + limit).toString('utf8'))
-    offset += limit
-    first = false
+    const charBytes = Buffer.byteLength(char, 'utf8')
+    if (chunkBytes + charBytes > limit) {
+      chunks.push(chunk)
+      chunk = ''
+      chunkBytes = 0
+      first = false
+    }
+    chunk += char
+    chunkBytes += charBytes
   }
+  if (chunk) chunks.push(chunk)
   return chunks.join('\r\n ')
 }
 
