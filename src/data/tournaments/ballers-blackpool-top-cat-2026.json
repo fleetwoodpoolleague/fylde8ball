@@ -1,5 +1,5 @@
 {
-  "completed": false,
+  "completed": true,
   "meta": {
     "name": "Ballers Blackpool: Top Cat 2026",
     "venue": "Ballers Blackpool",
@@ -77,7 +77,7 @@
       "name": "Week 8: KO Final",
       "date": "2026-06-18",
       "time": "2000",
-      "completed": false
+      "completed": true
     }
   ]
 }
