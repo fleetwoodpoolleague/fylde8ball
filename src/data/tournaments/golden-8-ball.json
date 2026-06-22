@@ -1,5 +1,5 @@
 {
-  "completed": false,
+  "completed": true,
   "meta": {
     "name": "Golden 8 Ball",
     "venue": "Norbreck Castle Hotel",
@@ -41,7 +41,7 @@
       "name": "Player Pro-Am Team Series",
       "date": "2026-06-18",
       "endDate": "2026-06-21",
-      "completed": false
+      "completed": true
     }
   ]
 }
