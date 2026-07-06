@@ -6,30 +6,6 @@ X-WR-CALDESC:Pool tournaments on the Fylde Coast
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:2026-06-11-ballers-blackpool-top-cat-2026-0@fylde8ball.co.uk
-DTSTART:20260611T200000
-DTEND:20260611T240000
-SUMMARY:Ballers Blackpool: Top Cat 2026 – Week 7
-LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
- om\, FY1 5DT
-DESCRIPTION:Blackball · 7 Round Robin weeks\, then seeded KO Final · Entr
- y £100\nhttps://fylde8ball.co.uk/tournaments/ballers-blackpool-top-cat-20
- 26
-URL:https://fylde8ball.co.uk/tournaments/ballers-blackpool-top-cat-2026
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-06-18-ballers-blackpool-top-cat-2026-1@fylde8ball.co.uk
-DTSTART:20260618T200000
-DTEND:20260618T240000
-SUMMARY:Ballers Blackpool: Top Cat 2026 – Week 8: KO Final
-LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
- om\, FY1 5DT
-DESCRIPTION:Blackball · 7 Round Robin weeks\, then seeded KO Final · Entr
- y £100\nhttps://fylde8ball.co.uk/tournaments/ballers-blackpool-top-cat-20
- 26
-URL:https://fylde8ball.co.uk/tournaments/ballers-blackpool-top-cat-2026
-END:VEVENT
-BEGIN:VEVENT
 UID:2026-10-29-bapto-0@fylde8ball.co.uk
 DTSTART;VALUE=DATE:20261029
 DTEND;VALUE=DATE:20261102
@@ -125,24 +101,6 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-06-11-golden-8-ball-0@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260611
-DTEND;VALUE=DATE:20260615
-SUMMARY:Golden 8 Ball – 3 Player Novice Team Series
-LOCATION:Norbreck Castle Hotel
-DESCRIPTION:Blackball\nhttps://fylde8ball.co.uk/tournaments/golden-8-ball
-URL:https://fylde8ball.co.uk/tournaments/golden-8-ball
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-06-18-golden-8-ball-1@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260618
-DTEND;VALUE=DATE:20260622
-SUMMARY:Golden 8 Ball – Player Pro-Am Team Series
-LOCATION:Norbreck Castle Hotel
-DESCRIPTION:Blackball\nhttps://fylde8ball.co.uk/tournaments/golden-8-ball
-URL:https://fylde8ball.co.uk/tournaments/golden-8-ball
-END:VEVENT
-BEGIN:VEVENT
 UID:2026-07-12-international-rules-pool-series-2026-0@fylde8ball.co.uk
 DTSTART;VALUE=DATE:20260712
 SUMMARY:International Rules Pool Series 2026 – Event 4
@@ -198,39 +156,88 @@ URL:https://fylde8ball.co.uk/tournaments/international-rules-pool-series-20
  26
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-06-13-kcs-misc-comps-2026-0@fylde8ball.co.uk
-DTSTART:20260613T110000
-DTEND:20260613T150000
-SUMMARY:KC's Competitions 2026 – KC’S AMATEUR OPEN
-LOCATION:KC's Pool & Sports Club\, 9 Mornington Road \, Preston\, United Ki
- ngdom\, Pr1 4ul 
-DESCRIPTION:Blackball · 3 person team (32 teams max)\, Double Elimination 
- · Entry £60\nhttps://fylde8ball.co.uk/tournaments/kcs-misc-comps-2026
-URL:https://fylde8ball.co.uk/tournaments/kcs-misc-comps-2026
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-06-20-precision-cue-series-contenders-2026-0@fylde8ball.co.uk
-DTSTART:20260620T130000
-DTEND:20260620T170000
-SUMMARY:Precision Cue Series: Contenders 2026 – Grand Final
+UID:2026-07-25-precision-cue-series-contenders-season-2-2026-27-0@fylde8bal
+ l.co.uk
+DTSTART:20260725T130000
+DTEND:20260725T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 1
 LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
  om\, FY1 5DT
 DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
- 0\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-20
- 26
-URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-20
- 26
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-06-27-precision-cue-series-masters-2026-0@fylde8ball.co.uk
-DTSTART:20260627T130000
-DTEND:20260627T170000
-SUMMARY:Precision Cue Series: Masters 2026 – Grand Final
+UID:2026-08-22-precision-cue-series-contenders-season-2-2026-27-1@fylde8bal
+ l.co.uk
+DTSTART:20260822T130000
+DTEND:20260822T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 2
 LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
  om\, FY1 5DT
 DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
- 0\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-masters-2026
-URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-masters-2026
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-19-precision-cue-series-contenders-season-2-2026-27-2@fylde8bal
+ l.co.uk
+DTSTART:20260919T130000
+DTEND:20260919T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 3
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-24-precision-cue-series-contenders-season-2-2026-27-3@fylde8bal
+ l.co.uk
+DTSTART:20261024T130000
+DTEND:20261024T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 4
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-28-precision-cue-series-contenders-season-2-2026-27-4@fylde8bal
+ l.co.uk
+DTSTART:20261128T130000
+DTEND:20261128T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 5
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-01-16-precision-cue-series-contenders-season-2-2026-27-5@fylde8bal
+ l.co.uk
+DTSTART:20270116T130000
+DTEND:20270116T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Grand Final
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-07-25-premier-pool-series-2026-27-0@fylde8ball.co.uk

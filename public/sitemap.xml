@@ -32,7 +32,19 @@
   </url>
 
   <url>
+    <loc>https://fylde8ball.co.uk/tournaments/bapto</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://fylde8ball.co.uk/tournaments/golden-8-ball</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -44,13 +56,31 @@
   </url>
 
   <url>
+    <loc>https://fylde8ball.co.uk/tournaments/kcs-misc-comps-2026</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-2026</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
+    <loc>https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-season-2-2026-27</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://fylde8ball.co.uk/tournaments/precision-cue-series-masters-2026</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
