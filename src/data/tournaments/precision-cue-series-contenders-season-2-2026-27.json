@@ -1,0 +1,71 @@
+{
+  "completed": false,
+  "meta": {
+    "name": "Precision Cue Series: Contenders Season 2",
+    "venue": "Ballers Blackpool",
+    "organiser": "Ballers Blackpool",
+    "logo": "ballers_logo.webp",
+    "address": "21-27 Bethesda Road, Blackpool, United Kingdom, FY1 5DT",
+    "contact": {
+      "phone": "01253 584711",
+      "whatsapp": "",
+      "email": "admin@ballersblackpool.co.uk"
+    },
+    "urls": {
+      "venue": "https://https://ballersblackpool.co.uk/",
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=61577596779388",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "Round Robin, then Double Elimination",
+    "raceToWin": 4,
+    "entryFee": "£25",
+    "handicap": null,
+    "maxPlayers": 32
+  },
+  "dates": [
+    {
+      "name": "Event 1",
+      "date": "2026-07-25",
+      "time": "1300",
+      "completed": false
+    },
+    {
+      "name": "Event 2",
+      "date": "2026-08-22",
+      "time": "1300",
+      "completed": false
+    },
+    {
+      "name": "Event 3",
+      "date": "2026-09-19",
+      "time": "1300",
+      "completed": false
+    },
+    {
+      "name": "Event 4",
+      "date": "2026-10-24",
+      "time": "1300",
+      "completed": false
+    },
+    {
+      "name": "Event 5",
+      "date": "2026-11-28",
+      "time": "1300",
+      "completed": false
+    },
+    {
+      "name": "Grand Final",
+      "date": "2027-01-16",
+      "time": "1300",
+      "completed": false
+    }
+  ]
+}
