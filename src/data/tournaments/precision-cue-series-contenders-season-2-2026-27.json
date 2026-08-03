@@ -26,7 +26,7 @@
     "rules": "Blackball",
     "type": "Round Robin, then Double Elimination",
     "raceToWin": 4,
-    "entryFee": "£25",
+    "entryFee": "\u00A325",
     "handicap": null,
     "maxPlayers": 32
   },
@@ -35,7 +35,7 @@
       "name": "Event 1",
       "date": "2026-07-25",
       "time": "1300",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Event 2",
