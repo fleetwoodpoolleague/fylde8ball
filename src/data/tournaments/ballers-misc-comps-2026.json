@@ -1,5 +1,5 @@
 {
-  "completed": true,
+  "completed": false,
   "meta": {
     "name": "Ballers Blackpool One off competitions 2026",
     "venue": "Ballers Blackpool",
@@ -23,25 +23,19 @@
     }
   },
   "format": {
-    "rules": "Blackball",
+    "rules": "Blackball, 20 minute shot clock",
     "type": "Knockout",
     "raceToWin": null,
-    "entryFee": "£100",
+    "entryFee": "£20",
     "handicap": null,
-    "maxPlayers": 16
+    "maxPlayers": null
   },
   "dates": [
     {
-      "name": "St George\u0027s Day",
-      "date": "2026-04-23",
-      "time": "1900",
-      "completed": true
-    },
-    {
-      "name": "£100 a man",
-      "date": "2026-06-06",
+      "name": "Ultimate Last Man Standing",
+      "date": "2026-09-12",
       "time": null,
-      "completed": true 
+      "completed":false 
     }
   ]
 }
