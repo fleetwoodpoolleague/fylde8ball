@@ -1,0 +1,41 @@
+{
+  "completed": false,
+  "meta": {
+    "name": "Q's One Off Competitions 2026",
+    "venue": "Q\u0027s Sports Lounge",
+    "organiser": "Q\u0027s Sports Lounge",
+    "logo": "qs_logo.webp",
+    "address": "249 Lytham Road, Blackpool, United Kingdom, FY1 6",
+    "contact": {
+      "phone": "01253 346578",
+      "whatsapp": "",
+      "email": "qslcustomer@gmail.com"
+    },
+    "urls": {
+      "venue": null,
+      "organiser": "",
+      "scoreboard": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=100063657548884",
+      "twitter": "",
+      "instagram": ""
+    }
+  },
+  "format": {
+    "rules": "Blackball",
+    "type": "Double Elimination",
+    "raceToWin": 5,
+    "entryFee": "\u00A325",
+    "handicap": true,
+    "maxPlayers": 24
+  },
+  "dates": [
+    {
+      "name": "Steve Hubby Memorial 100 Ball Comp",
+      "date": "2026-10-03",
+      "time": "1200",
+      "completed": false 
+    }
+  ]
+}

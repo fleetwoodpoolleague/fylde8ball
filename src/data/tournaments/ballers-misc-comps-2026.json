@@ -32,6 +32,12 @@
   },
   "dates": [
     {
+      "name": "100 Ball Challenge",
+      "date": "2026-09-05",
+      "time": null,
+      "completed":false 
+    },
+    {
       "name": "Ultimate Last Man Standing",
       "date": "2026-09-12",
       "time": null,

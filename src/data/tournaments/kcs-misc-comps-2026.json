@@ -1,5 +1,5 @@
 {
-  "completed": true,
+  "completed": false,
   "meta": {
     "name": "KC\u0027s Competitions 2026",
     "venue": "KC\u0027s Pool \u0026 Sports Club",
@@ -42,6 +42,12 @@
       "date": "2026-06-13",
       "time": "1100",
       "completed": true
+    },
+    {
+      "name": "Non-Elite Competition at KC's",
+      "date": "2026-08-22",
+      "time": "1100",
+      "completed": false 
     }
   ]
 }
