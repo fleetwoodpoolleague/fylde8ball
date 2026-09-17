@@ -1,5 +1,5 @@
 {
-  "completed": false,
+  "completed": true,
   "meta": {
     "name": "Ballers Blackpool One off competitions 2026",
     "venue": "Ballers Blackpool",
@@ -35,13 +35,13 @@
       "name": "100 Ball Challenge",
       "date": "2026-09-05",
       "time": null,
-      "completed":false 
+      "completed": true
     },
     {
       "name": "Ultimate Last Man Standing",
       "date": "2026-09-12",
       "time": null,
-      "completed":false 
+      "completed": true
     }
   ]
 }
