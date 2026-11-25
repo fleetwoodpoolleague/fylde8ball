@@ -4,6 +4,8 @@ import {
   isEventPast,
   isTournamentActive,
   isWithinMonths,
+  isWithinDays,
+  isWeekendEvent,
   isInProgress,
   getEffectiveEndDate,
   isUpcomingOrInProgress,
@@ -224,5 +226,36 @@ describe('isUpcomingOrInProgress', () => {
   it('returns false when start is beyond the window (single-day)', () => {
     const from = new Date('2026-04-14')
     expect(isUpcomingOrInProgress({ name: 'x', date: '2026-08-01', completed: false }, 3, from)).toBe(false)
+  })
+})
+
+describe('isWithinDays', () => {
+  const from = new Date('2026-05-01')
+
+  it('returns true for events within N days', () => {
+    expect(isWithinDays({ name: 'x', date: '2026-05-07', completed: false }, 7, from)).toBe(true)
+  })
+
+  it('returns false for events beyond N days', () => {
+    expect(isWithinDays({ name: 'x', date: '2026-05-10', completed: false }, 7, from)).toBe(false)
+  })
+
+  it('returns true for in-progress multi-day events', () => {
+    expect(isWithinDays({ name: 'x', date: '2026-04-29', endDate: '2026-05-03', completed: false }, 7, from)).toBe(true)
+  })
+})
+
+describe('isWeekendEvent', () => {
+  it('returns true for Saturday and Sunday events', () => {
+    expect(isWeekendEvent({ name: 'Sat', date: '2026-05-02', completed: false })).toBe(true)
+    expect(isWeekendEvent({ name: 'Sun', date: '2026-05-03', completed: false })).toBe(true)
+  })
+
+  it('returns false for weekday-only events', () => {
+    expect(isWeekendEvent({ name: 'Wed', date: '2026-05-06', completed: false })).toBe(false)
+  })
+
+  it('returns true for multi-day ranges that span a weekend', () => {
+    expect(isWeekendEvent({ name: 'Fest', date: '2026-05-01', endDate: '2026-05-04', completed: false })).toBe(true)
   })
 })

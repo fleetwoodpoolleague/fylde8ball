@@ -1,13 +1,63 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import type { TournamentDate, UpcomingEventInfo } from '../types/tournament'
 import { formatDate, formatDateRange, formatTime, SHORT_DATE, isToday } from '../utils/format'
-import { isInProgress } from '../utils/tournament'
+import { isInProgress, isWeekendEvent, isWithinDays } from '../utils/tournament'
 import CalendarSubscribeMenu from './CalendarSubscribeMenu.vue'
 import { logoSrc } from '../utils/assets'
 
-defineProps<{
+const props = defineProps<{
   events: UpcomingEventInfo[]
 }>()
+
+type TimeFilter = 'all' | 'week' | 'month' | 'weekends'
+
+const activeFilter = ref<TimeFilter>('all')
+
+const filterOptions: { id: TimeFilter; label: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'week', label: 'This week' },
+  { id: 'month', label: 'This month' },
+  { id: 'weekends', label: 'Weekends' },
+]
+
+const MONTH_HEADER: Intl.DateTimeFormatOptions = {
+  month: 'long',
+  year: 'numeric',
+}
+
+function monthKey(event: TournamentDate): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(event.date)) return 'TBC'
+  return event.date.slice(0, 7)
+}
+
+function monthLabel(event: TournamentDate): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(event.date)) return 'Date TBC'
+  return formatDate(event.date, MONTH_HEADER)
+}
+
+const filteredEvents = computed(() => {
+  if (activeFilter.value === 'all') return props.events
+  if (activeFilter.value === 'week') return props.events.filter(i => isWithinDays(i.event, 7))
+  if (activeFilter.value === 'month') return props.events.filter(i => isWithinDays(i.event, 30))
+  return props.events.filter(i => isWeekendEvent(i.event))
+})
+
+const groupedEvents = computed(() => {
+  const groups: { key: string; label: string; items: UpcomingEventInfo[] }[] = []
+  const byKey = new Map<string, { key: string; label: string; items: UpcomingEventInfo[] }>()
+  for (const item of filteredEvents.value) {
+    const key = monthKey(item.event)
+    let group = byKey.get(key)
+    if (!group) {
+      group = { key, label: monthLabel(item.event), items: [] }
+      byKey.set(key, group)
+      groups.push(group)
+    }
+    group.items.push(item)
+  }
+  return groups
+})
 
 function eventDateLabel(event: TournamentDate): string {
   if (isInProgress(event)) return 'In progress'
@@ -24,48 +74,93 @@ function eventDateLabel(event: TournamentDate): string {
       </h2>
       <CalendarSubscribeMenu />
     </div>
-    <div class="divide-y divide-line">
-      <RouterLink
-        v-for="(item, index) in events"
-        :key="`${item.tournamentSlug}-${item.event.date}-${item.event.name}-${index}`"
-        :to="`/tournaments/${item.tournamentSlug}`"
-        class="py-3 min-h-[48px] flex justify-between items-center gap-3 text-sm -mx-2 px-2 rounded-lg hover:bg-sunken transition-colors"
+
+    <!-- Quick time filter pills -->
+    <div
+      v-if="events.length > 1"
+      class="flex flex-wrap gap-1.5 mb-4"
+      role="group"
+      aria-label="Filter upcoming events"
+    >
+      <button
+        v-for="opt in filterOptions"
+        :key="opt.id"
+        type="button"
+        :aria-pressed="activeFilter === opt.id"
+        class="inline-flex items-center min-h-[40px] px-3 rounded-full text-xs font-medium border transition-colors cursor-pointer"
+        :class="
+          activeFilter === opt.id
+            ? 'bg-accent text-accent-ink border-accent'
+            : 'bg-raised text-muted border-line hover:text-ink hover:border-muted'
+        "
+        @click="activeFilter = opt.id"
       >
-        <span class="flex items-center gap-2.5 min-w-0 text-ink">
-          <img
-            v-if="item.logo && logoSrc(item.logo)"
-            :src="logoSrc(item.logo)!"
-            :alt="''"
-            class="h-7 w-7 object-contain shrink-0 rounded bg-white/90 p-0.5"
-            loading="lazy"
-            decoding="async"
-            width="28"
-            height="28"
-          />
-          <span class="min-w-0">
-            <span class="block font-medium text-ink leading-snug">
-              {{ item.tournamentName }} — {{ item.event.name }}
+        {{ opt.label }}
+      </button>
+    </div>
+
+    <div v-if="groupedEvents.length" class="space-y-5">
+      <div v-for="group in groupedEvents" :key="group.key">
+        <h3 class="text-xs font-semibold text-muted mb-1">{{ group.label }}</h3>
+        <div class="divide-y divide-line">
+          <RouterLink
+            v-for="(item, index) in group.items"
+            :key="`${item.tournamentSlug}-${item.event.date}-${item.event.name}-${index}`"
+            :to="`/tournaments/${item.tournamentSlug}`"
+            class="py-3 min-h-[48px] flex justify-between items-center gap-3 text-sm -mx-2 px-2 rounded-lg hover:bg-sunken transition-colors"
+          >
+            <span class="flex items-center gap-2.5 min-w-0 text-ink">
+              <img
+                v-if="item.logo && logoSrc(item.logo)"
+                :src="logoSrc(item.logo)!"
+                alt=""
+                class="h-7 w-7 object-contain shrink-0 rounded bg-white/90 p-0.5"
+                loading="lazy"
+                decoding="async"
+                width="28"
+                height="28"
+              />
+              <span class="min-w-0">
+                <span class="block font-medium text-ink leading-snug">
+                  {{ item.tournamentName }} — {{ item.event.name }}
+                </span>
+                <span
+                  v-if="item.venue || (item.event.time && !item.event.endDate)"
+                  class="block text-xs text-muted mt-0.5"
+                >
+                  <template v-if="item.venue">{{ item.venue }}</template>
+                  <template v-if="item.venue && item.event.time && !item.event.endDate"> · </template>
+                  <template v-if="item.event.time && !item.event.endDate">{{ formatTime(item.event.time) }}</template>
+                </span>
+              </span>
             </span>
             <span
-              v-if="item.venue || (item.event.time && !item.event.endDate)"
-              class="block text-xs text-muted mt-0.5"
+              :class="(isInProgress(item.event) || isToday(item.event.date)) ? 'text-accent font-semibold shrink-0' : 'text-muted shrink-0'"
             >
-              <template v-if="item.venue">{{ item.venue }}</template>
-              <template v-if="item.venue && item.event.time && !item.event.endDate"> · </template>
-              <template v-if="item.event.time && !item.event.endDate">{{ formatTime(item.event.time) }}</template>
+              {{ eventDateLabel(item.event) }}
             </span>
-          </span>
-        </span>
-        <span
-          :class="(isInProgress(item.event) || isToday(item.event.date)) ? 'text-accent font-semibold shrink-0' : 'text-muted shrink-0'"
-        >
-          {{ eventDateLabel(item.event) }}
-        </span>
-      </RouterLink>
+          </RouterLink>
+        </div>
+      </div>
     </div>
+
+    <div
+      v-else
+      class="rounded-xl border border-line bg-raised p-5 text-center"
+    >
+      <p class="text-sm text-muted mb-3">No events match this time filter.</p>
+      <button
+        type="button"
+        class="inline-flex items-center justify-center min-h-[44px] rounded-full border border-line bg-surface px-4 text-xs font-semibold text-accent hover:border-accent transition cursor-pointer"
+        @click="activeFilter = 'all'"
+      >
+        Show all upcoming
+      </button>
+    </div>
+
     <RouterLink
       to="/tournaments"
-      class="mt-3 inline-flex items-center min-h-[44px] py-2 text-sm text-accent hover:underline font-medium"
+      class="mt-4 inline-flex items-center min-h-[44px] py-2 text-sm text-accent hover:underline font-medium"
     >
       Browse all tournaments →
     </RouterLink>

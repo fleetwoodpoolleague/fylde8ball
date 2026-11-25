@@ -155,4 +155,43 @@ describe('UpcomingEventsList', () => {
     expect(wrapper.text()).toContain('In progress')
     vi.useRealTimers()
   })
+
+  it('groups events under month headers and filters by quick time pills', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 4, 1)) // Fri 1 May 2026
+    await router.isReady()
+    const multiMonthEvents: UpcomingEventInfo[] = [
+      {
+        event: { name: 'Weekend Comp', date: '2026-05-02', completed: false }, // Sat (this week + weekend)
+        tournamentName: 'Series A',
+        tournamentSlug: 'series-a',
+        logo: '',
+      },
+      {
+        event: { name: 'Midweek Comp', date: '2026-06-03', completed: false }, // Wed (next month, weekday)
+        tournamentName: 'Series B',
+        tournamentSlug: 'series-b',
+        logo: '',
+      },
+    ]
+    const wrapper = mount(UpcomingEventsList, {
+      props: { events: multiMonthEvents },
+      global: { plugins: [router] },
+    })
+
+    expect(wrapper.text()).toContain('May 2026')
+    expect(wrapper.text()).toContain('June 2026')
+
+    const weekBtn = wrapper.findAll('button').find(b => b.text() === 'This week')!
+    await weekBtn.trigger('click')
+    expect(wrapper.text()).toContain('Weekend Comp')
+    expect(wrapper.text()).not.toContain('Midweek Comp')
+
+    const weekendsBtn = wrapper.findAll('button').find(b => b.text() === 'Weekends')!
+    await weekendsBtn.trigger('click')
+    expect(wrapper.text()).toContain('Weekend Comp')
+    expect(wrapper.text()).not.toContain('Midweek Comp')
+
+    vi.useRealTimers()
+  })
 })
