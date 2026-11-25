@@ -47,13 +47,13 @@
       "name": "Event 3",
       "date": "2026-09-19",
       "time": "1300",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Event 4",
       "date": "2026-10-24",
       "time": "1300",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Event 5",

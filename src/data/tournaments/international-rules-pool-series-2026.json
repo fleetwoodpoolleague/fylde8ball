@@ -59,17 +59,17 @@
     {
       "name": "Event 6",
       "date": "2026-09-06",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Event 7",
       "date": "2026-09-20",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Event 8",
       "date": "2026-10-11",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Grand Final",

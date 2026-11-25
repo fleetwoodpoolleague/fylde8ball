@@ -1,5 +1,5 @@
 {
-  "completed": false,
+  "completed": true,
   "meta": {
     "name": "BAPTO",
     "venue": "Norbreck Castle Hotel",
@@ -28,20 +28,20 @@
     "raceToWin": null,
     "entryFee": null,
     "handicap": null,
-    "maxPlayers": null 
+    "maxPlayers": null
   },
   "dates": [
     {
-      "name": "Three Player ‘Halloween’ Novice Event",
+      "name": "Three Player \u2018Halloween\u2019 Novice Event",
       "date": "2026-10-29",
       "endDate": "2026-11-01",
-      "completed": false
+      "completed": true
     },
     {
       "name": "Five Player Amateur Team Trophy Event",
       "date": "2026-11-05",
       "endDate": "2026-11-08",
-      "completed": false
+      "completed": true
     }
   ]
 }

@@ -6,29 +6,7 @@ X-WR-CALDESC:Challenger Pool Series 2026/27 at Q's Sports Lounge
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:2026-09-26-challenger-pool-series-2026-27-0@fylde8ball.co.uk
-DTSTART:20260926T103000
-DTEND:20260926T143000
-SUMMARY:Challenger Pool Series 2026/27 – Event 5
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
- ll.co.uk/tournaments/challenger-pool-series-2026-27
-URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-11-14-challenger-pool-series-2026-27-1@fylde8ball.co.uk
-DTSTART:20261114T103000
-DTEND:20261114T143000
-SUMMARY:Challenger Pool Series 2026/27 – Event 6
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
- ll.co.uk/tournaments/challenger-pool-series-2026-27
-URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
-END:VEVENT
-BEGIN:VEVENT
-UID:2027-01-09-challenger-pool-series-2026-27-2@fylde8ball.co.uk
+UID:2027-01-09-challenger-pool-series-2026-27-0@fylde8ball.co.uk
 DTSTART:20270109T103000
 DTEND:20270109T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 7
@@ -39,7 +17,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-02-20-challenger-pool-series-2026-27-3@fylde8ball.co.uk
+UID:2027-02-20-challenger-pool-series-2026-27-1@fylde8ball.co.uk
 DTSTART:20270220T103000
 DTEND:20270220T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 8
@@ -50,7 +28,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-03-06-challenger-pool-series-2026-27-4@fylde8ball.co.uk
+UID:2027-03-06-challenger-pool-series-2026-27-2@fylde8ball.co.uk
 DTSTART:20270306T103000
 DTEND:20270306T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 9
@@ -61,7 +39,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-04-17-challenger-pool-series-2026-27-5@fylde8ball.co.uk
+UID:2027-04-17-challenger-pool-series-2026-27-3@fylde8ball.co.uk
 DTSTART:20270417T103000
 DTEND:20270417T143000
 SUMMARY:Challenger Pool Series 2026/27 – Grand Final
