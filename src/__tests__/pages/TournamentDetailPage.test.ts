@@ -4,7 +4,7 @@ import type { Tournament } from '../../types/tournament'
 
 const mockTournament: Tournament = {
   slug: 'test-series',
-  meta: { name: 'Test Series', venue: 'Test Venue', organiser: 'Test Org', logo: 'qs_logo.jpg' },
+  meta: { name: 'Test Series', venue: 'Test Venue', organiser: 'Test Org', logo: 'qs_logo.webp' },
   dates: [{ name: 'Event 1', date: '2026-04-18', completed: false }],
 }
 

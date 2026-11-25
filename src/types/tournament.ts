@@ -43,7 +43,7 @@ export interface TournamentFormat {
   type?: string | null
   raceToWin?: number | null
   entryFee?: string | null
-  handicap?: string | null
+  handicap?: string | boolean | null
   maxPlayers?: number | null
 }
 

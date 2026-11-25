@@ -24,18 +24,7 @@ DESCRIPTION:Blackball\nhttps://fylde8ball.co.uk/tournaments/bapto
 URL:https://fylde8ball.co.uk/tournaments/bapto
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-08-01-challenger-pool-series-2026-27-0@fylde8ball.co.uk
-DTSTART:20260801T103000
-DTEND:20260801T143000
-SUMMARY:Challenger Pool Series 2026/27 – Event 4
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
- ll.co.uk/tournaments/challenger-pool-series-2026-27
-URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-09-26-challenger-pool-series-2026-27-1@fylde8ball.co.uk
+UID:2026-09-26-challenger-pool-series-2026-27-0@fylde8ball.co.uk
 DTSTART:20260926T103000
 DTEND:20260926T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 5
@@ -46,7 +35,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-11-14-challenger-pool-series-2026-27-2@fylde8ball.co.uk
+UID:2026-11-14-challenger-pool-series-2026-27-1@fylde8ball.co.uk
 DTSTART:20261114T103000
 DTEND:20261114T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 6
@@ -57,7 +46,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-01-09-challenger-pool-series-2026-27-3@fylde8ball.co.uk
+UID:2027-01-09-challenger-pool-series-2026-27-2@fylde8ball.co.uk
 DTSTART:20270109T103000
 DTEND:20270109T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 7
@@ -68,7 +57,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-02-20-challenger-pool-series-2026-27-4@fylde8ball.co.uk
+UID:2027-02-20-challenger-pool-series-2026-27-3@fylde8ball.co.uk
 DTSTART:20270220T103000
 DTEND:20270220T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 8
@@ -79,7 +68,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-03-06-challenger-pool-series-2026-27-5@fylde8ball.co.uk
+UID:2027-03-06-challenger-pool-series-2026-27-4@fylde8ball.co.uk
 DTSTART:20270306T103000
 DTEND:20270306T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 9
@@ -90,7 +79,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-04-17-challenger-pool-series-2026-27-6@fylde8ball.co.uk
+UID:2027-04-17-challenger-pool-series-2026-27-5@fylde8ball.co.uk
 DTSTART:20270417T103000
 DTEND:20270417T143000
 SUMMARY:Challenger Pool Series 2026/27 – Grand Final
@@ -101,90 +90,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-07-12-international-rules-pool-series-2026-0@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260712
-SUMMARY:International Rules Pool Series 2026 – Event 4
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:International Rules · Double Elimination · Entry £20\nhttps:
- //fylde8ball.co.uk/tournaments/international-rules-pool-series-2026
-URL:https://fylde8ball.co.uk/tournaments/international-rules-pool-series-20
- 26
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-08-09-international-rules-pool-series-2026-1@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260809
-SUMMARY:International Rules Pool Series 2026 – Event 5
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:International Rules · Double Elimination · Entry £20\nhttps:
- //fylde8ball.co.uk/tournaments/international-rules-pool-series-2026
-URL:https://fylde8ball.co.uk/tournaments/international-rules-pool-series-20
- 26
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-09-06-international-rules-pool-series-2026-2@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260906
-SUMMARY:International Rules Pool Series 2026 – Event 6
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:International Rules · Double Elimination · Entry £20\nhttps:
- //fylde8ball.co.uk/tournaments/international-rules-pool-series-2026
-URL:https://fylde8ball.co.uk/tournaments/international-rules-pool-series-20
- 26
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-09-20-international-rules-pool-series-2026-3@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260920
-SUMMARY:International Rules Pool Series 2026 – Event 7
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:International Rules · Double Elimination · Entry £20\nhttps:
- //fylde8ball.co.uk/tournaments/international-rules-pool-series-2026
-URL:https://fylde8ball.co.uk/tournaments/international-rules-pool-series-20
- 26
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-10-11-international-rules-pool-series-2026-4@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20261011
-SUMMARY:International Rules Pool Series 2026 – Event 8
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:International Rules · Double Elimination · Entry £20\nhttps:
- //fylde8ball.co.uk/tournaments/international-rules-pool-series-2026
-URL:https://fylde8ball.co.uk/tournaments/international-rules-pool-series-20
- 26
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-07-25-precision-cue-series-contenders-season-2-2026-27-0@fylde8bal
- l.co.uk
-DTSTART:20260725T130000
-DTEND:20260725T170000
-SUMMARY:Precision Cue Series: Contenders Season 2 – Event 1
-LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
- om\, FY1 5DT
-DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
- 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
- ason-2-2026-27
-URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
- ason-2-2026-27
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-08-22-precision-cue-series-contenders-season-2-2026-27-1@fylde8bal
- l.co.uk
-DTSTART:20260822T130000
-DTEND:20260822T170000
-SUMMARY:Precision Cue Series: Contenders Season 2 – Event 2
-LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
- om\, FY1 5DT
-DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
- 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
- ason-2-2026-27
-URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
- ason-2-2026-27
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-09-19-precision-cue-series-contenders-season-2-2026-27-2@fylde8bal
+UID:2026-09-19-precision-cue-series-contenders-season-2-2026-27-0@fylde8bal
  l.co.uk
 DTSTART:20260919T130000
 DTEND:20260919T170000
@@ -198,7 +104,7 @@ URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
  ason-2-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-10-24-precision-cue-series-contenders-season-2-2026-27-3@fylde8bal
+UID:2026-10-24-precision-cue-series-contenders-season-2-2026-27-1@fylde8bal
  l.co.uk
 DTSTART:20261024T130000
 DTEND:20261024T170000
@@ -212,7 +118,7 @@ URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
  ason-2-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-11-28-precision-cue-series-contenders-season-2-2026-27-4@fylde8bal
+UID:2026-11-28-precision-cue-series-contenders-season-2-2026-27-2@fylde8bal
  l.co.uk
 DTSTART:20261128T130000
 DTEND:20261128T170000
@@ -226,7 +132,7 @@ URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
  ason-2-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-01-16-precision-cue-series-contenders-season-2-2026-27-5@fylde8bal
+UID:2027-01-16-precision-cue-series-contenders-season-2-2026-27-3@fylde8bal
  l.co.uk
 DTSTART:20270116T130000
 DTEND:20270116T170000
@@ -240,27 +146,7 @@ URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
  ason-2-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-07-25-premier-pool-series-2026-27-0@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260725
-SUMMARY:Premier Pool Series 2026/27 – Event 2
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
- ll.co.uk/tournaments/premier-pool-series-2026-27
-URL:https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-08-29-premier-pool-series-2026-27-1@fylde8ball.co.uk
-DTSTART;VALUE=DATE:20260829
-SUMMARY:Premier Pool Series 2026/27 – Event 3
-LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
-  FY1 6
-DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
- ll.co.uk/tournaments/premier-pool-series-2026-27
-URL:https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27
-END:VEVENT
-BEGIN:VEVENT
-UID:2026-10-17-premier-pool-series-2026-27-2@fylde8ball.co.uk
+UID:2026-10-17-premier-pool-series-2026-27-0@fylde8ball.co.uk
 DTSTART;VALUE=DATE:20261017
 SUMMARY:Premier Pool Series 2026/27 – Event 4
 LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
@@ -270,7 +156,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2026-11-28-premier-pool-series-2026-27-3@fylde8ball.co.uk
+UID:2026-11-28-premier-pool-series-2026-27-1@fylde8ball.co.uk
 DTSTART;VALUE=DATE:20261128
 SUMMARY:Premier Pool Series 2026/27 – Event 5
 LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
@@ -280,7 +166,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-01-16-premier-pool-series-2026-27-4@fylde8ball.co.uk
+UID:2027-01-16-premier-pool-series-2026-27-2@fylde8ball.co.uk
 DTSTART;VALUE=DATE:20270116
 SUMMARY:Premier Pool Series 2026/27 – Event 6
 LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
@@ -290,7 +176,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-02-13-premier-pool-series-2026-27-5@fylde8ball.co.uk
+UID:2027-02-13-premier-pool-series-2026-27-3@fylde8ball.co.uk
 DTSTART;VALUE=DATE:20270213
 SUMMARY:Premier Pool Series 2026/27 – Event 7
 LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
@@ -300,7 +186,7 @@ DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
 URL:https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
-UID:2027-03-27-premier-pool-series-2026-27-6@fylde8ball.co.uk
+UID:2027-03-27-premier-pool-series-2026-27-4@fylde8ball.co.uk
 DTSTART;VALUE=DATE:20270327
 SUMMARY:Premier Pool Series 2026/27 – Grand Final
 LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
@@ -308,5 +194,17 @@ LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
 DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
  ll.co.uk/tournaments/premier-pool-series-2026-27
 URL:https://fylde8ball.co.uk/tournaments/premier-pool-series-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-03-qs-one-offs-0@fylde8ball.co.uk
+DTSTART:20261003T120000
+DTEND:20261003T160000
+SUMMARY:Q's One Off Competitions 2026 – Steve Hubby Memorial 100 Ball Com
+ p
+LOCATION:Q's Sports Lounge\, 249 Lytham Road\, Blackpool\, United Kingdom\,
+  FY1 6
+DESCRIPTION:Blackball · Double Elimination · Entry £25\nhttps://fylde8ba
+ ll.co.uk/tournaments/qs-one-offs
+URL:https://fylde8ball.co.uk/tournaments/qs-one-offs
 END:VEVENT
 END:VCALENDAR

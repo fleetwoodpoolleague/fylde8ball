@@ -23,6 +23,7 @@ const files = readdirSync(dataDir).filter(f => f.endsWith('.json')).sort()
 for (const file of files) {
   const slug = file.replace('.json', '')
   const tournament = JSON.parse(readFileSync(resolve(dataDir, file), 'utf8'))
+  if (tournament.completed) continue
   const { meta, format, dates } = tournament
 
   const location = [meta.venue, meta.address].filter(Boolean).map(esc).join('\\, ')

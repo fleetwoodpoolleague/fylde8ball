@@ -87,7 +87,7 @@ describe('NextEventCard', () => {
 
   it('renders a logo image when logo prop is provided', () => {
     const wrapper = mount(NextEventCard, {
-      props: { ...defaultProps, logo: 'qs_logo.jpg' },
+      props: { ...defaultProps, logo: 'qs_logo.webp' },
       global: { plugins: [router] },
     })
     const img = wrapper.find('img')
