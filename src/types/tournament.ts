@@ -33,8 +33,14 @@ export interface TournamentDate {
    *   - `time` is ignored by all renderers and the ICS generator.
    */
   endDate?: string
-  /** Optional start time. May be 4-digit military ("1900") or 12h ("8pm"). Ignored when endDate is set. */
+  /** Optional start / break-off time. May be 4-digit military ("1900") or 12h ("8pm"). Ignored when endDate is set. */
   time?: string
+  /** Optional doors / registration open time (same format as `time`). */
+  doorsTime?: string | null
+  /** Optional availability badge for this specific event date. */
+  entryStatus?: 'open' | 'walk-in' | 'full' | 'waitlist' | null
+  /** Optional per-event format overrides (useful for bundled one-off competitions). */
+  format?: Partial<TournamentFormat>
   completed: boolean
 }
 
@@ -45,6 +51,9 @@ export interface TournamentFormat {
   entryFee?: string | null
   handicap?: string | boolean | null
   maxPlayers?: number | null
+  prizeFund?: string | null
+  tableType?: string | null
+  entryMethod?: string | null
 }
 
 export interface Tournament {

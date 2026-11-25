@@ -35,6 +35,9 @@ const mockFull: Tournament = {
     entryFee: '£15',
     handicap: null,
     maxPlayers: 24,
+    prizeFund: '£500 added',
+    tableType: 'Supreme Winner',
+    entryMethod: 'Pre-book via Facebook',
   },
   dates: [],
 }
@@ -253,6 +256,9 @@ describe('TournamentDetailPage', () => {
       expect(wrapper.text()).toContain('3 frames')
       expect(wrapper.text()).toContain('£15')
       expect(wrapper.text()).toContain('24')
+      expect(wrapper.text()).toContain('£500 added')
+      expect(wrapper.text()).toContain('Supreme Winner')
+      expect(wrapper.text()).toContain('Pre-book via Facebook')
     })
 
     it('formats boolean handicap as readable text rather than raw "true"', () => {

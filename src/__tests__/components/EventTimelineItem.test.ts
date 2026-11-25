@@ -55,6 +55,26 @@ describe('EventTimelineItem', () => {
     expect(wrapper.text()).not.toContain('2000')
   })
 
+  it('shows doors open and break-off times when both are present', () => {
+    const timedDate: TournamentDate = { ...date, doorsTime: '1000', time: '1030' }
+    const wrapper = mount(EventTimelineItem, { props: { date: timedDate, isNext: false } })
+    expect(wrapper.text()).toContain('Doors 10:00 am')
+    expect(wrapper.text()).toContain('Break-off 10:30 am')
+  })
+
+  it('shows entry status badge and per-event format overrides when provided', () => {
+    const richDate: TournamentDate = {
+      ...date,
+      entryStatus: 'open',
+      format: { entryFee: '£30', prizeFund: '£500 added', rules: 'Blackball' },
+    }
+    const wrapper = mount(EventTimelineItem, { props: { date: richDate, isNext: false } })
+    expect(wrapper.text()).toContain('Entries open')
+    expect(wrapper.text()).toContain('Entry £30')
+    expect(wrapper.text()).toContain('£500 added')
+    expect(wrapper.text()).toContain('Blackball')
+  })
+
   it("shows 'Today' when the event date is today", () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date(2026, 3, 18)) // 18 Apr 2026 — matches mock event date

@@ -74,6 +74,13 @@ export function validateTournamentData(slug, data, existingLogos = null) {
       if (typeof d.completed !== 'boolean') {
         errors.push(`[${slug}] dates[${idx}].completed must be a boolean`)
       }
+      if (
+        d.entryStatus !== undefined &&
+        d.entryStatus !== null &&
+        !['open', 'walk-in', 'full', 'waitlist'].includes(d.entryStatus)
+      ) {
+        errors.push(`[${slug}] dates[${idx}].entryStatus "${d.entryStatus}" is invalid`)
+      }
     })
   }
 

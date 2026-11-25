@@ -380,6 +380,18 @@ if (tournament) {
             <dt class="text-muted w-24 shrink-0">Max players</dt>
             <dd class="text-ink font-medium">{{ tournament.format.maxPlayers }}</dd>
           </div>
+          <div v-if="hasValue(tournament.format.prizeFund)" class="flex gap-2">
+            <dt class="text-muted w-24 shrink-0">Prize fund</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.prizeFund }}</dd>
+          </div>
+          <div v-if="hasValue(tournament.format.tableType)" class="flex gap-2">
+            <dt class="text-muted w-24 shrink-0">Tables</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.tableType }}</dd>
+          </div>
+          <div v-if="hasValue(tournament.format.entryMethod)" class="flex gap-2">
+            <dt class="text-muted w-24 shrink-0">Entry</dt>
+            <dd class="text-ink font-medium">{{ tournament.format.entryMethod }}</dd>
+          </div>
         </dl>
       </section>
 

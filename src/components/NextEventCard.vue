@@ -48,7 +48,7 @@ const dateLabel = computed(() => {
       <h2 class="text-xl font-bold mb-1">{{ tournamentName }}</h2>
       <p class="text-sm font-medium mb-3">{{ event.name }}</p>
       <p class="text-sm text-felt-ink-muted">
-        {{ dateLabel }}<template v-if="event.time && !event.endDate"> · {{ formatTime(event.time) }}</template>
+        {{ dateLabel }}<template v-if="event.doorsTime && !event.endDate"> · Doors {{ formatTime(event.doorsTime) }}</template><template v-if="event.time && !event.endDate"> · {{ event.doorsTime ? 'Break-off ' : '' }}{{ formatTime(event.time) }}</template>
       </p>
       <p class="text-sm text-felt-ink-muted mb-4">{{ venue }}</p>
       <div class="flex justify-end">
