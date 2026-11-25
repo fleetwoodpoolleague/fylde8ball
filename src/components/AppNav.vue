@@ -7,6 +7,7 @@ const route = useRoute()
 
 const links = [
   { to: '/tournaments', label: 'Tournaments' },
+  { to: '/venues', label: 'Venues' },
   { to: '/leagues', label: 'Leagues' },
   { to: '/about', label: 'About' },
 ]

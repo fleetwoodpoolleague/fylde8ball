@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useTournament } from '../composables/useTournament'
+import { findVenueByName } from '../composables/useVenues'
 import { useSeo, BASE_URL } from '../composables/useSeo'
 import { logoSrc } from '../utils/assets'
 import EventTimeline from '../components/EventTimeline.vue'
@@ -62,6 +63,7 @@ function toIsoTime(raw: string): string {
 const venueUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.venue))
 const organiserUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.organiser))
 const scoreboardUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.scoreboard))
+const matchedVenue = computed(() => findVenueByName(tournament?.meta.venue))
 const shareUrl = computed(() => `${BASE_URL}/tournaments/${props.slug}`)
 const hasCalendarEvents = computed(() =>
   Boolean(
@@ -205,7 +207,12 @@ if (tournament) {
 
         <!-- Venue / organiser -->
         <p class="text-sm text-muted">
-          {{ tournament.meta.venue }}
+          <RouterLink
+            v-if="matchedVenue"
+            :to="`/venues/${matchedVenue.slug}`"
+            class="text-ink underline hover:text-accent"
+          >{{ tournament.meta.venue }}</RouterLink>
+          <template v-else>{{ tournament.meta.venue }}</template>
           · Organised by
           <a
             v-if="organiserUrl"

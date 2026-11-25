@@ -1,18 +1,20 @@
-import { readdirSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import type { ViteSSGOptions } from 'vite-ssg'
 
-// Tournament slugs are the JSON basenames — same convention the app uses at
-// runtime (import.meta.glob in useTournaments), so every tournament gets a
-// static page without manual registration.
-const tournamentSlugs = readdirSync(
-  fileURLToPath(new URL('./src/data/tournaments', import.meta.url)),
-)
-  .filter(f => f.endsWith('.json'))
-  .map(f => f.replace(/\.json$/, ''))
+function jsonSlugs(relativeDir: string): string[] {
+  const dir = fileURLToPath(new URL(relativeDir, import.meta.url))
+  if (!existsSync(dir)) return []
+  return readdirSync(dir)
+    .filter(f => f.endsWith('.json'))
+    .map(f => f.replace(/\.json$/, ''))
+}
+
+const tournamentSlugs = jsonSlugs('./src/data/tournaments')
+const venueSlugs = jsonSlugs('./src/data/venues')
 
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
@@ -21,6 +23,9 @@ export default defineConfig({
       return paths.flatMap(path => {
         if (path === '/tournaments/:slug') {
           return tournamentSlugs.map(s => `/tournaments/${s}`)
+        }
+        if (path === '/venues/:slug') {
+          return venueSlugs.map(s => `/venues/${s}`)
         }
         if (path.includes(':pathMatch')) {
           return ['/404']

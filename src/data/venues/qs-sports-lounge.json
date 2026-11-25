@@ -1,0 +1,13 @@
+{
+  "name": "Q's Sports Lounge",
+  "town": "Blackpool",
+  "address": "249 Lytham Road, Blackpool, United Kingdom, FY1 6",
+  "logo": "qs_logo.webp",
+  "contact": {
+    "phone": "01253 346578",
+    "email": "qslcustomer@gmail.com"
+  },
+  "socials": {
+    "facebook": "https://www.facebook.com/profile.php?id=100063657548884"
+  }
+}

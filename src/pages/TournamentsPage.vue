@@ -144,6 +144,13 @@ useHead({
         <input v-model="showCompleted" type="checkbox" class="h-4 w-4 accent-[var(--accent)]" />
         Show completed ({{ completedTotalCount }})
       </label>
+
+      <RouterLink
+        to="/venues"
+        class="inline-flex items-center min-h-[44px] px-2 text-sm font-medium text-accent hover:underline ml-auto"
+      >
+        Venues directory →
+      </RouterLink>
     </div>
 
     <!-- Active tournaments -->

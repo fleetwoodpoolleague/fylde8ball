@@ -8,6 +8,8 @@ const router = createRouter({
     { path: '/', component: { template: '<div />' } },
     { path: '/tournaments', component: { template: '<div />' } },
     { path: '/tournaments/:slug', component: { template: '<div />' } },
+    { path: '/venues', component: { template: '<div />' } },
+    { path: '/venues/:slug', component: { template: '<div />' } },
     { path: '/leagues', component: { template: '<div />' } },
     { path: '/about', component: { template: '<div />' } },
   ],
@@ -31,6 +33,13 @@ describe('AppNav', () => {
     const wrapper = mount(AppNav, { global: { plugins: [router] } })
     const links = wrapper.findAll('a')
     expect(links.some(l => l.attributes('href') === '/tournaments')).toBe(true)
+  })
+
+  it('has a link to /venues', async () => {
+    await router.isReady()
+    const wrapper = mount(AppNav, { global: { plugins: [router] } })
+    const links = wrapper.findAll('a')
+    expect(links.some(l => l.attributes('href') === '/venues')).toBe(true)
   })
 
   it('has a link to /leagues', async () => {
