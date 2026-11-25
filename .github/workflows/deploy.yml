@@ -9,6 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -18,11 +19,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy-project:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -49,6 +47,15 @@ jobs:
         with:
           path: ./dist
 
+  # Deploy runs as its own job so the artifact is fully registered before
+  # deploy-pages looks it up; in a single job the lookup raced the upload.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
