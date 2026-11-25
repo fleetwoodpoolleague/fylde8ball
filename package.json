@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && node scripts/generate-ics.mjs && vite-ssg build",
+    "validate": "node scripts/validate-tournaments.mjs",
     "generate-ics": "node scripts/generate-ics.mjs",
+    "generate-sitemap": "node scripts/generate-sitemap.mjs",
+    "build": "node scripts/validate-tournaments.mjs && vue-tsc && node scripts/generate-ics.mjs && node scripts/generate-sitemap.mjs && vite-ssg build",
     "preview": "vite preview",
     "test": "vitest"
   },
