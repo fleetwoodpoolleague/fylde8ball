@@ -42,6 +42,7 @@ const router = createRouter({
   routes: [
     { path: '/tournaments', component: { template: '<div />' } },
     { path: '/tournaments/:slug', component: { template: '<div />' } },
+    { path: '/venues', component: { template: '<div />' } },
   ],
 })
 

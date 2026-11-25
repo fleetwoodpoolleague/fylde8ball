@@ -118,24 +118,52 @@ useHead({
     <!-- Filter bar -->
     <div class="flex flex-wrap items-center gap-2 mb-6" role="region" aria-label="Filter tournaments">
       <label class="sr-only" for="filter-venue">Filter by venue</label>
-      <select
-        id="filter-venue"
-        v-model="selectedVenue"
-        class="min-h-[44px] rounded-lg border border-line bg-raised px-3 text-sm text-ink"
-      >
-        <option value="all">All venues</option>
-        <option v-for="venue in venues" :key="venue" :value="venue">{{ venue }}</option>
-      </select>
+      <div class="relative inline-flex items-center">
+        <select
+          id="filter-venue"
+          v-model="selectedVenue"
+          class="appearance-none h-11 rounded-lg border border-line bg-raised pl-3 pr-9 text-sm text-ink cursor-pointer"
+        >
+          <option value="all">All venues</option>
+          <option v-for="venue in venues" :key="venue" :value="venue">{{ venue }}</option>
+        </select>
+        <svg
+          class="pointer-events-none absolute right-2.5 h-4 w-4 text-muted"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
 
       <label class="sr-only" for="filter-rules">Filter by rules</label>
-      <select
-        id="filter-rules"
-        v-model="selectedRules"
-        class="min-h-[44px] rounded-lg border border-line bg-raised px-3 text-sm text-ink"
-      >
-        <option value="all">All rules</option>
-        <option v-for="rule in rulesOptions" :key="rule" :value="rule">{{ rule }}</option>
-      </select>
+      <div class="relative inline-flex items-center">
+        <select
+          id="filter-rules"
+          v-model="selectedRules"
+          class="appearance-none h-11 rounded-lg border border-line bg-raised pl-3 pr-9 text-sm text-ink cursor-pointer"
+        >
+          <option value="all">All rules</option>
+          <option v-for="rule in rulesOptions" :key="rule" :value="rule">{{ rule }}</option>
+        </select>
+        <svg
+          class="pointer-events-none absolute right-2.5 h-4 w-4 text-muted"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
 
       <label
         v-if="completedTotalCount > 0"
