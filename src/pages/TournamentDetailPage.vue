@@ -23,12 +23,33 @@ function hasValue(v: unknown): boolean {
   return v !== null && v !== undefined && v !== ''
 }
 
+function sanitizeUrl(url?: string | null): string | null {
+  if (!url || !url.trim()) return null
+  return url.trim().replace(/^(https?:\/\/)+/i, 'https://')
+}
+
 function telHref(phone: string): string {
   return `tel:${phone.replace(/\s/g, '')}`
 }
 
+function whatsappHref(phone: string): string {
+  const digits = phone.replace(/[^\d]/g, '').replace(/^0/, '44')
+  return `https://wa.me/${digits}`
+}
+
+function mapsHref(venue: string, address?: string | null): string {
+  const query = [venue, address].filter(Boolean).join(', ')
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+}
+
 function displayUrl(url: string): string {
   return url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+}
+
+function formatHandicap(val: unknown): string {
+  if (val === true) return 'Yes (handicapped)'
+  if (val === false) return 'No (scratch)'
+  return String(val)
 }
 
 function toIsoTime(raw: string): string {
@@ -36,9 +57,13 @@ function toIsoTime(raw: string): string {
   return ''
 }
 
+const venueUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.venue))
+const organiserUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.organiser))
+const scoreboardUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.scoreboard))
+
 const metaTitle = tournament
   ? `${tournament.meta.name} | Fylde 8 Ball`
-  : 'Fylde 8 Ball'
+  : 'Tournament not found | Fylde 8 Ball'
 
 const metaDesc = (() => {
   if (!tournament) return 'Pool tournament on the Fylde Coast.'
@@ -72,7 +97,9 @@ if (tournament) {
     ...(meta.contact?.phone ? { telephone: meta.contact.phone } : {}),
   }
 
-  const upcomingDates = dates.filter(d => !d.completed && d.date !== 'TBC')
+  const upcomingDates = tournament.completed
+    ? []
+    : dates.filter(d => !d.completed && d.date !== 'TBC')
 
   const sportsEvents = upcomingDates.map(d => ({
     '@context': 'https://schema.org',
@@ -94,6 +121,7 @@ if (tournament) {
       : {}),
   }))
 
+  const cleanVenueUrl = sanitizeUrl(meta.urls?.venue)
   const localBusiness = {
     '@context': 'https://schema.org',
     '@type': 'SportsActivityLocation',
@@ -101,7 +129,7 @@ if (tournament) {
     address: venueAddress,
     ...(meta.contact?.phone ? { telephone: meta.contact.phone } : {}),
     ...(meta.contact?.email ? { email: meta.contact.email } : {}),
-    ...(meta.urls?.venue ? { url: meta.urls.venue } : {}),
+    ...(cleanVenueUrl ? { url: cleanVenueUrl } : {}),
   }
 
   const breadcrumb = {
@@ -128,23 +156,37 @@ if (tournament) {
 </script>
 
 <template>
-  <div class="max-w-3xl mx-auto px-4 py-8">
+  <div class="max-w-3xl mx-auto px-4 py-6 md:py-8">
+    <!-- Visible back navigation -->
+    <nav aria-label="Breadcrumb" class="mb-4">
+      <RouterLink
+        to="/tournaments"
+        class="inline-flex items-center gap-1 min-h-[44px] -ml-2 px-2 rounded-lg text-sm font-medium text-muted hover:text-accent transition-colors"
+      >
+        <span aria-hidden="true">←</span> All tournaments
+      </RouterLink>
+    </nav>
+
     <template v-if="tournament">
       <!-- Header -->
       <div class="mb-6">
-        <div class="flex justify-between items-start">
+        <div class="flex justify-between items-start gap-4">
           <div>
-            <h1 class="font-display text-2xl md:text-3xl text-ink mb-1">{{ tournament.meta.name }}</h1>
+            <h1 class="font-display text-2xl md:text-3xl text-ink mb-1">
+              {{ tournament.meta.name }}
+            </h1>
             <span
               v-if="tournament.completed"
-              class="inline-block text-xs font-medium bg-sunken text-muted px-2 py-0.5 rounded-full mb-2"
-            >Completed</span>
+              class="inline-block text-xs font-semibold bg-sunken text-muted px-2.5 py-0.5 rounded-full mb-2"
+            >
+              Completed
+            </span>
           </div>
           <img
             v-if="logoUrl"
             :src="logoUrl"
             :alt="tournament.meta.name"
-            class="h-12 w-12 md:h-16 md:w-16 object-contain shrink-0 ml-4"
+            class="h-12 w-12 md:h-16 md:w-16 object-contain shrink-0 rounded-lg bg-white/90 p-1"
             decoding="async"
             width="64"
             height="64"
@@ -156,101 +198,151 @@ if (tournament) {
           {{ tournament.meta.venue }}
           · Organised by
           <a
-            v-if="hasValue(tournament.meta.urls?.organiser)"
-            :href="tournament.meta.urls!.organiser"
+            v-if="organiserUrl"
+            :href="organiserUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-accent underline"
+            class="text-ink underline hover:text-accent"
           >{{ tournament.meta.organiser }}</a>
           <template v-else>{{ tournament.meta.organiser }}</template>
         </p>
 
-        <!-- Address -->
+        <!-- Clickable address -> Google Maps -->
         <p v-if="hasValue(tournament.meta.address)" class="text-sm text-muted mt-1">
-          {{ tournament.meta.address }}
-        </p>
-
-        <!-- Contact details -->
-        <div v-if="tournament.meta.contact" class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-muted">
           <a
-            v-if="hasValue(tournament.meta.contact.phone)"
-            :href="telHref(tournament.meta.contact.phone!)"
-            class="flex items-center gap-1 hover:text-accent"
-          ><PhoneIcon size="0.9em" />{{ tournament.meta.contact.phone }}</a>
-          <span v-if="hasValue(tournament.meta.contact.whatsapp)">WhatsApp: {{ tournament.meta.contact.whatsapp }}</span>
-          <a
-            v-if="hasValue(tournament.meta.contact.email)"
-            :href="`mailto:${tournament.meta.contact.email}`"
-            class="flex items-center gap-1 hover:text-accent"
-          ><MailIcon size="0.9em" />{{ tournament.meta.contact.email }}</a>
-        </div>
-
-        <!-- Social icons + venue/scoreboard links -->
-        <div class="flex items-center gap-3 mt-2">
-          <a
-            v-if="hasValue(tournament.meta.urls?.venue)"
-            :href="tournament.meta.urls!.venue"
+            :href="mapsHref(tournament.meta.venue, tournament.meta.address)"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-1 text-sm text-accent hover:underline"
-          ><GlobeIcon size="0.9em" />{{ displayUrl(tournament.meta.urls!.venue!) }}</a>
-          <template v-if="tournament.meta.socials">
+            class="hover:text-accent underline underline-offset-2"
+          >
+            {{ tournament.meta.address }}
+          </a>
+        </p>
+
+        <!-- Entry & Venue Action Bar -->
+        <div class="mt-4">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-2">
+            Entry &amp; Venue Info
+          </p>
+          <div class="flex flex-wrap items-center gap-2">
             <a
-              v-if="hasValue(tournament.meta.socials.facebook)"
-              :href="tournament.meta.socials.facebook"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-muted hover:text-accent"
-              aria-label="Facebook"
+              v-if="hasValue(tournament.meta.contact?.phone)"
+              :href="telHref(tournament.meta.contact!.phone!)"
+              class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg bg-accent text-accent-ink text-sm font-semibold hover:brightness-110 transition"
             >
-              <FacebookIcon size="1.25rem" />
+              <PhoneIcon size="1em" />
+              {{ tournament.meta.contact!.phone }}
             </a>
+
             <a
-              v-if="hasValue(tournament.meta.socials.twitter)"
-              :href="tournament.meta.socials.twitter"
+              v-if="hasValue(tournament.meta.socials?.facebook)"
+              :href="tournament.meta.socials!.facebook"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-muted hover:text-accent"
+              class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg border border-line bg-raised text-sm font-medium text-ink hover:border-accent hover:text-accent transition"
+            >
+              <FacebookIcon size="1.15rem" />
+              Facebook
+            </a>
+
+            <a
+              v-if="hasValue(tournament.meta.contact?.whatsapp)"
+              :href="whatsappHref(tournament.meta.contact!.whatsapp!)"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg border border-line bg-raised text-sm font-medium text-ink hover:border-accent hover:text-accent transition"
+            >
+              WhatsApp: {{ tournament.meta.contact!.whatsapp }}
+            </a>
+
+            <a
+              :href="mapsHref(tournament.meta.venue, tournament.meta.address)"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg border border-line bg-raised text-sm font-medium text-ink hover:border-accent hover:text-accent transition"
+            >
+              Directions
+            </a>
+
+            <a
+              v-if="venueUrl"
+              :href="venueUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg border border-line bg-raised text-sm font-medium text-ink hover:border-accent hover:text-accent transition"
+            >
+              <GlobeIcon size="1em" />
+              {{ displayUrl(venueUrl) }}
+            </a>
+
+            <a
+              v-if="hasValue(tournament.meta.contact?.email)"
+              :href="`mailto:${tournament.meta.contact!.email}`"
+              class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg border border-line bg-raised text-sm font-medium text-ink hover:border-accent hover:text-accent transition"
+            >
+              <MailIcon size="1em" />
+              Email
+            </a>
+
+            <a
+              v-if="scoreboardUrl"
+              :href="scoreboardUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg bg-chalk-tint text-chalk text-sm font-semibold hover:brightness-95 transition"
+            >
+              Live scoreboard &rarr;
+            </a>
+
+            <a
+              v-if="hasValue(tournament.meta.socials?.twitter)"
+              :href="tournament.meta.socials!.twitter"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-raised text-muted hover:text-accent transition"
               aria-label="X (Twitter)"
             >
               <TwitterIcon size="1.25rem" />
             </a>
+
             <a
-              v-if="hasValue(tournament.meta.socials.instagram)"
-              :href="tournament.meta.socials.instagram"
+              v-if="hasValue(tournament.meta.socials?.instagram)"
+              :href="tournament.meta.socials!.instagram"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-muted hover:text-accent"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-raised text-muted hover:text-accent transition"
               aria-label="Instagram"
             >
               <InstagramIcon size="1.25rem" />
             </a>
-          </template>
-          <a
-            v-if="hasValue(tournament.meta.urls?.scoreboard)"
-            :href="tournament.meta.urls!.scoreboard"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-accent hover:underline"
-          >Scoreboard &rarr;</a>
+          </div>
+          <p class="mt-2 text-xs text-muted">
+            Contact the organiser directly to check availability and enter.
+          </p>
         </div>
       </div>
 
       <!-- Format section -->
-      <div v-if="tournament.format" class="mb-6 p-4 bg-sunken texture-felt rounded-xl border border-line">
-        <h2 class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">Competition Format</h2>
-        <dl class="space-y-1 text-sm sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-1">
+      <section
+        v-if="tournament.format"
+        aria-labelledby="format-heading"
+        class="mb-6 p-4 bg-sunken texture-felt rounded-xl border border-line"
+      >
+        <h2 id="format-heading" class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">
+          Competition Format
+        </h2>
+        <dl class="space-y-1.5 text-sm sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-1.5">
           <div v-if="hasValue(tournament.format.rules)" class="flex gap-2">
             <dt class="text-muted w-24 shrink-0">Rules</dt>
             <dd class="text-ink font-medium">{{ tournament.format.rules }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.type)" class="flex gap-2">
-            <dt class="text-muted w-24 shrink-0">Type</dt>
+            <dt class="text-muted w-24 shrink-0">Format</dt>
             <dd class="text-ink font-medium">{{ tournament.format.type }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.raceToWin)" class="flex gap-2">
             <dt class="text-muted w-24 shrink-0">Race to</dt>
-            <dd class="text-ink font-medium">{{ tournament.format.raceToWin }}</dd>
+            <dd class="text-ink font-medium">{{ tournament.format.raceToWin }} frames</dd>
           </div>
           <div v-if="hasValue(tournament.format.entryFee)" class="flex gap-2">
             <dt class="text-muted w-24 shrink-0">Entry fee</dt>
@@ -258,17 +350,33 @@ if (tournament) {
           </div>
           <div v-if="hasValue(tournament.format.handicap)" class="flex gap-2">
             <dt class="text-muted w-24 shrink-0">Handicap</dt>
-            <dd class="text-ink font-medium">{{ tournament.format.handicap }}</dd>
+            <dd class="text-ink font-medium">{{ formatHandicap(tournament.format.handicap) }}</dd>
           </div>
           <div v-if="hasValue(tournament.format.maxPlayers)" class="flex gap-2">
             <dt class="text-muted w-24 shrink-0">Max players</dt>
             <dd class="text-ink font-medium">{{ tournament.format.maxPlayers }}</dd>
           </div>
         </dl>
-      </div>
+      </section>
 
-      <EventTimeline :dates="tournament.dates" />
+      <EventTimeline
+        :dates="tournament.dates"
+        :tournament-completed="tournament.completed"
+      />
     </template>
-    <p v-else class="text-muted">Tournament not found.</p>
+
+    <!-- Recoverable 404 state -->
+    <div v-else class="rounded-xl border border-line bg-raised p-8 text-center">
+      <h1 class="font-display text-2xl text-ink mb-2">Tournament not found</h1>
+      <p class="text-sm text-muted mb-5">
+        This competition may have been moved or removed.
+      </p>
+      <RouterLink
+        to="/tournaments"
+        class="inline-flex items-center justify-center min-h-[44px] rounded-full bg-accent text-accent-ink px-5 text-sm font-semibold hover:brightness-110 transition"
+      >
+        Browse all tournaments
+      </RouterLink>
+    </div>
   </div>
 </template>
