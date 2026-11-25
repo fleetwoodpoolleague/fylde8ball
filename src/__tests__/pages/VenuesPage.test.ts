@@ -42,16 +42,30 @@ describe('VenueDetailPage', () => {
 
   afterEach(() => vi.useRealTimers())
 
-  it('renders venue contact actions and hosted competitions', () => {
+  it('renders venue contact actions, CueScore table specs, and hosted competitions', () => {
+    vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'))
     const wrapper = mount(VenueDetailPage, {
       props: { slug: 'ballers-blackpool' },
       global: { plugins: [router] },
     })
     expect(wrapper.text()).toContain('Ballers Blackpool')
     expect(wrapper.text()).toContain('Blackpool')
+    expect(wrapper.text()).toContain('Tables & Equipment')
+    expect(wrapper.text()).toContain('Supreme Winner')
+    expect(wrapper.text()).toContain('7ft')
     expect(wrapper.find('a[href="tel:01253584711"]').exists()).toBe(true)
     expect(wrapper.find('a[href^="https://www.google.com/maps/search/"]').exists()).toBe(true)
     expect(wrapper.text()).toContain('Precision Cue Series')
+    vi.restoreAllMocks()
+  })
+
+  it('gracefully hides Tables & Equipment when cuescoreVenueId is null', () => {
+    const wrapper = mount(VenueDetailPage, {
+      props: { slug: 'norbreck-castle-hotel' },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('Norbreck Castle Hotel')
+    expect(wrapper.text()).not.toContain('Tables & Equipment')
   })
 
   it('renders a recoverable not-found card for an unknown venue slug', () => {

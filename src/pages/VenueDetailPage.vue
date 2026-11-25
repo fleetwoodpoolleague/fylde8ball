@@ -2,8 +2,10 @@
 import { computed, onMounted, ref } from 'vue'
 import { useHead } from '@unhead/vue'
 import { getVenueBySlug } from '../composables/useVenues'
+import { useCueScoreVenue } from '../composables/useCueScoreVenue'
 import { useTournaments } from '../composables/useTournaments'
 import { useSeo, BASE_URL } from '../composables/useSeo'
+import { resolveCueScoreVenueId } from '../utils/cuescore'
 import { getNextEvent, isTournamentActive } from '../utils/tournament'
 import { formatDate, formatDateRange, SHORT_DATE, isToday } from '../utils/format'
 import { logoSrc } from '../utils/assets'
@@ -21,6 +23,7 @@ const props = defineProps<{
 
 const venue = getVenueBySlug(props.slug)
 const tournaments = useTournaments()
+const { venueInfo: cuescoreVenue } = useCueScoreVenue(props.slug, resolveCueScoreVenueId(venue))
 
 const now = ref(new Date())
 onMounted(() => {
@@ -208,6 +211,46 @@ if (venue) {
           </a>
         </div>
       </div>
+
+      <!-- CueScore Tables & Equipment -->
+      <section
+        v-if="cuescoreVenue && cuescoreVenue.totalTables > 0"
+        aria-labelledby="venue-tables-heading"
+        class="mb-8 p-4 bg-sunken texture-felt rounded-xl border border-line"
+      >
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <h2 id="venue-tables-heading" class="text-xs font-semibold uppercase tracking-wider text-muted">
+            Tables &amp; Equipment ({{ cuescoreVenue.totalTables }} {{ cuescoreVenue.totalTables === 1 ? 'table' : 'tables' }})
+          </h2>
+          <a
+            v-if="cuescoreVenue.url"
+            :href="cuescoreVenue.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center min-h-[44px] -my-2 px-1 text-xs font-medium text-accent hover:underline"
+          >
+            CueScore venue &rarr;
+          </a>
+        </div>
+        <ul class="space-y-2 text-sm">
+          <li
+            v-for="(group, idx) in cuescoreVenue.tableGroups"
+            :key="idx"
+            class="flex flex-wrap items-center gap-2"
+          >
+            <span class="font-semibold text-ink">
+              {{ group.count }} &times;
+              <template v-if="group.size">{{ group.size }}ft </template>{{ [group.manufacturer, group.model].filter(Boolean).join(' ') || 'Pool table' }}
+            </span>
+            <span v-if="group.branch" class="rounded bg-raised border border-line px-2 py-0.5 text-xs text-muted">
+              {{ group.branch }}
+            </span>
+            <span v-if="group.cloth" class="rounded bg-raised border border-line px-2 py-0.5 text-xs text-muted">
+              {{ group.cloth }}
+            </span>
+          </li>
+        </ul>
+      </section>
 
       <!-- Active competitions at this venue -->
       <section v-if="activeTournaments.length" aria-labelledby="venue-active-heading" class="mb-8">
