@@ -36,6 +36,21 @@ export function validateTournamentData(slug, data, existingLogos = null) {
       errors.push(`[${slug}] meta.logo "${meta.logo}" not found in src/assets/img/`)
     }
 
+    if (
+      meta.cuescoreRankingId !== undefined &&
+      meta.cuescoreRankingId !== null &&
+      meta.cuescoreRankingId !== ''
+    ) {
+      const validNum =
+        (typeof meta.cuescoreRankingId === 'number' &&
+          Number.isInteger(meta.cuescoreRankingId) &&
+          meta.cuescoreRankingId > 0) ||
+        (typeof meta.cuescoreRankingId === 'string' && /^\d+$/.test(meta.cuescoreRankingId.trim()))
+      if (!validNum) {
+        errors.push(`[${slug}] meta.cuescoreRankingId "${meta.cuescoreRankingId}" must be a positive integer or null`)
+      }
+    }
+
     for (const group of ['urls', 'socials']) {
       const obj = meta[group]
       if (!obj || typeof obj !== 'object') continue

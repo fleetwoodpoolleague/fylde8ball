@@ -1,0 +1,17 @@
+{
+  "venueId": 58691482,
+  "name": "Ballers Blackpool",
+  "url": "https://cuescore.com/venue/Ballers+Blackpool/58691482",
+  "fetchedAt": "2026-11-25T10:08:35.973Z",
+  "totalTables": 10,
+  "tableGroups": [
+    {
+      "count": 10,
+      "manufacturer": "Supreme",
+      "model": "Winner",
+      "size": 7,
+      "cloth": "Hainsworth Match Silver",
+      "branch": "English pool"
+    }
+  ]
+}

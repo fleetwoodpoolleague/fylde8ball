@@ -2,10 +2,10 @@
   "completed": false,
   "meta": {
     "name": "Challenger Pool Series 2026/27",
-    "venue": "Q\u0027s Sports Lounge",
-    "organiser": "Q\u0027s Sports Lounge",
+    "venue": "Q's Sports Lounge",
+    "organiser": "Q's Sports Lounge",
     "logo": "qs_logo.webp",
-    "address": "249 Lytham Road, Blackpool, United Kingdom, FY1 6",
+    "address": "249-255 Lytham Road, Blackpool, United Kingdom, FY1 6ET",
     "contact": {
       "phone": "01253 346578",
       "whatsapp": "",
@@ -14,19 +14,20 @@
     "urls": {
       "venue": null,
       "organiser": "",
-      "scoreboard": ""
+      "scoreboard": "https://cuescore.com/ranking/Q%27s+Challenger+Series+26%252F27/80566852"
     },
     "socials": {
       "facebook": "https://www.facebook.com/profile.php?id=100063657548884",
       "twitter": "",
       "instagram": ""
-    }
+    },
+    "cuescoreRankingId": 80566852
   },
   "format": {
     "rules": "Blackball",
     "type": "Double Elimination",
     "raceToWin": 5,
-    "entryFee": "\u00A325",
+    "entryFee": "£25",
     "handicap": true,
     "maxPlayers": 24
   },

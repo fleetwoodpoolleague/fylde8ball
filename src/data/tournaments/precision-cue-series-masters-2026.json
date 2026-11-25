@@ -20,13 +20,14 @@
       "facebook": "https://www.facebook.com/profile.php?id=61577596779388",
       "twitter": "",
       "instagram": ""
-    }
+    },
+    "cuescoreRankingId": null
   },
   "format": {
     "rules": "Blackball",
     "type": "Round Robin, then Double Elimination",
     "raceToWin": 4,
-    "entryFee": "\u00A320",
+    "entryFee": "£20",
     "handicap": null,
     "maxPlayers": 32
   },

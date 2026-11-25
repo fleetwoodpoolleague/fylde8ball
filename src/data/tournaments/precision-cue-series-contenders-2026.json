@@ -14,19 +14,20 @@
     "urls": {
       "venue": "https://ballersblackpool.co.uk/",
       "organiser": "",
-      "scoreboard": "https://cuescore.com/ranking/Ballers\u002BPrecision\u002BSeries\u002BContender\u002BRankings/75307840"
+      "scoreboard": "https://cuescore.com/ranking/Ballers+Precision+Series+Contender+Rankings/75307840"
     },
     "socials": {
       "facebook": "https://www.facebook.com/profile.php?id=61577596779388",
       "twitter": "",
       "instagram": ""
-    }
+    },
+    "cuescoreRankingId": 75307840
   },
   "format": {
     "rules": "Blackball",
     "type": "Round Robin, then Double Elimination",
     "raceToWin": 4,
-    "entryFee": "\u00A320",
+    "entryFee": "£20",
     "handicap": null,
     "maxPlayers": 32
   },

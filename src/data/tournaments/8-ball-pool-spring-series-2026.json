@@ -20,13 +20,14 @@
       "facebook": "https://www.facebook.com/profile.php?id=61579923599908",
       "twitter": "",
       "instagram": ""
-    }
+    },
+    "cuescoreRankingId": null
   },
   "format": {
     "rules": "Blackball",
     "type": "Double Elimination",
     "raceToWin": 3,
-    "entryFee": "\u00A315",
+    "entryFee": "£15",
     "handicap": null,
     "maxPlayers": 24
   },

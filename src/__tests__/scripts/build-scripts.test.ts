@@ -2,6 +2,8 @@
 import { validateTournamentData } from '../../../scripts/validate-tournaments.mjs'
 // @ts-expect-error - importing a plain .mjs utility module without a .d.ts
 import { buildSitemapXml } from '../../../scripts/generate-sitemap.mjs'
+// @ts-expect-error - importing a plain .mjs utility module without a .d.ts
+import { parseCueScoreId, extractRankingIdFromUrl, normalizeRankingPayload, summarizeVenuePayload } from '../../../scripts/fetch-cuescore.mjs'
 
 describe('validateTournamentData', () => {
   const validTournament = {
@@ -61,5 +63,62 @@ describe('buildSitemapXml', () => {
     ])
     expect(xml).toContain('<loc>https://fylde8ball.co.uk/</loc>')
     expect(xml).toContain('<loc>https://fylde8ball.co.uk/tournaments/qs-one-offs</loc>')
+  })
+})
+
+describe('fetch-cuescore helpers', () => {
+  it('parses valid numeric IDs and returns null for null/empty/invalid placeholders', () => {
+    expect(parseCueScoreId(85297054)).toBe(85297054)
+    expect(parseCueScoreId('80566852')).toBe(80566852)
+    expect(parseCueScoreId(null)).toBeNull()
+    expect(parseCueScoreId('')).toBeNull()
+    expect(parseCueScoreId('   ')).toBeNull()
+    expect(parseCueScoreId(undefined)).toBeNull()
+    expect(parseCueScoreId('abc')).toBeNull()
+  })
+
+  it('extracts ranking IDs from CueScore ranking URLs', () => {
+    expect(
+      extractRankingIdFromUrl('https://cuescore.com/ranking/Ballers+Series/75307840'),
+    ).toBe(75307840)
+    expect(extractRankingIdFromUrl('')).toBeNull()
+    expect(extractRankingIdFromUrl('https://example.com')).toBeNull()
+  })
+
+  it('normalizes ranking payloads and returns null on API error payloads', () => {
+    expect(normalizeRankingPayload({ error: 'Not found' })).toBeNull()
+    const normalized = normalizeRankingPayload(
+      {
+        rankingId: 85297054,
+        name: 'Contenders 2',
+        url: '//cuescore.com/ranking/Test/85297054',
+        participants: [
+          { rank: 1, name: 'Player A', participantId: 11, url: 'https://cuescore.com/player/A/11', points: 240, tournamentCount: 3 },
+        ],
+        tournaments: [],
+      },
+      '2026-11-25T10:00:00Z',
+    )
+    expect(normalized?.url).toBe('https://cuescore.com/ranking/Test/85297054')
+    expect(normalized?.participants).toHaveLength(1)
+  })
+
+  it('summarizes venue tables by shared spec', () => {
+    const venue = summarizeVenuePayload(
+      {
+        venueId: 58691482,
+        name: 'Ballers Blackpool',
+        url: 'https://cuescore.com/venue/Ballers/58691482',
+        tables: [
+          { manufacturer: 'Supreme', model: 'Winner', size: 7, cloth: 'Hainsworth Match Silver', branch: 'English pool' },
+          { manufacturer: 'Supreme', model: 'Winner', size: 7, cloth: 'Hainsworth Match Silver', branch: 'English pool' },
+          { manufacturer: 'Supreme', model: 'Winner', size: 7, cloth: '', branch: 'American pool' },
+        ],
+      },
+      '2026-11-25T10:00:00Z',
+    )
+    expect(venue?.totalTables).toBe(3)
+    expect(venue?.tableGroups).toHaveLength(2)
+    expect(venue?.tableGroups[0].count).toBe(2)
   })
 })

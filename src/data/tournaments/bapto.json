@@ -20,7 +20,8 @@
       "facebook": "",
       "twitter": "",
       "instagram": ""
-    }
+    },
+    "cuescoreRankingId": null
   },
   "format": {
     "rules": "Blackball",
@@ -32,7 +33,7 @@
   },
   "dates": [
     {
-      "name": "Three Player \u2018Halloween\u2019 Novice Event",
+      "name": "Three Player ‘Halloween’ Novice Event",
       "date": "2026-10-29",
       "endDate": "2026-11-01",
       "completed": true

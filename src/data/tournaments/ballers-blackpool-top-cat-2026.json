@@ -20,13 +20,14 @@
       "facebook": "https://www.facebook.com/profile.php?id=61577596779388",
       "twitter": "",
       "instagram": ""
-    }
+    },
+    "cuescoreRankingId": null
   },
   "format": {
     "rules": "Blackball",
     "type": "7 Round Robin weeks, then seeded KO Final",
     "raceToWin": 7,
-    "entryFee": "\u00A3100",
+    "entryFee": "£100",
     "handicap": null,
     "maxPlayers": null
   },

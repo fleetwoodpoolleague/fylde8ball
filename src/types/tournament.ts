@@ -4,6 +4,8 @@ export interface TournamentMeta {
   organiser: string
   logo: string
   address?: string
+  /** Optional CueScore ranking list ID (e.g. 85297054). Null or empty when not tracked on CueScore. */
+  cuescoreRankingId?: number | string | null
   contact?: {
     phone?: string
     whatsapp?: string

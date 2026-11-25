@@ -1,0 +1,523 @@
+{
+  "rankingId": 75307840,
+  "name": "Ballers Precision Series Contender Rankings",
+  "url": "https://cuescore.com/ranking/Ballers+Precision+Series+Contender+Rankings/75307840",
+  "season": 2026,
+  "fetchedAt": "2026-11-25T10:08:35.785Z",
+  "participants": [
+    {
+      "rank": 1,
+      "name": "Kev Royle",
+      "participantId": 12422209,
+      "url": "https://cuescore.com/player/Kev+Royle/12422209",
+      "points": 250,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 2,
+      "name": "Harley Harrison",
+      "participantId": 50642875,
+      "url": "https://cuescore.com/player/Harley+Harrison/50642875",
+      "points": 230,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 3,
+      "name": "Dec Reid",
+      "participantId": 2938389,
+      "url": "https://cuescore.com/player/Dec+Reid/2938389",
+      "points": 200,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 4,
+      "name": "Andy johnson",
+      "participantId": 28177639,
+      "url": "https://cuescore.com/player/Andy+johnson/28177639",
+      "points": 160,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 5,
+      "name": "Layton Hartley",
+      "participantId": 61669648,
+      "url": "https://cuescore.com/player/Layton+Hartley/61669648",
+      "points": 160,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 6,
+      "name": "Dave Fisher",
+      "participantId": 23529598,
+      "url": "https://cuescore.com/player/Dave+Fisher/23529598",
+      "points": 130,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 7,
+      "name": "Ben Smith",
+      "participantId": 75954592,
+      "url": "https://cuescore.com/player/Ben+Smith/75954592",
+      "points": 100,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 8,
+      "name": "Wayne Richardson",
+      "participantId": 12422215,
+      "url": "https://cuescore.com/player/Wayne+Richardson/12422215",
+      "points": 100,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 9,
+      "name": "Phil Bee",
+      "participantId": 8862965,
+      "url": "https://cuescore.com/player/Phil+Bee/8862965",
+      "points": 100,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 10,
+      "name": "Johnathon Borwick",
+      "participantId": 12631090,
+      "url": "https://cuescore.com/player/Johnathon+Borwick/12631090",
+      "points": 95,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 11,
+      "name": "Neil Blackburn",
+      "participantId": 21186052,
+      "url": "https://cuescore.com/player/Neil+Blackburn/21186052",
+      "points": 90,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 12,
+      "name": "Paul France",
+      "participantId": 37257592,
+      "url": "https://cuescore.com/player/Paul+France/37257592",
+      "points": 90,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 13,
+      "name": "Paul Taylor",
+      "participantId": 5232482,
+      "url": "https://cuescore.com/player/Paul+Taylor/5232482",
+      "points": 80,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 14,
+      "name": "Steve Biss",
+      "participantId": 15801067,
+      "url": "https://cuescore.com/player/Steve+Biss/15801067",
+      "points": 80,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 15,
+      "name": "Matthew Watts",
+      "participantId": 60009454,
+      "url": "https://cuescore.com/player/Matthew+Watts/60009454",
+      "points": 70,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 16,
+      "name": "Rob Grassie",
+      "participantId": 30042217,
+      "url": "https://cuescore.com/player/Rob+Grassie/30042217",
+      "points": 70,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 17,
+      "name": "Stuart Grassie",
+      "participantId": 70732774,
+      "url": "https://cuescore.com/player/Stuart+Grassie/70732774",
+      "points": 60,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 18,
+      "name": "Kyle Ingham",
+      "participantId": 79489423,
+      "url": "https://cuescore.com/player/Kyle+Ingham/79489423",
+      "points": 50,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 19,
+      "name": "Tony Palmer",
+      "participantId": 9083136,
+      "url": "https://cuescore.com/player/Tony+Palmer/9083136",
+      "points": 50,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 20,
+      "name": "Paul Biss",
+      "participantId": 8213354,
+      "url": "https://cuescore.com/player/Paul+Biss/8213354",
+      "points": 45,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 21,
+      "name": "Mark Broadley",
+      "participantId": 77503537,
+      "url": "https://cuescore.com/player/Mark+Broadley/77503537",
+      "points": 45,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 22,
+      "name": "Nathan Oliver",
+      "participantId": 43719145,
+      "url": "https://cuescore.com/player/Nathan+Oliver/43719145",
+      "points": 45,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 23,
+      "name": "John Newbold",
+      "participantId": 8887473,
+      "url": "https://cuescore.com/player/John+Newbold/8887473",
+      "points": 40,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 24,
+      "name": "Chris Campbell",
+      "participantId": 20386729,
+      "url": "https://cuescore.com/player/Chris+Campbell/20386729",
+      "points": 40,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 25,
+      "name": "Adam Royle",
+      "participantId": 77122006,
+      "url": "https://cuescore.com/player/Adam+Royle/77122006",
+      "points": 40,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 26,
+      "name": "Craig Smith",
+      "participantId": 31590775,
+      "url": "https://cuescore.com/player/Craig+Smith/31590775",
+      "points": 40,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 27,
+      "name": "Ole Royle",
+      "participantId": 75469393,
+      "url": "https://cuescore.com/player/Ole+Royle/75469393",
+      "points": 35,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 28,
+      "name": "Haiden Munro",
+      "participantId": 59843464,
+      "url": "https://cuescore.com/player/Haiden+Munro/59843464",
+      "points": 35,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 29,
+      "name": "Brian Smith",
+      "participantId": 14373730,
+      "url": "https://cuescore.com/player/Brian+Smith/14373730",
+      "points": 30,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 30,
+      "name": "Dale Brooks",
+      "participantId": 31808857,
+      "url": "https://cuescore.com/player/Dale+Brooks/31808857",
+      "points": 30,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 31,
+      "name": "Allan Weston",
+      "participantId": 9288501,
+      "url": "https://cuescore.com/player/Allan+Weston/9288501",
+      "points": 30,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 32,
+      "name": "Oscar MacRae",
+      "participantId": 50635246,
+      "url": "https://cuescore.com/player/Oscar+MacRae/50635246",
+      "points": 25,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 33,
+      "name": "Warren Smith",
+      "participantId": 9886906,
+      "url": "https://cuescore.com/player/Warren+Smith/9886906",
+      "points": 20,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 34,
+      "name": "Craig Millard",
+      "participantId": 78874315,
+      "url": "https://cuescore.com/player/Craig+Millard/78874315",
+      "points": 20,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 35,
+      "name": "Shea Boyle",
+      "participantId": 78863437,
+      "url": "https://cuescore.com/player/Shea+Boyle/78863437",
+      "points": 20,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 36,
+      "name": "Adam Smiles",
+      "participantId": 17191387,
+      "url": "https://cuescore.com/player/Adam+Smiles/17191387",
+      "points": 20,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 37,
+      "name": "Paul Le Sauvage",
+      "participantId": 35340430,
+      "url": "https://cuescore.com/player/Paul+Le+Sauvage/35340430",
+      "points": 20,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 38,
+      "name": "Kai Massingham",
+      "participantId": 74167171,
+      "url": "https://cuescore.com/player/Kai+Massingham/74167171",
+      "points": 20,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 39,
+      "name": "Michael Royle",
+      "participantId": 12845791,
+      "url": "https://cuescore.com/player/Michael+Royle/12845791",
+      "points": 15,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 40,
+      "name": "Ben Atherton New",
+      "participantId": 8036348,
+      "url": "https://cuescore.com/player/Ben+Atherton+New/8036348",
+      "points": 10,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 41,
+      "name": "Andy Stock",
+      "participantId": 13238863,
+      "url": "https://cuescore.com/player/Andy+Stock/13238863",
+      "points": 10,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 42,
+      "name": "Dec's Bird",
+      "participantId": 62821951,
+      "url": "https://cuescore.com/player/Dec%27s+Bird/62821951",
+      "points": 10,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 43,
+      "name": "Chris Borwick",
+      "participantId": 12310156,
+      "url": "https://cuescore.com/player/Chris+Borwick/12310156",
+      "points": 10,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 43,
+      "name": "Colin Campbell",
+      "participantId": 8213377,
+      "url": "https://cuescore.com/player/Colin+Campbell/8213377",
+      "points": 10,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 45,
+      "name": "Chris Fenton",
+      "participantId": 43779880,
+      "url": "https://cuescore.com/player/Chris+Fenton/43779880",
+      "points": 5,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 46,
+      "name": "Mark Macrae",
+      "participantId": 60507748,
+      "url": "https://cuescore.com/player/Mark+Macrae/60507748",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 47,
+      "name": "Leigh-ann Hudson",
+      "participantId": 12013144,
+      "url": "https://cuescore.com/player/Leigh-ann+Hudson/12013144",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 48,
+      "name": "Darren Parkinson",
+      "participantId": 74801569,
+      "url": "https://cuescore.com/player/Darren+Parkinson/74801569",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 49,
+      "name": "Player 1 Ballers",
+      "participantId": 77598406,
+      "url": "https://cuescore.com/player/Player+1+Ballers/77598406",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 49,
+      "name": "Player 2 Ballers",
+      "participantId": 77598409,
+      "url": "https://cuescore.com/player/Player+2+Ballers/77598409",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 51,
+      "name": "Gaz Parkinson",
+      "participantId": 8213357,
+      "url": "https://cuescore.com/player/Gaz+Parkinson/8213357",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 52,
+      "name": "Louis Shelton",
+      "participantId": 58880944,
+      "url": "https://cuescore.com/player/Louis+Shelton/58880944",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 52,
+      "name": "Mason Gannon",
+      "participantId": 80636761,
+      "url": "https://cuescore.com/player/Mason+Gannon/80636761",
+      "points": 5,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 52,
+      "name": "Nathan Moseley-Lumb",
+      "participantId": 77506237,
+      "url": "https://cuescore.com/player/Nathan+Moseley-Lumb/77506237",
+      "points": 5,
+      "tournamentCount": 1
+    }
+  ],
+  "tournaments": [
+    {
+      "id": 75307585,
+      "name": "Ballers Contenders Golden Trophy KO Event 1",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Golden+Trophy+KO+Event+1/75307585",
+      "starttime": "2026-01-24T17:00:00Z",
+      "stoptime": "2026-01-24T23:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 75307798,
+      "name": "Ballers Contenders Silver Trophy KO Event 1",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Silver+Trophy+KO+Event+1/75307798",
+      "starttime": "2026-01-24T17:00:00Z",
+      "stoptime": "2026-01-24T23:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 77544037,
+      "name": "Ballers Contenders Silver Trophy KO Event 2",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Silver+Trophy+KO+Event+2/77544037",
+      "starttime": "2026-02-28T18:00:00Z",
+      "stoptime": "2026-03-07T23:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 77552101,
+      "name": "Ballers Contenders Golden Trophy KO Event 2",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Golden+Trophy+KO+Event+2/77552101",
+      "starttime": "2026-02-28T18:00:00Z",
+      "stoptime": "2026-02-28T23:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 79307005,
+      "name": "Ballers Contenders Silver Trophy KO Event 3",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Silver+Trophy+KO+Event+3/79307005",
+      "starttime": "2026-04-04T17:00:00Z",
+      "stoptime": "2026-04-11T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 79307014,
+      "name": "Ballers Contenders Golden Trophy KO Event 3",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Golden+Trophy+KO+Event+3/79307014",
+      "starttime": "2026-04-04T17:00:00Z",
+      "stoptime": "2026-04-04T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 80648992,
+      "name": "Ballers Contenders Golden Trophy KO Event 4",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Golden+Trophy+KO+Event+4/80648992",
+      "starttime": "2026-04-25T17:00:00Z",
+      "stoptime": "2026-05-02T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 80651338,
+      "name": "Ballers Contenders Silver Trophy KO Event 4",
+      "url": "https://cuescore.com/tournament/Ballers+Contenders+Silver+Trophy+KO+Event+4/80651338",
+      "starttime": "2026-04-26T17:00:00Z",
+      "stoptime": "2026-05-09T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 83723002,
+      "name": "Ballers PCS Contenders Grand Final GOLD",
+      "url": "https://cuescore.com/tournament/Ballers+PCS+Contenders+Grand+Final+GOLD/83723002",
+      "starttime": "2026-06-20T12:00:00Z",
+      "stoptime": "2026-06-15T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 83723212,
+      "name": "Ballers PCS Contenders Grand Final SILVER",
+      "url": "https://cuescore.com/tournament/Ballers+PCS+Contenders+Grand+Final+SILVER/83723212",
+      "starttime": "2026-06-20T12:00:00Z",
+      "stoptime": "2026-06-20T22:59:00Z",
+      "status": "Finished"
+    }
+  ]
+}

@@ -1,0 +1,715 @@
+{
+  "rankingId": 80566852,
+  "name": "Q's Challenger Series 26/27",
+  "url": "https://cuescore.com/ranking/Q%27s+Challenger+Series+26%252F27/80566852",
+  "season": 2026,
+  "fetchedAt": "2026-11-25T10:08:35.671Z",
+  "participants": [
+    {
+      "rank": 1,
+      "name": "Wayne Richardson",
+      "participantId": 12422215,
+      "url": "https://cuescore.com/player/Wayne+Richardson/12422215",
+      "points": 390,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 2,
+      "name": "Michael Jeory",
+      "participantId": 16930870,
+      "url": "https://cuescore.com/player/Michael+Jeory/16930870",
+      "points": 315,
+      "tournamentCount": 6
+    },
+    {
+      "rank": 3,
+      "name": "Harley Harrison",
+      "participantId": 50642875,
+      "url": "https://cuescore.com/player/Harley+Harrison/50642875",
+      "points": 295,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 4,
+      "name": "Oscar MacRae",
+      "participantId": 50635246,
+      "url": "https://cuescore.com/player/Oscar+MacRae/50635246",
+      "points": 270,
+      "tournamentCount": 6
+    },
+    {
+      "rank": 5,
+      "name": "Rob Wong",
+      "participantId": 56108110,
+      "url": "https://cuescore.com/player/Rob+Wong/56108110",
+      "points": 250,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 6,
+      "name": "Craig Smith",
+      "participantId": 31590775,
+      "url": "https://cuescore.com/player/Craig+Smith/31590775",
+      "points": 245,
+      "tournamentCount": 6
+    },
+    {
+      "rank": 7,
+      "name": "Allan Weston",
+      "participantId": 9288501,
+      "url": "https://cuescore.com/player/Allan+Weston/9288501",
+      "points": 235,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 8,
+      "name": "Declan Pollard",
+      "participantId": 69072706,
+      "url": "https://cuescore.com/player/Declan+Pollard/69072706",
+      "points": 235,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 9,
+      "name": "Dale Brooks",
+      "participantId": 31808857,
+      "url": "https://cuescore.com/player/Dale+Brooks/31808857",
+      "points": 225,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 10,
+      "name": "Luke Myers-Bennett",
+      "participantId": 78070537,
+      "url": "https://cuescore.com/player/Luke+Myers-Bennett/78070537",
+      "points": 220,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 11,
+      "name": "Rob Grassie",
+      "participantId": 30042217,
+      "url": "https://cuescore.com/player/Rob+Grassie/30042217",
+      "points": 220,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 12,
+      "name": "Justin Hawes",
+      "participantId": 27915610,
+      "url": "https://cuescore.com/player/Justin+Hawes/27915610",
+      "points": 220,
+      "tournamentCount": 6
+    },
+    {
+      "rank": 13,
+      "name": "Andy johnson",
+      "participantId": 28177639,
+      "url": "https://cuescore.com/player/Andy+johnson/28177639",
+      "points": 210,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 14,
+      "name": "Robbie Southern",
+      "participantId": 40445560,
+      "url": "https://cuescore.com/player/Robbie+Southern/40445560",
+      "points": 210,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 15,
+      "name": "Matthew Watts",
+      "participantId": 60009454,
+      "url": "https://cuescore.com/player/Matthew+Watts/60009454",
+      "points": 205,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 16,
+      "name": "Neil Blackburn",
+      "participantId": 21186052,
+      "url": "https://cuescore.com/player/Neil+Blackburn/21186052",
+      "points": 200,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 17,
+      "name": "Zac Prince",
+      "participantId": 65222095,
+      "url": "https://cuescore.com/player/Zac+Prince/65222095",
+      "points": 195,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 18,
+      "name": "Paul Taylor",
+      "participantId": 5232482,
+      "url": "https://cuescore.com/player/Paul+Taylor/5232482",
+      "points": 195,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 19,
+      "name": "Kian Monkman",
+      "participantId": 61671733,
+      "url": "https://cuescore.com/player/Kian+Monkman/61671733",
+      "points": 175,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 20,
+      "name": "ian Anthony",
+      "participantId": 4858617,
+      "url": "https://cuescore.com/player/ian+Anthony/4858617",
+      "points": 170,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 21,
+      "name": "Michael Royle",
+      "participantId": 12845791,
+      "url": "https://cuescore.com/player/Michael+Royle/12845791",
+      "points": 170,
+      "tournamentCount": 5
+    },
+    {
+      "rank": 22,
+      "name": "Tyler Payne",
+      "participantId": 59797957,
+      "url": "https://cuescore.com/player/Tyler+Payne/59797957",
+      "points": 165,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 23,
+      "name": "Keith Robson",
+      "participantId": 6966246,
+      "url": "https://cuescore.com/player/Keith+Robson/6966246",
+      "points": 165,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 24,
+      "name": "Matthew Halfpenny",
+      "participantId": 24682981,
+      "url": "https://cuescore.com/player/Matthew+Halfpenny/24682981",
+      "points": 155,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 25,
+      "name": "Stuart Grassie",
+      "participantId": 70732774,
+      "url": "https://cuescore.com/player/Stuart+Grassie/70732774",
+      "points": 150,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 26,
+      "name": "Phil Bee",
+      "participantId": 8862965,
+      "url": "https://cuescore.com/player/Phil+Bee/8862965",
+      "points": 150,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 27,
+      "name": "Callum Sankey",
+      "participantId": 63953656,
+      "url": "https://cuescore.com/player/Callum+Sankey/63953656",
+      "points": 145,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 28,
+      "name": "Mark Wright",
+      "participantId": 43123129,
+      "url": "https://cuescore.com/player/Mark+Wright/43123129",
+      "points": 145,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 29,
+      "name": "David Fisher",
+      "participantId": 5149247,
+      "url": "https://cuescore.com/player/David+Fisher/5149247",
+      "points": 135,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 30,
+      "name": "John Newbold",
+      "participantId": 8887473,
+      "url": "https://cuescore.com/player/John+Newbold/8887473",
+      "points": 135,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 31,
+      "name": "Finley Knight",
+      "participantId": 64466482,
+      "url": "https://cuescore.com/player/Finley+Knight/64466482",
+      "points": 135,
+      "tournamentCount": 4
+    },
+    {
+      "rank": 32,
+      "name": "Haiden Munro",
+      "participantId": 59843464,
+      "url": "https://cuescore.com/player/Haiden+Munro/59843464",
+      "points": 130,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 33,
+      "name": "Tony Palmer",
+      "participantId": 9083136,
+      "url": "https://cuescore.com/player/Tony+Palmer/9083136",
+      "points": 125,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 34,
+      "name": "Zac Oldfield",
+      "participantId": 34332007,
+      "url": "https://cuescore.com/player/Zac+Oldfield/34332007",
+      "points": 120,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 35,
+      "name": "Simon Morriss",
+      "participantId": 48018637,
+      "url": "https://cuescore.com/player/Simon+Morriss/48018637",
+      "points": 120,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 36,
+      "name": "Marie Cosgrove",
+      "participantId": 1337059,
+      "url": "https://cuescore.com/player/Marie+Cosgrove/1337059",
+      "points": 110,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 37,
+      "name": "Allan Redman",
+      "participantId": 30663187,
+      "url": "https://cuescore.com/player/Allan+Redman/30663187",
+      "points": 110,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 38,
+      "name": "Leigh-ann Hudson",
+      "participantId": 12013144,
+      "url": "https://cuescore.com/player/Leigh-ann+Hudson/12013144",
+      "points": 110,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 39,
+      "name": "David Preston",
+      "participantId": 59176891,
+      "url": "https://cuescore.com/player/David+Preston/59176891",
+      "points": 95,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 40,
+      "name": "Ole Royle",
+      "participantId": 75469393,
+      "url": "https://cuescore.com/player/Ole+Royle/75469393",
+      "points": 95,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 41,
+      "name": "Adam Smiles",
+      "participantId": 17191387,
+      "url": "https://cuescore.com/player/Adam+Smiles/17191387",
+      "points": 90,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 42,
+      "name": "Scott Varey",
+      "participantId": 5439241,
+      "url": "https://cuescore.com/player/Scott+Varey/5439241",
+      "points": 85,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 43,
+      "name": "Malc Eadie",
+      "participantId": 59252248,
+      "url": "https://cuescore.com/player/Malc+Eadie/59252248",
+      "points": 85,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 44,
+      "name": "Gary Nicholson",
+      "participantId": 5073071,
+      "url": "https://cuescore.com/player/Gary+Nicholson/5073071",
+      "points": 85,
+      "tournamentCount": 3
+    },
+    {
+      "rank": 45,
+      "name": "Michael Holding",
+      "participantId": 3633565,
+      "url": "https://cuescore.com/player/Michael+Holding/3633565",
+      "points": 70,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 46,
+      "name": "Paul France",
+      "participantId": 37257592,
+      "url": "https://cuescore.com/player/Paul+France/37257592",
+      "points": 70,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 47,
+      "name": "Andy Stock",
+      "participantId": 13238863,
+      "url": "https://cuescore.com/player/Andy+Stock/13238863",
+      "points": 70,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 48,
+      "name": "Ross Stevenson",
+      "participantId": 52438336,
+      "url": "https://cuescore.com/player/Ross+Stevenson/52438336",
+      "points": 60,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 49,
+      "name": "Colin Campbell",
+      "participantId": 8213377,
+      "url": "https://cuescore.com/player/Colin+Campbell/8213377",
+      "points": 60,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 49,
+      "name": "Des Desai",
+      "participantId": 15618997,
+      "url": "https://cuescore.com/player/Des+Desai/15618997",
+      "points": 60,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 51,
+      "name": "Kai Massingham",
+      "participantId": 74167171,
+      "url": "https://cuescore.com/player/Kai+Massingham/74167171",
+      "points": 55,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 52,
+      "name": "Callum Thorpe",
+      "participantId": 46656163,
+      "url": "https://cuescore.com/player/Callum+Thorpe/46656163",
+      "points": 50,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 53,
+      "name": "Steve Bradburn",
+      "participantId": 63687277,
+      "url": "https://cuescore.com/player/Steve+Bradburn/63687277",
+      "points": 50,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 54,
+      "name": "Ste Ocal",
+      "participantId": 56333338,
+      "url": "https://cuescore.com/player/Ste+Ocal/56333338",
+      "points": 50,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 55,
+      "name": "Craig Lomax",
+      "participantId": 77011723,
+      "url": "https://cuescore.com/player/Craig+Lomax/77011723",
+      "points": 50,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 56,
+      "name": "Chris walkden",
+      "participantId": 8213000,
+      "url": "https://cuescore.com/player/Chris+walkden/8213000",
+      "points": 50,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 57,
+      "name": "Mark MacRae",
+      "participantId": 50635237,
+      "url": "https://cuescore.com/player/Mark+MacRae/50635237",
+      "points": 50,
+      "tournamentCount": 2
+    },
+    {
+      "rank": 58,
+      "name": "Scott Rainford",
+      "participantId": 52450498,
+      "url": "https://cuescore.com/player/Scott+Rainford/52450498",
+      "points": 40,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 59,
+      "name": "Chris Campbell",
+      "participantId": 20386729,
+      "url": "https://cuescore.com/player/Chris+Campbell/20386729",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 60,
+      "name": "James Jackson",
+      "participantId": 75953764,
+      "url": "https://cuescore.com/player/James+Jackson/75953764",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 61,
+      "name": "Jayden Borg",
+      "participantId": 30663199,
+      "url": "https://cuescore.com/player/Jayden+Borg/30663199",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 62,
+      "name": "Jarrod Lythgoe",
+      "participantId": 21545440,
+      "url": "https://cuescore.com/player/Jarrod+Lythgoe/21545440",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 63,
+      "name": "Carl Fishwick",
+      "participantId": 85913191,
+      "url": "https://cuescore.com/player/Carl+Fishwick/85913191",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 64,
+      "name": "Louis Shelton",
+      "participantId": 58880944,
+      "url": "https://cuescore.com/player/Louis+Shelton/58880944",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 65,
+      "name": "Gavin Kay",
+      "participantId": 15849645,
+      "url": "https://cuescore.com/player/Gavin+Kay/15849645",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 66,
+      "name": "Paul McKenna",
+      "participantId": 30042214,
+      "url": "https://cuescore.com/player/Paul+McKenna/30042214",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 67,
+      "name": "Dave Drury",
+      "participantId": 43719151,
+      "url": "https://cuescore.com/player/Dave+Drury/43719151",
+      "points": 35,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 68,
+      "name": "Adam Girt",
+      "participantId": 5208886,
+      "url": "https://cuescore.com/player/Adam+Girt/5208886",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 69,
+      "name": "Frank Wells",
+      "participantId": 74653003,
+      "url": "https://cuescore.com/player/Frank+Wells/74653003",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 69,
+      "name": "Kev Royle",
+      "participantId": 12422209,
+      "url": "https://cuescore.com/player/Kev+Royle/12422209",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 71,
+      "name": "Dave Shurgold",
+      "participantId": 80810920,
+      "url": "https://cuescore.com/player/Dave+Shurgold/80810920",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 72,
+      "name": "Joe Grafton",
+      "participantId": 78661963,
+      "url": "https://cuescore.com/player/Joe+Grafton/78661963",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 72,
+      "name": "Rob Goodfellow",
+      "participantId": 85494460,
+      "url": "https://cuescore.com/player/Rob+Goodfellow/85494460",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 74,
+      "name": "Lee Holroyd",
+      "participantId": 12321190,
+      "url": "https://cuescore.com/player/Lee+Holroyd/12321190",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 75,
+      "name": "Josh Dewhurst",
+      "participantId": 56053441,
+      "url": "https://cuescore.com/player/Josh+Dewhurst/56053441",
+      "points": 30,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 76,
+      "name": "Maximus Porter",
+      "participantId": 73096882,
+      "url": "https://cuescore.com/player/Maximus+Porter/73096882",
+      "points": 25,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 76,
+      "name": "Tom Kane",
+      "participantId": 71547223,
+      "url": "https://cuescore.com/player/Tom+Kane/71547223",
+      "points": 25,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 78,
+      "name": "Jonah Lythgoe",
+      "participantId": 90100225,
+      "url": "https://cuescore.com/player/Jonah+Lythgoe/90100225",
+      "points": 25,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 79,
+      "name": "Ben Atherton",
+      "participantId": 63708301,
+      "url": "https://cuescore.com/player/Ben+Atherton/63708301",
+      "points": 25,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 79,
+      "name": "Craig Millard",
+      "participantId": 78874315,
+      "url": "https://cuescore.com/player/Craig+Millard/78874315",
+      "points": 25,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 79,
+      "name": "Jack Beavan",
+      "participantId": 23515513,
+      "url": "https://cuescore.com/player/Jack+Beavan/23515513",
+      "points": 25,
+      "tournamentCount": 1
+    },
+    {
+      "rank": 79,
+      "name": "Lewis Linaker",
+      "participantId": 67332955,
+      "url": "https://cuescore.com/player/Lewis+Linaker/67332955",
+      "points": 25,
+      "tournamentCount": 1
+    }
+  ],
+  "tournaments": [
+    {
+      "id": 80242045,
+      "name": "Q's Challenger Series Event 1 26/27 Season",
+      "url": "https://cuescore.com/tournament/Q%27s+Challenger+Series+Event+1+26%252F27+Season/80242045",
+      "starttime": "2026-04-18T09:30:00Z",
+      "stoptime": "2026-04-18T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 80886697,
+      "name": "Q's Challenger Series Event 2 26/27 Season",
+      "url": "https://cuescore.com/tournament/Q%27s+Challenger+Series+Event+2+26%252F27+Season/80886697",
+      "starttime": "2026-05-09T09:30:00Z",
+      "stoptime": "2026-05-09T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 82516171,
+      "name": "Q's Challenger Series Event 3 26/27 Season",
+      "url": "https://cuescore.com/tournament/Q%27s+Challenger+Series+Event+3+26%252F27+Season/82516171",
+      "starttime": "2026-06-06T09:00:00Z",
+      "stoptime": "2026-06-06T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 85494376,
+      "name": "Q's Challenger Series Event 4 26/27 Season",
+      "url": "https://cuescore.com/tournament/Q%27s+Challenger+Series+Event+4+26%252F27+Season/85494376",
+      "starttime": "2026-08-01T09:00:00Z",
+      "stoptime": "2026-08-01T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 89469586,
+      "name": "Q's Challenger Series Event 5 26/27 Season",
+      "url": "https://cuescore.com/tournament/Q%27s+Challenger+Series+Event+5+26%252F27+Season/89469586",
+      "starttime": "2026-09-26T10:00:00Z",
+      "stoptime": "2026-09-26T22:59:00Z",
+      "status": "Finished"
+    },
+    {
+      "id": 93053143,
+      "name": "Qs Challenger event 6",
+      "url": "https://cuescore.com/tournament/Qs+Challenger+event+6/93053143",
+      "starttime": "2026-11-14T11:00:00Z",
+      "stoptime": "2026-11-15T01:00:00Z",
+      "status": "Finished"
+    }
+  ]
+}

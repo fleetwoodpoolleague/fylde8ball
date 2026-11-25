@@ -1,0 +1,25 @@
+{
+  "venueId": 29092744,
+  "name": "OFFICIAL Q's Sports Lounge",
+  "url": "https://cuescore.com/venue/OFFICIAL+Q%27s+Sports+Lounge/29092744",
+  "fetchedAt": "2026-11-25T10:08:36.075Z",
+  "totalTables": 17,
+  "tableGroups": [
+    {
+      "count": 9,
+      "manufacturer": "Supreme",
+      "model": "Winner",
+      "size": 7,
+      "cloth": "Hainsworth Precision",
+      "branch": "English pool"
+    },
+    {
+      "count": 8,
+      "manufacturer": "Supreme",
+      "model": "Winner",
+      "size": 7,
+      "cloth": "",
+      "branch": "American pool"
+    }
+  ]
+}

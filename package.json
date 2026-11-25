@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "validate": "node scripts/validate-tournaments.mjs",
+    "fetch-cuescore": "node scripts/fetch-cuescore.mjs",
     "generate-ics": "node scripts/generate-ics.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.mjs",
-    "build": "node scripts/validate-tournaments.mjs && vue-tsc && node scripts/generate-ics.mjs && node scripts/generate-sitemap.mjs && vite-ssg build",
+    "build": "node scripts/validate-tournaments.mjs && node scripts/fetch-cuescore.mjs && vue-tsc && node scripts/generate-ics.mjs && node scripts/generate-sitemap.mjs && vite-ssg build",
     "preview": "vite preview",
     "test": "vitest"
   },
