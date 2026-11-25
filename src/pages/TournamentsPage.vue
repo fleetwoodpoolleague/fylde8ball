@@ -6,6 +6,7 @@ import { useSeo, BASE_URL } from '../composables/useSeo'
 import { getNextEvent, isEventPast, isTournamentActive } from '../utils/tournament'
 import { formatDate, formatDateRange, SHORT_DATE, isToday } from '../utils/format'
 import CalendarSubscribeMenu from '../components/CalendarSubscribeMenu.vue'
+import FilterDropdown from '../components/FilterDropdown.vue'
 import BallBadge from '../components/BallBadge.vue'
 import { ballForSlug } from '../utils/ballColor'
 import { logoSrc } from '../utils/assets'
@@ -32,6 +33,16 @@ const venues = computed(() =>
 const rulesOptions = computed(() =>
   [...new Set(tournaments.map(t => t.format?.rules).filter((r): r is string => Boolean(r)))].sort()
 )
+
+const venueOptions = computed(() => [
+  { value: 'all', label: 'All venues' },
+  ...venues.value.map(v => ({ value: v, label: v })),
+])
+
+const ruleFilterOptions = computed(() => [
+  { value: 'all', label: 'All rules' },
+  ...rulesOptions.value.map(r => ({ value: r, label: r })),
+])
 
 function formatNextDate(d: TournamentDate | undefined, today: Date): string {
   if (!d) return 'Completed'
@@ -117,53 +128,19 @@ useHead({
 
     <!-- Filter bar -->
     <div class="flex flex-wrap items-center gap-2 mb-6" role="region" aria-label="Filter tournaments">
-      <label class="sr-only" for="filter-venue">Filter by venue</label>
-      <div class="relative inline-flex items-center">
-        <select
-          id="filter-venue"
-          v-model="selectedVenue"
-          class="appearance-none h-11 rounded-lg border border-line bg-raised pl-3 pr-9 text-sm text-ink cursor-pointer"
-        >
-          <option value="all">All venues</option>
-          <option v-for="venue in venues" :key="venue" :value="venue">{{ venue }}</option>
-        </select>
-        <svg
-          class="pointer-events-none absolute right-2.5 h-4 w-4 text-muted"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </div>
+      <FilterDropdown
+        id="filter-venue"
+        v-model="selectedVenue"
+        label="Filter by venue"
+        :options="venueOptions"
+      />
 
-      <label class="sr-only" for="filter-rules">Filter by rules</label>
-      <div class="relative inline-flex items-center">
-        <select
-          id="filter-rules"
-          v-model="selectedRules"
-          class="appearance-none h-11 rounded-lg border border-line bg-raised pl-3 pr-9 text-sm text-ink cursor-pointer"
-        >
-          <option value="all">All rules</option>
-          <option v-for="rule in rulesOptions" :key="rule" :value="rule">{{ rule }}</option>
-        </select>
-        <svg
-          class="pointer-events-none absolute right-2.5 h-4 w-4 text-muted"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </div>
+      <FilterDropdown
+        id="filter-rules"
+        v-model="selectedRules"
+        label="Filter by rules"
+        :options="ruleFilterOptions"
+      />
 
       <label
         v-if="completedTotalCount > 0"

@@ -84,14 +84,19 @@ describe('TournamentsPage', () => {
     await router.isReady()
     const wrapper = mount(TournamentsPage, { global: { plugins: [router] } })
 
-    await wrapper.find('#filter-venue').setValue("Q's Sports Lounge")
+    await wrapper.find('#filter-venue').trigger('click')
+    const venueOption = wrapper.findAll('[role="option"]').find(o => o.text().includes("Q's Sports Lounge"))!
+    await venueOption.trigger('click')
     expect(wrapper.text()).toContain('Challenger Series')
     expect(wrapper.text()).not.toContain('No Logo Series')
 
-    await wrapper.find('#filter-rules').setValue('International Rules')
+    await wrapper.find('#filter-rules').trigger('click')
+    const ruleOption = wrapper.findAll('[role="option"]').find(o => o.text().includes('International Rules'))!
+    await ruleOption.trigger('click')
     expect(wrapper.text()).toContain('No matching tournaments')
 
-    await wrapper.find('button').trigger('click')
+    const resetBtn = wrapper.findAll('button').find(b => b.text() === 'Reset filters')!
+    await resetBtn.trigger('click')
     expect(wrapper.text()).toContain('Challenger Series')
     expect(wrapper.text()).toContain('No Logo Series')
     expect(wrapper.text()).toContain('Past Series')
