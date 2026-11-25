@@ -3,6 +3,7 @@ import TournamentsPage from '../pages/TournamentsPage.vue'
 import TournamentDetailPage from '../pages/TournamentDetailPage.vue'
 import LeaguesPage from '../pages/LeaguesPage.vue'
 import AboutPage from '../pages/AboutPage.vue'
+import NotFoundPage from '../pages/NotFoundPage.vue'
 
 export const routes = [
   { path: '/', component: HomePage },
@@ -14,4 +15,5 @@ export const routes = [
   },
   { path: '/leagues', component: LeaguesPage },
   { path: '/about', component: AboutPage },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundPage },
 ]

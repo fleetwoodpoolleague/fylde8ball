@@ -43,8 +43,16 @@ useSeo({
           <circle cx="166" cy="142" r="19" fill="url(#ball-sheen)" />
         </g>
       </svg>
-      <p class="text-ink font-semibold mt-6">League fixtures are racking up.</p>
-      <p class="text-muted mt-1 text-sm">Tables, standings and results from local leagues are coming soon.</p>
+      <p class="text-ink font-semibold mt-6">Local leagues are coming soon</p>
+      <p class="text-muted mt-1 text-sm max-w-md">
+        We're gathering fixtures and tables from Fylde Coast leagues. In the meantime, see what tournaments are on.
+      </p>
+      <RouterLink
+        to="/tournaments"
+        class="mt-6 inline-flex items-center justify-center min-h-[44px] rounded-full bg-accent text-accent-ink px-5 text-sm font-semibold hover:brightness-110 transition"
+      >
+        View upcoming tournaments &rarr;
+      </RouterLink>
     </div>
   </div>
 </template>

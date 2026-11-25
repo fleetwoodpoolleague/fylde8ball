@@ -7,11 +7,16 @@ describe('ThemeToggle', () => {
     useTheme().setTheme('light')
   })
 
-  it('renders a button with an accessible label', () => {
+  it('renders a button with a dynamic accessible label', async () => {
     const wrapper = mount(ThemeToggle)
     const button = wrapper.find('button')
     expect(button.exists()).toBe(true)
-    expect(button.attributes('aria-label')).toBe('Toggle colour theme')
+    expect(button.attributes('aria-label')).toBe('Switch to dark theme')
+    expect(button.attributes('aria-pressed')).toBe('false')
+
+    await button.trigger('click')
+    expect(button.attributes('aria-label')).toBe('Switch to light theme')
+    expect(button.attributes('aria-pressed')).toBe('true')
   })
 
   it('renders both icons so SSG markup is theme-independent', () => {

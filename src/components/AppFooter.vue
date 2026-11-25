@@ -26,11 +26,15 @@ const lastUpdated = (() => {
       <span class="h-2 w-2 rounded-full bg-ball-orange" />
       <span class="h-2 w-2 rounded-full bg-ball-green" />
     </div>
-    <div class="max-w-3xl mx-auto px-4 py-4 text-xs text-muted flex flex-col gap-1 sm:flex-row sm:justify-between">
-      <span>© 2026 Fylde 8 Ball</span>
-      <span>Last updated: {{ lastUpdated }}</span>
-      <span>Data provided for informational purposes only. Please verify details with the respective organisers.</span>
-      <span>Tournament logos and names are property of their respective companies and/or organisations</span>
+    <div class="max-w-3xl mx-auto px-4 py-5 text-xs text-muted space-y-2">
+      <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <span class="font-medium text-ink">© 2026 Fylde 8 Ball</span>
+        <span>Last updated: {{ lastUpdated }}</span>
+      </div>
+      <div class="space-y-1 border-t border-line pt-2">
+        <p>Data provided for informational purposes only. Please verify details with the respective organisers.</p>
+        <p>Tournament logos and names are property of their respective companies and/or organisations.</p>
+      </div>
     </div>
   </footer>
 </template>

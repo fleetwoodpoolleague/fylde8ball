@@ -3,14 +3,15 @@ import { useTheme } from '../composables/useTheme'
 import SunIcon from './icons/SunIcon.vue'
 import MoonIcon from './icons/MoonIcon.vue'
 
-const { toggle } = useTheme()
+const { theme, toggle } = useTheme()
 </script>
 
 <template>
   <button
     type="button"
-    class="theme-toggle inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted hover:text-ink hover:bg-sunken transition-colors"
-    aria-label="Toggle colour theme"
+    class="theme-toggle inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-muted hover:text-ink hover:bg-sunken transition-colors cursor-pointer"
+    :aria-label="theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+    :aria-pressed="theme === 'dark'"
     @click="toggle()"
   >
     <SunIcon class="icon-sun" size="1.2em" />

@@ -4,7 +4,7 @@ import { useSeo, BASE_URL } from '../composables/useSeo'
 
 useSeo({
   title: 'About | Fylde 8 Ball',
-  description: 'Fylde 8 Ball is the home of pool on the Fylde Coast, covering tournaments, leagues, and local competition across Blackpool and Poulton-le-Fylde.',
+  description: 'Fylde 8 Ball brings together upcoming 8-ball pool tournaments, entry details, and venue information across Blackpool and Poulton-le-Fylde.',
   path: '/about',
 })
 
@@ -18,7 +18,7 @@ useHead({
         name: 'Fylde 8 Ball',
         url: BASE_URL,
         sport: 'Pool',
-        description: 'Home of pool on the Fylde Coast, covering tournaments, leagues, and local competition across Blackpool and Poulton-le-Fylde.',
+        description: 'Home of pool on the Fylde Coast, covering tournaments and local competition across Blackpool and Poulton-le-Fylde.',
         areaServed: {
           '@type': 'Place',
           name: 'Fylde Coast, Lancashire, England',
@@ -34,18 +34,27 @@ useHead({
     <h1 class="font-display text-2xl md:text-3xl text-ink mb-4">About</h1>
     <div class="text-ink space-y-4">
       <p>
-        Fylde 8 Ball is the home of pool in the Fylde Coast area, covering tournaments, leagues,
-        and local competition across the region.
+        Fylde 8 Ball is the home of pool on the Fylde Coast, bringing together upcoming 8-ball
+        tournaments, entry details, and venue information across Blackpool, Poulton-le-Fylde, and
+        the surrounding area.
       </p>
       <p>
-        This site provides up-to-date information on upcoming events, results, and league standings
-        so players and spectators can keep track of everything happening in the local pool scene.
+        Whether you're looking for a weekend knockout or a season-long Blackball series, you can
+        browse upcoming dates or sync the full calendar straight to your phone.
       </p>
-      <h2 class="text-lg font-semibold text-ink mt-6 mb-2">Contact</h2>
+      <h2 class="text-lg font-semibold text-ink mt-6 mb-2">Contact &amp; Entry</h2>
       <p>
-        For enquiries about tournaments or leagues, please get in touch with the organiser directly
-        via the contact details provided at each event.
+        For entries or enquiries about a specific competition, please get in touch with the
+        organiser directly using the phone, Facebook, or website details listed on each event page.
       </p>
+      <div class="pt-2">
+        <RouterLink
+          to="/tournaments"
+          class="inline-flex items-center justify-center min-h-[44px] rounded-full bg-accent text-accent-ink px-5 text-sm font-semibold hover:brightness-110 transition"
+        >
+          Browse tournaments &rarr;
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>

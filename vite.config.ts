@@ -18,11 +18,15 @@ export default defineConfig({
   plugins: [vue(), tailwindcss()],
   ssgOptions: {
     includedRoutes(paths) {
-      return paths.flatMap(path =>
-        path === '/tournaments/:slug'
-          ? tournamentSlugs.map(s => `/tournaments/${s}`)
-          : [path],
-      )
+      return paths.flatMap(path => {
+        if (path === '/tournaments/:slug') {
+          return tournamentSlugs.map(s => `/tournaments/${s}`)
+        }
+        if (path.includes(':pathMatch')) {
+          return ['/404']
+        }
+        return [path]
+      })
     },
   } satisfies Partial<ViteSSGOptions>,
   test: {

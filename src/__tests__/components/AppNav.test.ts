@@ -7,6 +7,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: { template: '<div />' } },
     { path: '/tournaments', component: { template: '<div />' } },
+    { path: '/tournaments/:slug', component: { template: '<div />' } },
     { path: '/leagues', component: { template: '<div />' } },
     { path: '/about', component: { template: '<div />' } },
   ],
@@ -15,11 +16,12 @@ const router = createRouter({
 describe('AppNav', () => {
   beforeEach(() => router.push('/'))
 
-  it('renders the site name with an 8-ball icon', async () => {
+  it('renders the accessible site name with an 8-ball icon', async () => {
     await router.isReady()
     const wrapper = mount(AppNav, { global: { plugins: [router] } })
     const link = wrapper.find('a[href="/"]')
     expect(link.text()).toContain('Fylde')
+    expect(link.text()).toContain('8')
     expect(link.text()).toContain('Ball')
     expect(link.find('svg').exists()).toBe(true)
   })
@@ -54,9 +56,17 @@ describe('AppNav', () => {
     expect(active[0].attributes('href')).toBe('/tournaments')
   })
 
+  it('keeps Tournaments styled active on /tournaments/:slug detail pages', async () => {
+    await router.push('/tournaments/challenger-series')
+    await router.isReady()
+    const wrapper = mount(AppNav, { global: { plugins: [router] } })
+    const tournamentsLink = wrapper.find('a[href="/tournaments"]')
+    expect(tournamentsLink.classes()).toContain('border-accent')
+  })
+
   it('includes the theme toggle', async () => {
     await router.isReady()
     const wrapper = mount(AppNav, { global: { plugins: [router] } })
-    expect(wrapper.find('button[aria-label="Toggle colour theme"]').exists()).toBe(true)
+    expect(wrapper.find('button[aria-label*="theme"]').exists()).toBe(true)
   })
 })
