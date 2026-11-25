@@ -22,29 +22,32 @@ describe('formatDate', () => {
 })
 
 describe('formatTime', () => {
-  it('returns 4-digit military time unchanged', () => {
-    expect(formatTime('1900')).toBe('1900')
-    expect(formatTime('2000')).toBe('2000')
-    expect(formatTime('0800')).toBe('0800')
+  it('converts 4-digit military time to readable 12-hour format', () => {
+    expect(formatTime('1900')).toBe('7:00 pm')
+    expect(formatTime('2000')).toBe('8:00 pm')
+    expect(formatTime('1030')).toBe('10:30 am')
+    expect(formatTime('0800')).toBe('8:00 am')
+    expect(formatTime('1200')).toBe('12:00 pm')
+    expect(formatTime('0000')).toBe('12:00 am')
   })
 
-  it('converts pm hours to military time', () => {
-    expect(formatTime('8pm')).toBe('2000')
-    expect(formatTime('7PM')).toBe('1900')
-    expect(formatTime('1pm')).toBe('1300')
+  it('normalises 12-hour pm strings', () => {
+    expect(formatTime('8pm')).toBe('8:00 pm')
+    expect(formatTime('7PM')).toBe('7:00 pm')
+    expect(formatTime('1:30pm')).toBe('1:30 pm')
   })
 
   it('handles 12pm (noon) correctly', () => {
-    expect(formatTime('12pm')).toBe('1200')
+    expect(formatTime('12pm')).toBe('12:00 pm')
   })
 
   it('handles 12am (midnight) correctly', () => {
-    expect(formatTime('12am')).toBe('0000')
+    expect(formatTime('12am')).toBe('12:00 am')
   })
 
-  it('converts am hours to military time', () => {
-    expect(formatTime('8am')).toBe('0800')
-    expect(formatTime('9AM')).toBe('0900')
+  it('normalises 12-hour am strings', () => {
+    expect(formatTime('8am')).toBe('8:00 am')
+    expect(formatTime('9AM')).toBe('9:00 am')
   })
 
   it('returns unrecognised input unchanged', () => {

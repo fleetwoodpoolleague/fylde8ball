@@ -25,31 +25,39 @@ export const LONG_DATE: Intl.DateTimeFormatOptions = {
   year: 'numeric',
 }
 
-export function isToday(iso: string): boolean {
+export function isToday(iso: string, today: Date = new Date()): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false
   const [year, month, day] = iso.split('-').map(Number)
-  const today = new Date()
   return year === today.getFullYear() && month === today.getMonth() + 1 && day === today.getDate()
 }
 
 /**
- * Normalise a time string to 4-digit military format (HHMM).
- * Accepts "1900" (already normalised) or "8pm"/"8PM" style.
+ * Format a time string into human-readable UK 12-hour format (e.g. "7:00 pm", "10:30 am").
+ * Accepts 4-digit military ("1900", "1030") or 12h ("8pm", "8PM", "8:30pm").
  * Returns the input unchanged if the format is not recognised.
  */
 export function formatTime(raw: string): string {
-  if (/^\d{4}$/.test(raw)) return raw
+  const clean = raw.trim()
+  let hours: number
+  let minutes: number
 
-  const match = raw.match(/^(1[0-2]|[1-9])(am|pm)$/i)
-  if (match) {
-    let hour = parseInt(match[1], 10)
-    const period = match[2].toLowerCase()
-    if (period === 'pm' && hour !== 12) hour += 12
-    if (period === 'am' && hour === 12) hour = 0
-    return `${String(hour).padStart(2, '0')}00`
+  if (/^\d{4}$/.test(clean)) {
+    hours = parseInt(clean.slice(0, 2), 10)
+    minutes = parseInt(clean.slice(2, 4), 10)
+  } else {
+    const match = clean.match(/^(1[0-2]|[1-9])(?::(\d{2}))?\s*(am|pm)$/i)
+    if (!match) return raw
+    hours = parseInt(match[1], 10)
+    minutes = match[2] ? parseInt(match[2], 10) : 0
+    const period = match[3].toLowerCase()
+    if (period === 'pm' && hours !== 12) hours += 12
+    if (period === 'am' && hours === 12) hours = 0
   }
 
-  return raw
+  if (hours > 23 || minutes > 59) return raw
+  const suffix = hours >= 12 ? 'pm' : 'am'
+  const hour12 = hours % 12 || 12
+  return `${hour12}:${String(minutes).padStart(2, '0')} ${suffix}`
 }
 
 /**

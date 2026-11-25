@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EventTimeline from '../../components/EventTimeline.vue'
 import EventTimelineItem from '../../components/EventTimelineItem.vue'
@@ -10,18 +11,45 @@ const dates: TournamentDate[] = [
 ]
 
 describe('EventTimeline', () => {
-  it('renders an item for every date', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-04-14'))
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('renders an item for every date with a Schedule heading', () => {
     const wrapper = mount(EventTimeline, { props: { dates } })
+    expect(wrapper.text()).toContain('Schedule (3 dates)')
     const items = wrapper.findAllComponents(EventTimelineItem)
     expect(items).toHaveLength(3)
   })
 
-  it('marks the first incomplete event as next', () => {
+  it('marks the first incomplete upcoming event as next', () => {
     const wrapper = mount(EventTimeline, { props: { dates } })
     const items = wrapper.findAllComponents(EventTimelineItem)
     const nextItems = items.filter(i => i.props('isNext') === true)
     expect(nextItems).toHaveLength(1)
     expect(nextItems[0].props('date').name).toBe('Event 2')
+  })
+
+  it('skips elapsed dates when choosing the next event', () => {
+    vi.setSystemTime(new Date('2026-05-20'))
+    const wrapper = mount(EventTimeline, { props: { dates } })
+    const items = wrapper.findAllComponents(EventTimelineItem)
+    const nextItems = items.filter(i => i.props('isNext') === true)
+    expect(nextItems).toHaveLength(1)
+    expect(nextItems[0].props('date').name).toBe('Event 3')
+    expect(items[1].props('isPast')).toBe(true)
+  })
+
+  it('marks no item as next when tournamentCompleted is true', () => {
+    const wrapper = mount(EventTimeline, { props: { dates, tournamentCompleted: true } })
+    const items = wrapper.findAllComponents(EventTimelineItem)
+    expect(items.every(i => i.props('isNext') === false)).toBe(true)
+    expect(items.every(i => i.props('isPast') === true)).toBe(true)
   })
 
   it('marks no item as next when all are completed', () => {

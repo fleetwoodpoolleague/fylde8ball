@@ -1,34 +1,81 @@
 import { vi } from 'vitest'
-import { getNextEvent, isWithinMonths, isInProgress, getEffectiveEndDate, isUpcomingOrInProgress } from '../../utils/tournament'
-import type { TournamentDate } from '../../types/tournament'
+import {
+  getNextEvent,
+  isEventPast,
+  isTournamentActive,
+  isWithinMonths,
+  isInProgress,
+  getEffectiveEndDate,
+  isUpcomingOrInProgress,
+} from '../../utils/tournament'
+import type { Tournament, TournamentDate } from '../../types/tournament'
+
+describe('isEventPast', () => {
+  const today = new Date('2026-05-01')
+
+  it('returns true when completed is true even if date is in the future', () => {
+    expect(isEventPast({ name: 'E1', date: '2026-06-01', completed: true }, today)).toBe(true)
+  })
+
+  it('returns true when date is before today even if completed is false', () => {
+    expect(isEventPast({ name: 'E1', date: '2026-04-18', completed: false }, today)).toBe(true)
+  })
+
+  it('returns false on the event day itself', () => {
+    expect(isEventPast({ name: 'E1', date: '2026-05-01', completed: false }, today)).toBe(false)
+  })
+
+  it('returns false when mid-range of a multi-day event', () => {
+    expect(isEventPast({ name: 'E1', date: '2026-04-29', endDate: '2026-05-02', completed: false }, today)).toBe(false)
+  })
+
+  it('returns false for TBC dates that are not completed', () => {
+    expect(isEventPast({ name: 'Final', date: 'TBC', completed: false }, today)).toBe(false)
+  })
+})
 
 describe('getNextEvent', () => {
-  it('returns the first incomplete event', () => {
+  const today = new Date('2026-04-14')
+
+  it('returns the first incomplete future event', () => {
     const dates: TournamentDate[] = [
       { name: 'Event 1', date: '2026-04-18', completed: true },
       { name: 'Event 2', date: '2026-05-09', completed: false },
       { name: 'Event 3', date: '2026-06-06', completed: false },
     ]
-    expect(getNextEvent(dates)).toEqual({
+    expect(getNextEvent(dates, today)).toEqual({
       name: 'Event 2',
       date: '2026-05-09',
       completed: false,
     })
   })
 
-  it('returns undefined when all events are completed', () => {
+  it('skips past dates even when completed flag was not updated', () => {
     const dates: TournamentDate[] = [
-      { name: 'Event 1', date: '2026-04-18', completed: true },
+      { name: 'Stale Event', date: '2026-04-01', completed: false },
+      { name: 'Upcoming Event', date: '2026-05-09', completed: false },
     ]
-    expect(getNextEvent(dates)).toBeUndefined()
+    expect(getNextEvent(dates, today)).toEqual({
+      name: 'Upcoming Event',
+      date: '2026-05-09',
+      completed: false,
+    })
   })
 
-  it('returns the first event when none are completed', () => {
+  it('returns undefined when all events are completed or elapsed', () => {
+    const dates: TournamentDate[] = [
+      { name: 'Event 1', date: '2026-04-18', completed: true },
+      { name: 'Past', date: '2026-03-01', completed: false },
+    ]
+    expect(getNextEvent(dates, today)).toBeUndefined()
+  })
+
+  it('returns the first event when none are completed and all are upcoming', () => {
     const dates: TournamentDate[] = [
       { name: 'Event 1', date: '2026-04-18', completed: false },
       { name: 'Event 2', date: '2026-05-09', completed: false },
     ]
-    expect(getNextEvent(dates)).toEqual({
+    expect(getNextEvent(dates, today)).toEqual({
       name: 'Event 1',
       date: '2026-04-18',
       completed: false,
@@ -36,19 +83,42 @@ describe('getNextEvent', () => {
   })
 
   it('returns undefined for an empty array', () => {
-    expect(getNextEvent([])).toBeUndefined()
+    expect(getNextEvent([], today)).toBeUndefined()
   })
 
-  it('returns an incomplete event that appears before completed ones', () => {
+  it('returns an incomplete future event that appears before completed ones', () => {
     const dates: TournamentDate[] = [
       { name: 'Event 1', date: '2026-04-18', completed: false },
       { name: 'Event 2', date: '2026-05-09', completed: true },
     ]
-    expect(getNextEvent(dates)).toEqual({
+    expect(getNextEvent(dates, today)).toEqual({
       name: 'Event 1',
       date: '2026-04-18',
       completed: false,
     })
+  })
+})
+
+describe('isTournamentActive', () => {
+  const today = new Date('2026-05-01')
+  const base: Tournament = {
+    slug: 't',
+    meta: { name: 'T', venue: 'V', organiser: 'O', logo: '' },
+    dates: [{ name: 'E1', date: '2026-06-01', completed: false }],
+  }
+
+  it('returns true when not completed and has upcoming dates', () => {
+    expect(isTournamentActive(base, today)).toBe(true)
+  })
+
+  it('returns false when tournament.completed is true', () => {
+    expect(isTournamentActive({ ...base, completed: true }, today)).toBe(false)
+  })
+
+  it('returns false when all dates are in the past', () => {
+    expect(
+      isTournamentActive({ ...base, dates: [{ name: 'E1', date: '2026-04-01', completed: false }] }, today),
+    ).toBe(false)
   })
 })
 

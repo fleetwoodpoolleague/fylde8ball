@@ -32,10 +32,15 @@ describe('EventTimelineItem', () => {
     expect(wrapper.html()).toContain('line-through')
   })
 
-  it('shows the time when date.time is present', () => {
+  it('applies line-through style when isPast is true', () => {
+    const wrapper = mount(EventTimelineItem, { props: { date, isNext: false, isPast: true } })
+    expect(wrapper.html()).toContain('line-through')
+  })
+
+  it('shows the formatted time when date.time is present', () => {
     const timedDate: TournamentDate = { ...date, time: '1900' }
     const wrapper = mount(EventTimelineItem, { props: { date: timedDate, isNext: false } })
-    expect(wrapper.text()).toContain('· 1900')
+    expect(wrapper.text()).toContain('· 7:00 pm')
   })
 
   it('does not show a time separator when date.time is absent', () => {
@@ -43,11 +48,11 @@ describe('EventTimelineItem', () => {
     expect(wrapper.text()).not.toContain('·')
   })
 
-  it('normalises 8pm to 2000 in the timeline', () => {
+  it('normalises 8pm to 8:00 pm in the timeline', () => {
     const timedDate: TournamentDate = { ...date, time: '8pm' }
     const wrapper = mount(EventTimelineItem, { props: { date: timedDate, isNext: false } })
-    expect(wrapper.text()).toContain('· 2000')
-    expect(wrapper.text()).not.toContain('8pm')
+    expect(wrapper.text()).toContain('· 8:00 pm')
+    expect(wrapper.text()).not.toContain('2000')
   })
 
   it("shows 'Today' when the event date is today", () => {

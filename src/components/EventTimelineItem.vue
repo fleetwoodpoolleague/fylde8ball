@@ -8,11 +8,14 @@ import BallBadge from './BallBadge.vue'
 const props = defineProps<{
   date: TournamentDate
   isNext: boolean
+  isPast?: boolean
 }>()
+
+const elapsed = computed(() => Boolean(props.isPast || props.date.completed))
 
 const dotColor = computed(() => {
   if (props.isNext) return 'var(--accent)'
-  return props.date.completed ? 'var(--line)' : 'var(--ink-muted)'
+  return elapsed.value ? 'var(--line)' : 'var(--ink-muted)'
 })
 
 const dateLabel = computed(() => {
@@ -26,14 +29,14 @@ const dateLabel = computed(() => {
   <div class="relative pl-6 pb-6 last:pb-0">
     <!-- Spine dot: a mini pool ball -->
     <BallBadge :color="dotColor" size="12px" class="absolute left-0 top-1" />
-    <!-- Row -->
-    <div class="flex justify-between items-baseline gap-4">
+    <!-- Row: stacks on narrow mobile so multi-day date ranges never crush titles -->
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-4">
       <span
         class="text-sm"
         :class="
           isNext
             ? 'text-accent font-semibold'
-            : date.completed
+            : elapsed
             ? 'text-muted font-medium line-through'
             : 'text-ink font-medium'
         "

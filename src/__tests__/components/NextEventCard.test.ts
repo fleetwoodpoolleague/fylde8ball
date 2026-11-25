@@ -51,28 +51,28 @@ describe('NextEventCard', () => {
     vi.useRealTimers()
   })
 
-  it('shows the time when event.time is present', () => {
+  it('shows the formatted time when event.time is present', () => {
     const timedEvent: TournamentDate = { ...event, time: '1900' }
     const wrapper = mount(NextEventCard, {
       props: { ...defaultProps, event: timedEvent },
       global: { plugins: [router] },
     })
-    expect(wrapper.text()).toContain('1900')
+    expect(wrapper.text()).toContain('7:00 pm')
   })
 
   it('does not show a time when event.time is absent', () => {
     const wrapper = mountCard()
-    expect(wrapper.text()).not.toContain('1900')
+    expect(wrapper.text()).not.toContain('7:00 pm')
   })
 
-  it('normalises 8pm to 2000 in the display', () => {
+  it('normalises 8pm to 8:00 pm in the display', () => {
     const timedEvent: TournamentDate = { ...event, time: '8pm' }
     const wrapper = mount(NextEventCard, {
       props: { ...defaultProps, event: timedEvent },
       global: { plugins: [router] },
     })
-    expect(wrapper.text()).toContain('2000')
-    expect(wrapper.text()).not.toContain('8pm')
+    expect(wrapper.text()).toContain('8:00 pm')
+    expect(wrapper.text()).not.toContain('2000')
   })
 
   it('renders a details link to the tournament page', () => {
