@@ -66,10 +66,27 @@ describe('HomePage', () => {
     expect(wrapper.text()).toContain('Event 2')
   })
 
-  it('shows a fallback when there are no incomplete events', () => {
+  it('shows a fallback with recovery link when there are no incomplete events', () => {
     vi.mocked(useTournaments).mockReturnValue([])
     const wrapper = mount(HomePage, { global: { plugins: [router] } })
     expect(wrapper.text().toLowerCase()).toContain('no upcoming')
+    expect(wrapper.find('a[href="/tournaments"]').exists()).toBe(true)
+  })
+
+  it('skips past events even when completed flag is false', () => {
+    vi.mocked(useTournaments).mockReturnValue([
+      {
+        slug: 'stale-series',
+        meta: { name: 'Stale Series', venue: 'Venue', organiser: 'Org', logo: '' },
+        dates: [
+          { name: 'Old Event', date: '2026-03-01', completed: false },
+          { name: 'Future Event', date: '2026-05-01', completed: false },
+        ],
+      },
+    ])
+    const wrapper = mount(HomePage, { global: { plugins: [router] } })
+    expect(wrapper.text()).not.toContain('Old Event')
+    expect(wrapper.text()).toContain('Future Event')
   })
 
   it('excludes upcoming events more than 3 months away', () => {

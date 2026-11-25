@@ -60,5 +60,6 @@ export interface UpcomingEventInfo {
   event: TournamentDate
   tournamentName: string
   tournamentSlug: string
+  venue?: string
   logo: string
 }

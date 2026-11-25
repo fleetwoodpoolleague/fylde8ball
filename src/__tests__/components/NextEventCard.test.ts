@@ -78,7 +78,16 @@ describe('NextEventCard', () => {
   it('renders a details link to the tournament page', () => {
     const link = mountCard().find('a[href="/tournaments/challenger-series"]')
     expect(link.exists()).toBe(true)
-    expect(link.text()).toContain('Details')
+    expect(link.text()).toContain('Event details')
+  })
+
+  it('shows a helpful message for TBC dates', () => {
+    const tbcEvent: TournamentDate = { ...event, date: 'TBC' }
+    const wrapper = mount(NextEventCard, {
+      props: { ...defaultProps, event: tbcEvent },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('Date TBC')
   })
 
   it('does not render a logo image when logo prop is omitted', () => {

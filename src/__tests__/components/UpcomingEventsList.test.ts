@@ -41,15 +41,45 @@ describe('UpcomingEventsList', () => {
     expect(wrapper.text()).toContain('International Rules — Event 2')
   })
 
-  it('renders a "View all" link pointing to the tournaments page', async () => {
+  it('renders a "Browse all tournaments" link pointing to the tournaments page', async () => {
     await router.isReady()
     const wrapper = mount(UpcomingEventsList, {
       props: { events },
       global: { plugins: [router] },
     })
-    expect(wrapper.text()).toContain('View all')
+    expect(wrapper.text()).toContain('Browse all tournaments')
     const link = wrapper.find('a[href="/tournaments"]')
     expect(link.exists()).toBe(true)
+  })
+
+  it('shows venue and formatted time when provided', async () => {
+    await router.isReady()
+    const detailedEvents: UpcomingEventInfo[] = [
+      {
+        event: { name: 'Event 2', date: '2026-05-09', time: '1030', completed: false },
+        tournamentName: 'Challenger Series',
+        tournamentSlug: 'challenger-series',
+        venue: "Q's Sports Lounge",
+        logo: '',
+      },
+    ]
+    const wrapper = mount(UpcomingEventsList, {
+      props: { events: detailedEvents },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain("Q's Sports Lounge")
+    expect(wrapper.text()).toContain('10:30 am')
+  })
+
+  it('offers cross-platform calendar subscription options', async () => {
+    await router.isReady()
+    const wrapper = mount(UpcomingEventsList, {
+      props: { events },
+      global: { plugins: [router] },
+    })
+    expect(wrapper.text()).toContain('Add to calendar')
+    expect(wrapper.find('a[href="webcal://fylde8ball.co.uk/fylde8ball.ics"]').exists()).toBe(true)
+    expect(wrapper.find('a[href="/fylde8ball.ics"]').exists()).toBe(true)
   })
 
   it("shows 'Today' for an event on today's date", async () => {

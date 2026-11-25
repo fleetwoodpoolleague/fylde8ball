@@ -17,6 +17,7 @@ const props = defineProps<{
 const logoSrc = computed(() => resolveLogo(props.logo))
 
 const dateLabel = computed(() => {
+  if (props.event.date === 'TBC') return 'Date TBC — check with organiser'
   if (isInProgress(props.event)) return 'In progress'
   if (props.event.endDate) return formatDateRange(props.event.date, props.event.endDate, LONG_DATE)
   return isToday(props.event.date) ? 'Today' : formatDate(props.event.date, LONG_DATE)
@@ -24,7 +25,7 @@ const dateLabel = computed(() => {
 </script>
 
 <template>
-  <div class="table-frame">
+  <article class="table-frame group">
     <!-- Corner pockets -->
     <div class="pocket pocket-tl" aria-hidden="true"></div>
     <div class="pocket pocket-tr" aria-hidden="true"></div>
@@ -35,23 +36,29 @@ const dateLabel = computed(() => {
     <div class="pocket pocket-bm" aria-hidden="true"></div>
     <!-- Felt surface -->
     <div class="felt texture-felt text-felt-ink p-6">
-      <div class="flex justify-between items-start mb-3">
+      <div class="flex justify-between items-start gap-3 mb-3">
         <p class="text-xs font-semibold uppercase tracking-wider text-felt-ink-muted">Next Event</p>
-        <img v-if="logoSrc" :src="logoSrc" :alt="tournamentName" class="h-10 w-auto object-contain" />
+        <img
+          v-if="logoSrc"
+          :src="logoSrc"
+          :alt="tournamentName"
+          class="h-10 w-auto object-contain rounded bg-white/90 p-1"
+        />
       </div>
-      <p class="text-xl font-bold mb-1">{{ tournamentName }}</p>
-      <h2 class="text-sm mb-3">{{ event.name }}</h2>
-      <p class="text-sm text-felt-ink-muted">{{ dateLabel }}</p>
-      <p v-if="event.time && !event.endDate" class="text-sm text-felt-ink-muted">{{ formatTime(event.time) }}</p>
-      <p class="text-sm text-felt-ink-muted mb-3">{{ venue }}</p>
+      <h2 class="text-xl font-bold mb-1">{{ tournamentName }}</h2>
+      <p class="text-sm font-medium mb-3">{{ event.name }}</p>
+      <p class="text-sm text-felt-ink-muted">
+        {{ dateLabel }}<template v-if="event.time && !event.endDate"> · {{ formatTime(event.time) }}</template>
+      </p>
+      <p class="text-sm text-felt-ink-muted mb-4">{{ venue }}</p>
       <div class="flex justify-end">
         <RouterLink
           :to="`/tournaments/${tournamentSlug}`"
-          class="inline-flex items-center rounded-full bg-chalk text-chalk-ink px-4 py-1.5 text-sm font-semibold transition hover:brightness-110 motion-safe:hover:-translate-y-0.5"
-        >Details &rarr;</RouterLink>
+          class="inline-flex items-center min-h-[44px] rounded-full bg-chalk text-chalk-ink px-5 py-2 text-sm font-semibold transition group-hover:brightness-110 motion-safe:group-hover:-translate-y-0.5 after:absolute after:inset-0 after:rounded-[14px]"
+        >Event details &rarr;</RouterLink>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <style scoped>
@@ -119,6 +126,7 @@ const dateLabel = computed(() => {
     inset 0 0 8px #000,
     0 0 4px rgba(0, 0, 0, 0.6);
   z-index: 3;
+  pointer-events: none;
 }
 
 /* Corner pockets — 24×24px */
