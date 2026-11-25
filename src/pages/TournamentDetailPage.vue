@@ -4,8 +4,10 @@ import { useHead } from '@unhead/vue'
 import { useTournament } from '../composables/useTournament'
 import { findVenueByName } from '../composables/useVenues'
 import { useSeo, BASE_URL } from '../composables/useSeo'
+import { resolveCueScoreRankingId } from '../utils/cuescore'
 import { logoSrc } from '../utils/assets'
 import EventTimeline from '../components/EventTimeline.vue'
+import CueScoreRankingsCard from '../components/CueScoreRankingsCard.vue'
 import CalendarSubscribeMenu from '../components/CalendarSubscribeMenu.vue'
 import ShareButton from '../components/ShareButton.vue'
 import FacebookIcon from '../components/icons/FacebookIcon.vue'
@@ -63,6 +65,7 @@ function toIsoTime(raw: string): string {
 const venueUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.venue))
 const organiserUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.organiser))
 const scoreboardUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.scoreboard))
+const cuescoreRankingId = computed(() => resolveCueScoreRankingId(tournament?.meta))
 const matchedVenue = computed(() => findVenueByName(tournament?.meta.venue))
 const shareUrl = computed(() => `${BASE_URL}/tournaments/${props.slug}`)
 const hasCalendarEvents = computed(() =>
@@ -401,6 +404,13 @@ if (tournament) {
           </div>
         </dl>
       </section>
+
+      <CueScoreRankingsCard
+        v-if="cuescoreRankingId"
+        :slug="tournament.slug"
+        :ranking-id="cuescoreRankingId"
+        :fallback-url="scoreboardUrl"
+      />
 
       <EventTimeline
         :dates="tournament.dates"

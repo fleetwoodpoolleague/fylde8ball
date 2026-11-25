@@ -45,8 +45,21 @@ const mockFull: Tournament = {
 const mockHandicapped: Tournament = {
   slug: 'handicap-series',
   completed: false,
-  meta: { name: 'Handicap Series', venue: 'Venue', organiser: 'Org', logo: '' },
+  meta: { name: 'Handicap Series', venue: 'Venue', organiser: 'Org', logo: '', cuescoreRankingId: null },
   format: { rules: 'Blackball', handicap: true },
+  dates: [],
+}
+
+const mockRanked: Tournament = {
+  slug: 'precision-cue-series-contenders-season-2-2026-27',
+  completed: false,
+  meta: {
+    name: 'Precision Cue Series: Contenders Season 2',
+    venue: 'Ballers Blackpool',
+    organiser: 'Ballers Blackpool',
+    logo: '',
+    cuescoreRankingId: 85297054,
+  },
   dates: [],
 }
 
@@ -63,6 +76,7 @@ vi.mock('../../composables/useTournament', () => ({
     if (slug === 'no-logo-series') return mockTournamentNoLogo
     if (slug === 'full-series') return mockFull
     if (slug === 'handicap-series') return mockHandicapped
+    if (slug === 'precision-cue-series-contenders-season-2-2026-27') return mockRanked
     if (slug === 'completed-series') return mockCompleted
     return undefined
   }),
@@ -75,6 +89,7 @@ const router = createRouter({
   routes: [
     { path: '/tournaments', component: { template: '<div />' } },
     { path: '/tournaments/:slug', component: { template: '<div />' } },
+    { path: '/venues/:slug', component: { template: '<div />' } },
   ],
 })
 
@@ -276,6 +291,22 @@ describe('TournamentDetailPage', () => {
       const wrapper = mountDetail('test-series')
       expect(wrapper.text()).not.toContain('Blackball')
       expect(wrapper.text().toLowerCase()).not.toContain('rules')
+    })
+  })
+
+  describe('CueScore rankings section', () => {
+    afterEach(() => vi.restoreAllMocks())
+
+    it('renders Series Standings when cuescoreRankingId is set', () => {
+      vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'))
+      const wrapper = mountDetail('precision-cue-series-contenders-season-2-2026-27')
+      expect(wrapper.text()).toContain('Series Standings')
+      expect(wrapper.findAll('tbody tr').length).toBeGreaterThan(0)
+    })
+
+    it('gracefully hides Series Standings when cuescoreRankingId is null or empty', () => {
+      const wrapper = mountDetail('handicap-series')
+      expect(wrapper.text()).not.toContain('Series Standings')
     })
   })
 })
