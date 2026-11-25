@@ -5,6 +5,8 @@ import { useTournament } from '../composables/useTournament'
 import { useSeo, BASE_URL } from '../composables/useSeo'
 import { logoSrc } from '../utils/assets'
 import EventTimeline from '../components/EventTimeline.vue'
+import CalendarSubscribeMenu from '../components/CalendarSubscribeMenu.vue'
+import ShareButton from '../components/ShareButton.vue'
 import FacebookIcon from '../components/icons/FacebookIcon.vue'
 import TwitterIcon from '../components/icons/TwitterIcon.vue'
 import InstagramIcon from '../components/icons/InstagramIcon.vue'
@@ -60,6 +62,14 @@ function toIsoTime(raw: string): string {
 const venueUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.venue))
 const organiserUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.organiser))
 const scoreboardUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.scoreboard))
+const shareUrl = computed(() => `${BASE_URL}/tournaments/${props.slug}`)
+const hasCalendarEvents = computed(() =>
+  Boolean(
+    tournament &&
+    !tournament.completed &&
+    tournament.dates.some(d => !d.completed && d.date !== 'TBC'),
+  ),
+)
 
 const metaTitle = tournament
   ? `${tournament.meta.name} | Fylde 8 Ball`
@@ -293,6 +303,20 @@ if (tournament) {
             >
               Live scoreboard &rarr;
             </a>
+
+            <CalendarSubscribeMenu
+              v-if="hasCalendarEvents"
+              :ics-path="`/ics/${tournament.slug}.ics`"
+              :download-name="`${tournament.slug}.ics`"
+              label="Add to calendar"
+              align="left"
+            />
+
+            <ShareButton
+              :title="tournament.meta.name"
+              :text="`${tournament.meta.name} at ${tournament.meta.venue}`"
+              :url="shareUrl"
+            />
 
             <a
               v-if="hasValue(tournament.meta.socials?.twitter)"

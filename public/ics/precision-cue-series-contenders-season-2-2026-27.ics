@@ -1,0 +1,64 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Fylde 8 Ball//fylde8ball.co.uk//EN
+X-WR-CALNAME:Precision Cue Series: Contenders Season 2
+X-WR-CALDESC:Precision Cue Series: Contenders Season 2 at Ballers Blackpool
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2026-09-19-precision-cue-series-contenders-season-2-2026-27-0@fylde8bal
+ l.co.uk
+DTSTART:20260919T130000
+DTEND:20260919T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 3
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-24-precision-cue-series-contenders-season-2-2026-27-1@fylde8bal
+ l.co.uk
+DTSTART:20261024T130000
+DTEND:20261024T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 4
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-28-precision-cue-series-contenders-season-2-2026-27-2@fylde8bal
+ l.co.uk
+DTSTART:20261128T130000
+DTEND:20261128T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Event 5
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-01-16-precision-cue-series-contenders-season-2-2026-27-3@fylde8bal
+ l.co.uk
+DTSTART:20270116T130000
+DTEND:20270116T170000
+SUMMARY:Precision Cue Series: Contenders Season 2 – Grand Final
+LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
+ om\, FY1 5DT
+DESCRIPTION:Blackball · Round Robin\, then Double Elimination · Entry £2
+ 5\nhttps://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+URL:https://fylde8ball.co.uk/tournaments/precision-cue-series-contenders-se
+ ason-2-2026-27
+END:VEVENT
+END:VCALENDAR

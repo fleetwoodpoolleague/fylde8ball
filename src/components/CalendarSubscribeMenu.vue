@@ -1,8 +1,28 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import CalendarIcon from './icons/CalendarIcon.vue'
 
+const props = withDefaults(
+  defineProps<{
+    icsPath?: string
+    label?: string
+    downloadName?: string
+    align?: 'left' | 'right'
+  }>(),
+  {
+    icsPath: '/fylde8ball.ics',
+    label: 'Add to calendar',
+    downloadName: 'fylde8ball.ics',
+    align: 'right',
+  },
+)
+
 const detailsRef = ref<HTMLDetailsElement | null>(null)
+
+const webcalUrl = computed(() => `webcal://fylde8ball.co.uk${props.icsPath}`)
+const googleUrl = computed(
+  () => `https://calendar.google.com/calendar/r?cid=${webcalUrl.value}`,
+)
 
 function close() {
   if (detailsRef.value) detailsRef.value.open = false
@@ -31,17 +51,18 @@ onBeforeUnmount(() => {
 <template>
   <details ref="detailsRef" class="relative inline-block">
     <summary
-      class="list-none inline-flex items-center gap-1.5 min-h-[44px] px-3 rounded-lg border border-line bg-raised text-sm font-medium text-accent hover:bg-sunken transition-colors cursor-pointer select-none"
+      class="list-none inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg border border-line bg-raised text-sm font-medium text-accent hover:bg-sunken transition-colors cursor-pointer select-none"
     >
       <CalendarIcon size="1.1em" />
-      <span>Add to calendar</span>
+      <span>{{ label }}</span>
     </summary>
     <div
-      class="absolute right-0 mt-1.5 w-56 rounded-xl border border-line bg-raised shadow-lg py-1.5 z-30"
+      class="absolute mt-1.5 w-56 rounded-xl border border-line bg-raised shadow-lg py-1.5 z-30"
+      :class="align === 'left' ? 'left-0' : 'right-0'"
       role="menu"
     >
       <a
-        href="webcal://fylde8ball.co.uk/fylde8ball.ics"
+        :href="webcalUrl"
         role="menuitem"
         class="flex items-center min-h-[44px] px-3.5 text-sm text-ink hover:bg-sunken transition-colors"
         @click="close"
@@ -49,7 +70,7 @@ onBeforeUnmount(() => {
         Apple / Outlook Calendar
       </a>
       <a
-        href="https://calendar.google.com/calendar/r?cid=webcal://fylde8ball.co.uk/fylde8ball.ics"
+        :href="googleUrl"
         target="_blank"
         rel="noopener noreferrer"
         role="menuitem"
@@ -59,8 +80,8 @@ onBeforeUnmount(() => {
         Google Calendar
       </a>
       <a
-        href="/fylde8ball.ics"
-        download="fylde8ball.ics"
+        :href="icsPath"
+        :download="downloadName"
         role="menuitem"
         class="flex items-center min-h-[44px] px-3.5 text-sm text-ink hover:bg-sunken transition-colors"
         @click="close"

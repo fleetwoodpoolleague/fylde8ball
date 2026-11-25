@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Fylde 8 Ball//fylde8ball.co.uk//EN
+X-WR-CALNAME:BAPTO
+X-WR-CALDESC:BAPTO at Norbreck Castle Hotel
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2026-10-29-bapto-0@fylde8ball.co.uk
+DTSTART;VALUE=DATE:20261029
+DTEND;VALUE=DATE:20261102
+SUMMARY:BAPTO – Three Player ‘Halloween’ Novice Event
+LOCATION:Norbreck Castle Hotel
+DESCRIPTION:Blackball\nhttps://fylde8ball.co.uk/tournaments/bapto
+URL:https://fylde8ball.co.uk/tournaments/bapto
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-05-bapto-1@fylde8ball.co.uk
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261109
+SUMMARY:BAPTO – Five Player Amateur Team Trophy Event
+LOCATION:Norbreck Castle Hotel
+DESCRIPTION:Blackball\nhttps://fylde8ball.co.uk/tournaments/bapto
+URL:https://fylde8ball.co.uk/tournaments/bapto
+END:VEVENT
+END:VCALENDAR

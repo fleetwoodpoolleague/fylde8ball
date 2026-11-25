@@ -112,6 +112,18 @@ describe('TournamentDetailPage', () => {
     expect(wrapper.find('a[href="/tournaments"]').exists()).toBe(true)
   })
 
+  it('renders a per-tournament calendar menu and Share button for active dated tournaments', () => {
+    const wrapper = mountDetail('test-series')
+    expect(wrapper.find('a[href="/ics/test-series.ics"]').exists()).toBe(true)
+    expect(wrapper.find('a[href="webcal://fylde8ball.co.uk/ics/test-series.ics"]').exists()).toBe(true)
+    expect(wrapper.text()).toContain('Share')
+  })
+
+  it('hides the per-tournament calendar menu on completed tournaments', () => {
+    const wrapper = mountDetail('completed-series')
+    expect(wrapper.find('a[href="/ics/completed-series.ics"]').exists()).toBe(false)
+  })
+
   it('renders the logo when the tournament has one', () => {
     const wrapper = mountDetail('test-series')
     const img = wrapper.find('img')

@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { fold, esc, toIcsTime, toIcsDate, addFourHours, addOneDay } from './ics-utils.mjs'
@@ -7,41 +7,45 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
 const dataDir = resolve(root, 'src/data/tournaments')
 const outFile = resolve(root, 'public/fylde8ball.ics')
+const perTournamentDir = resolve(root, 'public/ics')
 
-const lines = [
-  'BEGIN:VCALENDAR',
-  'VERSION:2.0',
-  'PRODID:-//Fylde 8 Ball//fylde8ball.co.uk//EN',
-  'X-WR-CALNAME:Fylde 8 Ball',
-  'X-WR-CALDESC:Pool tournaments on the Fylde Coast',
-  'CALSCALE:GREGORIAN',
-  'METHOD:PUBLISH',
-]
+function wrapCalendar(calName, calDesc, eventLines) {
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Fylde 8 Ball//fylde8ball.co.uk//EN',
+    fold(`X-WR-CALNAME:${esc(calName)}`),
+    fold(`X-WR-CALDESC:${esc(calDesc)}`),
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    ...eventLines,
+    'END:VCALENDAR',
+    '',
+  ].join('\r\n')
+}
 
-const files = readdirSync(dataDir).filter(f => f.endsWith('.json')).sort()
-
-for (const file of files) {
-  const slug = file.replace('.json', '')
-  const tournament = JSON.parse(readFileSync(resolve(dataDir, file), 'utf8'))
-  if (tournament.completed) continue
+function buildTournamentEvents(slug, tournament) {
+  if (tournament.completed) return { lines: [], count: 0 }
   const { meta, format, dates } = tournament
 
   const location = [meta.venue, meta.address].filter(Boolean).map(esc).join('\\, ')
-
   const url = `https://fylde8ball.co.uk/tournaments/${slug}`
-  const formatParts = [
-    format?.rules,
-    format?.type,
-    format?.entryFee ? `Entry ${format.entryFee}` : null,
-  ].filter(Boolean)
-  const description = formatParts.length
-    ? `${formatParts.join(' · ')}\n${url}`
-    : url
-
+  const lines = []
   let eventIndex = 0
+
   for (const date of dates) {
     if (date.completed) continue
     if (date.date === 'TBC') continue
+
+    const effectiveFormat = { ...format, ...(date.format ?? {}) }
+    const formatParts = [
+      effectiveFormat?.rules,
+      effectiveFormat?.type,
+      effectiveFormat?.entryFee ? `Entry ${effectiveFormat.entryFee}` : null,
+    ].filter(Boolean)
+    const description = formatParts.length
+      ? `${formatParts.join(' · ')}\n${url}`
+      : url
 
     const uid = `${date.date}-${slug}-${eventIndex}@fylde8ball.co.uk`
     const summary = `${meta.name} – ${date.name}`
@@ -88,12 +92,40 @@ for (const file of files) {
 
     eventIndex++
   }
+
+  return { lines, count: eventIndex }
 }
 
-lines.push('END:VCALENDAR')
+const files = readdirSync(dataDir).filter(f => f.endsWith('.json')).sort()
 
-const output = lines.join('\r\n') + '\r\n'
+rmSync(perTournamentDir, { recursive: true, force: true })
+mkdirSync(perTournamentDir, { recursive: true })
+
+const allEventLines = []
+let totalEvents = 0
+let perTournamentCount = 0
+
+for (const file of files) {
+  const slug = file.replace('.json', '')
+  const tournament = JSON.parse(readFileSync(resolve(dataDir, file), 'utf8'))
+  const { lines, count } = buildTournamentEvents(slug, tournament)
+
+  if (count > 0) {
+    allEventLines.push(...lines)
+    totalEvents += count
+    const singleIcs = wrapCalendar(
+      tournament.meta.name,
+      `${tournament.meta.name} at ${tournament.meta.venue}`,
+      lines,
+    )
+    writeFileSync(resolve(perTournamentDir, `${slug}.ics`), singleIcs, 'utf8')
+    perTournamentCount++
+  }
+}
+
+const output = wrapCalendar('Fylde 8 Ball', 'Pool tournaments on the Fylde Coast', allEventLines)
 writeFileSync(outFile, output, 'utf8')
 
-const eventCount = lines.filter(l => l === 'BEGIN:VEVENT').length
-console.log(`Generated public/fylde8ball.ics — ${eventCount} events from ${files.length} tournaments`)
+console.log(
+  `Generated public/fylde8ball.ics (${totalEvents} events) and ${perTournamentCount} per-tournament calendars in public/ics/`,
+)
