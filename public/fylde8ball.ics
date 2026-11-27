@@ -3,12 +3,31 @@ VERSION:2.0
 PRODID:-//Fylde 8 Ball//fylde8ball.co.uk//EN
 X-WR-CALNAME:Fylde 8 Ball
 X-WR-CALDESC:Pool tournaments on the Fylde Coast
+X-WR-TIMEZONE:Europe/London
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Europe/London
+X-LIC-LOCATION:Europe/London
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0000
+TZOFFSETTO:+0100
+TZNAME:BST
+DTSTART:19700329T010000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0000
+TZNAME:GMT
+DTSTART:19701025T020000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
 BEGIN:VEVENT
 UID:2027-01-09-challenger-pool-series-2026-27-0@fylde8ball.co.uk
-DTSTART:20270109T103000
-DTEND:20270109T143000
+DTSTART;TZID=Europe/London:20270109T103000
+DTEND;TZID=Europe/London:20270109T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 7
 LOCATION:Q's Sports Lounge\, 249-255 Lytham Road\, Blackpool\, United Kingd
  om\, FY1 6ET
@@ -18,8 +37,8 @@ URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-02-20-challenger-pool-series-2026-27-1@fylde8ball.co.uk
-DTSTART:20270220T103000
-DTEND:20270220T143000
+DTSTART;TZID=Europe/London:20270220T103000
+DTEND;TZID=Europe/London:20270220T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 8
 LOCATION:Q's Sports Lounge\, 249-255 Lytham Road\, Blackpool\, United Kingd
  om\, FY1 6ET
@@ -29,8 +48,8 @@ URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-03-06-challenger-pool-series-2026-27-2@fylde8ball.co.uk
-DTSTART:20270306T103000
-DTEND:20270306T143000
+DTSTART;TZID=Europe/London:20270306T103000
+DTEND;TZID=Europe/London:20270306T143000
 SUMMARY:Challenger Pool Series 2026/27 – Event 9
 LOCATION:Q's Sports Lounge\, 249-255 Lytham Road\, Blackpool\, United Kingd
  om\, FY1 6ET
@@ -40,8 +59,8 @@ URL:https://fylde8ball.co.uk/tournaments/challenger-pool-series-2026-27
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-04-17-challenger-pool-series-2026-27-3@fylde8ball.co.uk
-DTSTART:20270417T103000
-DTEND:20270417T143000
+DTSTART;TZID=Europe/London:20270417T103000
+DTEND;TZID=Europe/London:20270417T143000
 SUMMARY:Challenger Pool Series 2026/27 – Grand Final
 LOCATION:Q's Sports Lounge\, 249-255 Lytham Road\, Blackpool\, United Kingd
  om\, FY1 6ET
@@ -52,8 +71,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-28-precision-cue-series-contenders-season-2-2026-27-0@fylde8bal
  l.co.uk
-DTSTART:20261128T130000
-DTEND:20261128T170000
+DTSTART;TZID=Europe/London:20261128T130000
+DTEND;TZID=Europe/London:20261128T170000
 SUMMARY:Precision Cue Series: Contenders Season 2 – Event 5
 LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
  om\, FY1 5DT
@@ -66,8 +85,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-16-precision-cue-series-contenders-season-2-2026-27-1@fylde8bal
  l.co.uk
-DTSTART:20270116T130000
-DTEND:20270116T170000
+DTSTART;TZID=Europe/London:20270116T130000
+DTEND;TZID=Europe/London:20270116T170000
 SUMMARY:Precision Cue Series: Contenders Season 2 – Grand Final
 LOCATION:Ballers Blackpool\, 21-27 Bethesda Road\, Blackpool\, United Kingd
  om\, FY1 5DT

@@ -3,7 +3,7 @@ import type { Component } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import HomeIcon from './icons/HomeIcon.vue'
 import TrophyIcon from './icons/TrophyIcon.vue'
-import LeagueIcon from './icons/LeagueIcon.vue'
+import MapPinIcon from './icons/MapPinIcon.vue'
 import InfoIcon from './icons/InfoIcon.vue'
 
 interface Tab {
@@ -15,15 +15,13 @@ interface Tab {
 const tabs: Tab[] = [
   { to: '/', label: 'Home', icon: HomeIcon },
   { to: '/tournaments', label: 'Tournaments', icon: TrophyIcon },
-  { to: '/leagues', label: 'Leagues', icon: LeagueIcon },
+  { to: '/venues', label: 'Venues', icon: MapPinIcon },
   { to: '/about', label: 'About', icon: InfoIcon },
 ]
 
 const route = useRoute()
 
-// Path-prefix match so /tournaments/:slug keeps the Tournaments tab lit.
-// (RouterLink's isActive only prefix-matches nested routes, and the detail
-// page is a sibling route, not a child.) Home matches exactly.
+// Path-prefix match so /tournaments/:slug and /venues/:slug keep their parent tab lit.
 function isTabActive(tab: Tab): boolean {
   if (tab.to === '/') return route.path === '/'
   return route.path === tab.to || route.path.startsWith(`${tab.to}/`)

@@ -71,10 +71,19 @@ describe('toIcsTime', () => {
     expect(toIcsTime('0000')).toBe('000000')
   })
 
-  it('returns null for non-military formats', () => {
-    expect(toIcsTime('8pm')).toBeNull()
+  it('parses 12-hour am/pm strings into HHMMSS', () => {
+    expect(toIcsTime('8pm')).toBe('200000')
+    expect(toIcsTime('8:30PM')).toBe('203000')
+    expect(toIcsTime('12am')).toBe('000000')
+    expect(toIcsTime('12pm')).toBe('120000')
+    expect(toIcsTime('9:15 am')).toBe('091500')
+  })
+
+  it('returns null for unrecognised or out-of-range times', () => {
     expect(toIcsTime('')).toBeNull()
     expect(toIcsTime('100')).toBeNull()
+    expect(toIcsTime('2500')).toBeNull()
+    expect(toIcsTime('8:75pm')).toBeNull()
   })
 })
 
@@ -95,6 +104,11 @@ describe('addFourHours', () => {
 
   it('preserves minutes and seconds', () => {
     expect(addFourHours('20260509T193045')).toBe('20260509T233045')
+  })
+
+  it('rolls cleanly across midnight and month/year boundaries instead of emitting T240000', () => {
+    expect(addFourHours('20260430T200000')).toBe('20260501T000000')
+    expect(addFourHours('20261231T223000')).toBe('20270101T023000')
   })
 })
 

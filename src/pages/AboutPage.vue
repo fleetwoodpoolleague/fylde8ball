@@ -47,12 +47,18 @@ useHead({
         For entries or enquiries about a specific competition, please get in touch with the
         organiser directly using the phone, Facebook, or website details listed on each event page.
       </p>
-      <div class="pt-2">
+      <div class="pt-2 flex flex-wrap items-center gap-3">
         <RouterLink
           to="/tournaments"
           class="inline-flex items-center justify-center min-h-[44px] rounded-full bg-accent text-accent-ink px-5 text-sm font-semibold hover:brightness-110 transition"
         >
           Browse tournaments &rarr;
+        </RouterLink>
+        <RouterLink
+          to="/leagues"
+          class="inline-flex items-center justify-center min-h-[44px] rounded-full border border-line bg-raised px-5 text-sm font-medium text-ink hover:border-accent hover:text-accent transition"
+        >
+          Local leagues (coming soon)
         </RouterLink>
       </div>
     </div>

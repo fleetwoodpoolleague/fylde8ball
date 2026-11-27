@@ -4,7 +4,7 @@ import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
 import { useSeo, BASE_URL } from '../composables/useSeo'
 import { getNextEvent, isUpcomingOrInProgress } from '../utils/tournament'
-import NextEventCard from '../components/NextEventCard.vue'
+import NextEventCarousel, { type NextEventSlide } from '../components/NextEventCarousel.vue'
 import UpcomingEventsList from '../components/UpcomingEventsList.vue'
 import CalendarSubscribeMenu from '../components/CalendarSubscribeMenu.vue'
 import EightBallIcon from '../components/EightBallIcon.vue'
@@ -19,32 +19,49 @@ onMounted(() => {
   now.value = new Date()
 })
 
-interface NextEventInfo {
+interface NextEventCandidate {
   event: TournamentDate
   tournament: Tournament
 }
 
-const nextEventInfo = computed<NextEventInfo | null>(() => {
-  const candidates: NextEventInfo[] = []
+const nextEventSlides = computed<NextEventSlide[]>(() => {
+  const candidates: NextEventCandidate[] = []
   for (const tournament of activeTournaments) {
     const next = getNextEvent(tournament.dates, now.value)
     if (next) candidates.push({ event: next, tournament })
   }
-  if (!candidates.length) return null
-  return candidates.sort((a, b) => {
+  if (!candidates.length) return []
+
+  candidates.sort((a, b) => {
     const aDate = a.event.date === 'TBC' ? 'Z' : a.event.date
     const bDate = b.event.date === 'TBC' ? 'Z' : b.event.date
     return aDate.localeCompare(bDate)
-  })[0]
+  })
+
+  const earliestDate = candidates[0].event.date
+  const winners =
+    earliestDate === 'TBC'
+      ? [candidates[0]]
+      : candidates.filter(c => c.event.date === earliestDate)
+
+  return winners.map(({ event, tournament }) => ({
+    event,
+    tournamentName: tournament.meta.name,
+    tournamentSlug: tournament.slug,
+    venue: tournament.meta.venue,
+    logo: tournament.meta.logo,
+    format: { ...tournament.format, ...(event.format ?? {}) },
+  }))
 })
 
-const upcomingEvents = computed<UpcomingEventInfo[]>(() => {
+const heroEventSet = computed(() => new Set(nextEventSlides.value.map(s => s.event)))
+
+const allUpcomingEvents = computed<UpcomingEventInfo[]>(() => {
   const upcoming: UpcomingEventInfo[] = []
   for (const tournament of activeTournaments) {
     for (const date of tournament.dates) {
       if (date.completed) continue
       if (!isUpcomingOrInProgress(date, 3, now.value)) continue
-      if (nextEventInfo.value && date === nextEventInfo.value.event) continue
       upcoming.push({
         event: date,
         tournamentName: tournament.meta.name,
@@ -60,6 +77,10 @@ const upcomingEvents = computed<UpcomingEventInfo[]>(() => {
     return aDate.localeCompare(bDate)
   })
 })
+
+const hasRemainingUpcoming = computed(() =>
+  allUpcomingEvents.value.some(item => !heroEventSet.value.has(item.event)),
+)
 
 useSeo({
   title: 'Fylde 8 Ball | Pool Events on the Fylde Coast',
@@ -90,24 +111,26 @@ useHead({
 
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8 md:py-12">
-    <div class="mb-8 motion-safe:animate-rise">
-      <h1 class="font-display text-3xl md:text-4xl text-ink mb-1">Fylde <EightBallIcon size="1em" /> Ball</h1>
-      <p class="text-muted">Pool events and fixtures for the Fylde coast</p>
+    <div class="flex flex-wrap items-end justify-between gap-3 mb-8 motion-safe:animate-rise">
+      <div>
+        <h1 class="font-display text-3xl md:text-4xl text-ink mb-1">Fylde <EightBallIcon size="1em" /> Ball</h1>
+        <p class="text-muted">Pool comps and fixtures across the Fylde Coast</p>
+      </div>
+      <CalendarSubscribeMenu v-if="nextEventSlides.length && !hasRemainingUpcoming" label="Sync all comps" />
     </div>
 
-    <template v-if="nextEventInfo">
-      <NextEventCard
+    <template v-if="nextEventSlides.length">
+      <NextEventCarousel
         class="mb-6 motion-safe:animate-rise"
         style="animation-delay: 120ms"
-        :event="nextEventInfo.event"
-        :tournament-name="nextEventInfo.tournament.meta.name"
-        :tournament-slug="nextEventInfo.tournament.slug"
-        :venue="nextEventInfo.tournament.meta.venue"
-        :logo="nextEventInfo.tournament.meta.logo"
+        :items="nextEventSlides"
+        :now="now"
       />
       <UpcomingEventsList
-        v-if="upcomingEvents.length"
-        :events="upcomingEvents"
+        v-if="hasRemainingUpcoming"
+        :events="allUpcomingEvents"
+        :hero-events="heroEventSet"
+        :now="now"
         class="motion-safe:animate-rise"
         style="animation-delay: 240ms"
       />
@@ -116,9 +139,9 @@ useHead({
       v-else
       class="rounded-xl border border-line bg-raised p-8 text-center motion-safe:animate-rise"
     >
-      <h2 class="font-display text-xl text-ink mb-2">No upcoming events scheduled</h2>
+      <h2 class="font-display text-xl text-ink mb-2">No upcoming comps scheduled</h2>
       <p class="text-sm text-muted mb-5">
-        Check back soon, or browse past competitions and sync the calendar for new dates.
+        Sync the Fylde calendar so new tournament dates appear on your phone automatically, or browse past series.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-3">
         <RouterLink
@@ -127,7 +150,7 @@ useHead({
         >
           Browse tournaments
         </RouterLink>
-        <CalendarSubscribeMenu />
+        <CalendarSubscribeMenu label="Sync all comps" />
       </div>
     </div>
   </div>

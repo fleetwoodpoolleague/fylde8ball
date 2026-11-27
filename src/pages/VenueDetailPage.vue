@@ -154,14 +154,7 @@ if (venue) {
         </div>
 
         <p v-if="venue.address" class="text-sm text-muted mt-2">
-          <a
-            :href="mapsHref(venue.name, venue.address)"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline underline-offset-2 hover:text-accent"
-          >
-            {{ venue.address }}
-          </a>
+          {{ venue.address.replace(/,\s*United Kingdom,?/i, ',').trim() }}
         </p>
 
         <div class="flex flex-wrap gap-2 mt-4">
@@ -171,7 +164,7 @@ if (venue) {
             class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg bg-accent text-accent-ink text-sm font-semibold hover:brightness-110 transition"
           >
             <PhoneIcon size="1em" />
-            {{ venue.contact.phone }}
+            Call {{ venue.contact.phone }}
           </a>
           <a
             :href="mapsHref(venue.name, venue.address)"
@@ -179,7 +172,7 @@ if (venue) {
             rel="noopener noreferrer"
             class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-lg border border-line bg-raised text-sm font-medium text-ink hover:border-accent hover:text-accent transition"
           >
-            Directions
+            Directions ↗
           </a>
           <a
             v-if="venue.socials?.facebook"

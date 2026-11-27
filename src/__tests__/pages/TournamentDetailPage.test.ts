@@ -132,6 +132,7 @@ describe('TournamentDetailPage', () => {
 
   it('renders a per-tournament calendar menu and Share button for active dated tournaments', () => {
     const wrapper = mountDetail('test-series')
+    expect(wrapper.text()).toContain('Sync series dates')
     expect(wrapper.find('a[href="/ics/test-series.ics"]').exists()).toBe(true)
     expect(wrapper.find('a[href="webcal://fylde8ball.co.uk/ics/test-series.ics"]').exists()).toBe(true)
     expect(wrapper.text()).toContain('Share')
@@ -204,17 +205,18 @@ describe('TournamentDetailPage', () => {
   })
 
   describe('contact details', () => {
-    it('shows phone number as a tel: link', () => {
+    it('shows phone number as a verb-labelled Call tel: link', () => {
       const wrapper = mountDetail('full-series')
       const link = wrapper.find('a[href="tel:01234567890"]')
       expect(link.exists()).toBe(true)
-      expect(link.text()).toContain('01234 567890')
+      expect(link.text()).toContain('Call 01234 567890')
     })
 
     it('shows WhatsApp as a clickable wa.me link', () => {
       const wrapper = mountDetail('full-series')
       const link = wrapper.find('a[href="https://wa.me/447700900000"]')
       expect(link.exists()).toBe(true)
+      expect(link.text()).toContain('Message on WhatsApp')
     })
 
     it('shows email as a mailto: link', () => {

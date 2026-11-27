@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 
 export interface FilterOption {
   value: string
@@ -19,6 +19,8 @@ const emit = defineEmits<{
 
 const open = ref(false)
 const rootRef = ref<HTMLElement | null>(null)
+const triggerRef = ref<HTMLButtonElement | null>(null)
+const listRef = ref<HTMLUListElement | null>(null)
 
 const selectedLabel = computed(
   () => props.options.find(o => o.value === props.modelValue)?.label ?? props.options[0]?.label ?? '',
@@ -26,9 +28,58 @@ const selectedLabel = computed(
 
 const isFiltered = computed(() => props.modelValue !== 'all')
 
+function focusOptionAt(index: number) {
+  const buttons = listRef.value?.querySelectorAll<HTMLButtonElement>('[role="option"]')
+  if (!buttons?.length) return
+  const clamped = ((index % buttons.length) + buttons.length) % buttons.length
+  buttons[clamped]?.focus()
+}
+
+async function openAndFocus(initialIndex?: number) {
+  open.value = true
+  await nextTick()
+  const idx =
+    initialIndex ??
+    Math.max(0, props.options.findIndex(o => o.value === props.modelValue))
+  focusOptionAt(idx)
+}
+
 function select(value: string) {
   emit('update:modelValue', value)
   open.value = false
+  triggerRef.value?.focus()
+}
+
+function onTriggerKeydown(event: KeyboardEvent) {
+  if (event.key === 'ArrowDown') {
+    event.preventDefault()
+    openAndFocus()
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault()
+    openAndFocus(props.options.length - 1)
+  }
+}
+
+function onListKeydown(event: KeyboardEvent) {
+  const buttons = listRef.value
+    ? Array.from(listRef.value.querySelectorAll<HTMLButtonElement>('[role="option"]'))
+    : []
+  if (!buttons.length) return
+  const current = buttons.indexOf(document.activeElement as HTMLButtonElement)
+
+  if (event.key === 'ArrowDown') {
+    event.preventDefault()
+    focusOptionAt(current + 1)
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault()
+    focusOptionAt(current - 1)
+  } else if (event.key === 'Home') {
+    event.preventDefault()
+    focusOptionAt(0)
+  } else if (event.key === 'End') {
+    event.preventDefault()
+    focusOptionAt(buttons.length - 1)
+  }
 }
 
 function onDocumentClick(event: MouseEvent) {
@@ -39,7 +90,10 @@ function onDocumentClick(event: MouseEvent) {
 }
 
 function onKeydown(event: KeyboardEvent) {
-  if (event.key === 'Escape' && open.value) open.value = false
+  if (event.key === 'Escape' && open.value) {
+    open.value = false
+    triggerRef.value?.focus()
+  }
 }
 
 onMounted(() => {
@@ -57,6 +111,7 @@ onBeforeUnmount(() => {
   <div ref="rootRef" class="relative inline-block">
     <button
       :id="id"
+      ref="triggerRef"
       type="button"
       aria-haspopup="listbox"
       :aria-expanded="open"
@@ -68,8 +123,9 @@ onBeforeUnmount(() => {
           : 'border-line text-ink hover:border-muted'
       "
       @click="open = !open"
+      @keydown="onTriggerKeydown"
     >
-      <span class="truncate max-w-[180px]">{{ selectedLabel }}</span>
+      <span class="truncate max-w-[200px]">{{ selectedLabel }}</span>
       <svg
         class="h-4 w-4 shrink-0 text-muted transition-transform"
         :class="{ 'rotate-180': open }"
@@ -87,9 +143,11 @@ onBeforeUnmount(() => {
 
     <ul
       v-if="open"
+      ref="listRef"
       role="listbox"
       :aria-label="label"
-      class="absolute left-0 mt-1.5 min-w-52 max-w-xs rounded-xl border border-line bg-raised shadow-lg py-1.5 z-30"
+      class="absolute left-0 mt-1.5 min-w-52 max-w-[calc(100vw-2rem)] rounded-xl border border-line bg-raised shadow-lg py-1.5 z-30"
+      @keydown="onListKeydown"
     >
       <li v-for="option in options" :key="option.value" role="presentation">
         <button

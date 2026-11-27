@@ -29,10 +29,30 @@ export function esc(str) {
   return str.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n')
 }
 
-// "1030" → "103000", "2000" → "200000"
+// "1030" → "103000", "2000" → "200000", "8pm" → "200000", "8:30pm" → "203000"
 export function toIcsTime(raw) {
-  if (/^\d{4}$/.test(raw)) return raw + '00'
-  return null
+  if (typeof raw !== 'string') return null
+  const clean = raw.trim()
+  if (!clean) return null
+
+  let hours
+  let minutes
+
+  if (/^\d{4}$/.test(clean)) {
+    hours = parseInt(clean.slice(0, 2), 10)
+    minutes = parseInt(clean.slice(2, 4), 10)
+  } else {
+    const match = clean.match(/^(1[0-2]|[1-9])(?::(\d{2}))?\s*(am|pm)$/i)
+    if (!match) return null
+    hours = parseInt(match[1], 10)
+    minutes = match[2] ? parseInt(match[2], 10) : 0
+    const period = match[3].toLowerCase()
+    if (period === 'pm' && hours !== 12) hours += 12
+    if (period === 'am' && hours === 12) hours = 0
+  }
+
+  if (hours > 23 || minutes > 59) return null
+  return `${String(hours).padStart(2, '0')}${String(minutes).padStart(2, '0')}00`
 }
 
 // "2026-05-09" → "20260509"
@@ -40,14 +60,24 @@ export function toIcsDate(iso) {
   return iso.replace(/-/g, '')
 }
 
-// Add 4 hours to a YYYYMMDDTHHMMSS string (floating).
+// Add 4 hours to a YYYYMMDDTHHMMSS string, rolling cleanly across midnight/month/year boundaries.
 export function addFourHours(dtstart) {
   const [datePart, timePart] = dtstart.split('T')
-  const h = parseInt(timePart.slice(0, 2), 10)
-  const m = timePart.slice(2, 4)
-  const s = timePart.slice(4, 6)
-  const newH = String(h + 4).padStart(2, '0')
-  return `${datePart}T${newH}${m}${s}`
+  const y = +datePart.slice(0, 4)
+  const mo = +datePart.slice(4, 6)
+  const d = +datePart.slice(6, 8)
+  const h = +timePart.slice(0, 2)
+  const mi = +timePart.slice(2, 4)
+  const s = +timePart.slice(4, 6)
+  const end = new Date(Date.UTC(y, mo - 1, d, h + 4, mi, s))
+  return (
+    `${end.getUTCFullYear()}` +
+    `${String(end.getUTCMonth() + 1).padStart(2, '0')}` +
+    `${String(end.getUTCDate()).padStart(2, '0')}T` +
+    `${String(end.getUTCHours()).padStart(2, '0')}` +
+    `${String(end.getUTCMinutes()).padStart(2, '0')}` +
+    `${String(end.getUTCSeconds()).padStart(2, '0')}`
+  )
 }
 
 // Add one calendar day to a YYYYMMDD string. Uses UTC arithmetic to avoid DST drift.

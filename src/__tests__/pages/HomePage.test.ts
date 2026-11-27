@@ -229,5 +229,21 @@ describe('HomePage', () => {
       expect(wrapper.text()).toContain('Event 1')
       expect(wrapper.text()).toContain('Challenger Series')
     })
+
+    it('surfaces all clashing tournaments in a carousel when multiple share the next matchday', () => {
+      vi.mocked(useTournaments).mockReturnValue([
+        mockTournamentA,
+        {
+          slug: 'same-day-series',
+          meta: { name: 'Same Day Series', venue: 'Ballers Blackpool', organiser: 'Ballers', logo: '' },
+          dates: [{ name: 'Clash Event', date: '2026-04-18', completed: false }],
+        },
+      ])
+      const wrapper = mount(HomePage, { global: { plugins: [router] } })
+      expect(wrapper.find('[aria-roledescription="carousel"]').exists()).toBe(true)
+      expect(wrapper.text()).toContain('Challenger Series')
+      expect(wrapper.text()).toContain('Same Day Series')
+      expect(wrapper.text()).toContain('2 comps on the next matchday')
+    })
   })
 })

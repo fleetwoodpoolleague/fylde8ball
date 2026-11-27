@@ -8,7 +8,11 @@ import { logoSrc } from '../utils/assets'
 
 const props = defineProps<{
   events: UpcomingEventInfo[]
+  heroEvents?: Set<TournamentDate>
+  now?: Date
 }>()
+
+const clock = computed(() => props.now ?? new Date())
 
 type TimeFilter = 'all' | 'week' | 'month' | 'weekends'
 
@@ -36,10 +40,16 @@ function monthLabel(event: TournamentDate): string {
   return formatDate(event.date, MONTH_HEADER)
 }
 
+const defaultListEvents = computed(() =>
+  props.heroEvents
+    ? props.events.filter(i => !props.heroEvents!.has(i.event))
+    : props.events,
+)
+
 const filteredEvents = computed(() => {
-  if (activeFilter.value === 'all') return props.events
-  if (activeFilter.value === 'week') return props.events.filter(i => isWithinDays(i.event, 7))
-  if (activeFilter.value === 'month') return props.events.filter(i => isWithinDays(i.event, 30))
+  if (activeFilter.value === 'all') return defaultListEvents.value
+  if (activeFilter.value === 'week') return props.events.filter(i => isWithinDays(i.event, 7, clock.value))
+  if (activeFilter.value === 'month') return props.events.filter(i => isWithinDays(i.event, 30, clock.value))
   return props.events.filter(i => isWeekendEvent(i.event))
 })
 
@@ -60,9 +70,9 @@ const groupedEvents = computed(() => {
 })
 
 function eventDateLabel(event: TournamentDate): string {
-  if (isInProgress(event)) return 'In progress'
+  if (isInProgress(event, clock.value)) return 'In progress'
   if (event.endDate) return formatDateRange(event.date, event.endDate, SHORT_DATE)
-  return isToday(event.date) ? 'Today' : formatDate(event.date, SHORT_DATE)
+  return isToday(event.date, clock.value) ? 'Today' : formatDate(event.date, SHORT_DATE)
 }
 </script>
 
@@ -72,12 +82,12 @@ function eventDateLabel(event: TournamentDate): string {
       <h2 id="upcoming-heading" class="text-xs font-semibold uppercase tracking-wider text-muted">
         Coming up (next 3 months)
       </h2>
-      <CalendarSubscribeMenu />
+      <CalendarSubscribeMenu label="Sync all comps" />
     </div>
 
     <!-- Quick time filter pills -->
     <div
-      v-if="events.length > 1"
+      v-if="defaultListEvents.length > 1 || (heroEvents && props.events.length > 1)"
       class="flex flex-wrap gap-1.5 mb-4"
       role="group"
       aria-label="Filter upcoming events"
@@ -87,7 +97,7 @@ function eventDateLabel(event: TournamentDate): string {
         :key="opt.id"
         type="button"
         :aria-pressed="activeFilter === opt.id"
-        class="inline-flex items-center min-h-[40px] px-3 rounded-full text-xs font-medium border transition-colors cursor-pointer"
+        class="inline-flex items-center min-h-[44px] px-3.5 rounded-full text-xs font-medium border transition-colors cursor-pointer"
         :class="
           activeFilter === opt.id
             ? 'bg-accent text-accent-ink border-accent'
@@ -135,7 +145,7 @@ function eventDateLabel(event: TournamentDate): string {
               </span>
             </span>
             <span
-              :class="(isInProgress(item.event) || isToday(item.event.date)) ? 'text-accent font-semibold shrink-0' : 'text-muted shrink-0'"
+              :class="(isInProgress(item.event, clock) || isToday(item.event.date, clock)) ? 'text-accent font-semibold shrink-0' : 'text-muted shrink-0'"
             >
               {{ eventDateLabel(item.event) }}
             </span>
@@ -148,13 +158,13 @@ function eventDateLabel(event: TournamentDate): string {
       v-else
       class="rounded-xl border border-line bg-raised p-5 text-center"
     >
-      <p class="text-sm text-muted mb-3">No events match this time filter.</p>
+      <p class="text-sm text-muted mb-3">No comps scheduled for this window.</p>
       <button
         type="button"
         class="inline-flex items-center justify-center min-h-[44px] rounded-full border border-line bg-surface px-4 text-xs font-semibold text-accent hover:border-accent transition cursor-pointer"
         @click="activeFilter = 'all'"
       >
-        Show all upcoming
+        View all upcoming dates
       </button>
     </div>
 

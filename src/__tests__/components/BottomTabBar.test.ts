@@ -8,7 +8,8 @@ const router = createRouter({
     { path: '/', component: { template: '<div />' } },
     { path: '/tournaments', component: { template: '<div />' } },
     { path: '/tournaments/:slug', component: { template: '<div />' } },
-    { path: '/leagues', component: { template: '<div />' } },
+    { path: '/venues', component: { template: '<div />' } },
+    { path: '/venues/:slug', component: { template: '<div />' } },
     { path: '/about', component: { template: '<div />' } },
   ],
 })
@@ -25,14 +26,14 @@ describe('BottomTabBar', () => {
     expect(wrapper.find('nav').attributes('aria-label')).toBe('Primary')
   })
 
-  it('renders all four tabs with labels and icons', async () => {
+  it('renders all four tabs with Venues replacing Leagues on mobile', async () => {
     const wrapper = await mountAt('/')
     const links = wrapper.findAll('a')
     expect(links).toHaveLength(4)
     const hrefs = links.map(l => l.attributes('href'))
-    expect(hrefs).toEqual(['/', '/tournaments', '/leagues', '/about'])
+    expect(hrefs).toEqual(['/', '/tournaments', '/venues', '/about'])
     const labels = links.map(l => l.text())
-    expect(labels).toEqual(['Home', 'Tournaments', 'Leagues', 'About'])
+    expect(labels).toEqual(['Home', 'Tournaments', 'Venues', 'About'])
     for (const link of links) {
       expect(link.find('svg').exists()).toBe(true)
     }
@@ -45,11 +46,16 @@ describe('BottomTabBar', () => {
     expect(current[0].attributes('href')).toBe('/tournaments')
   })
 
-  it('highlights the Tournaments tab on a tournament detail page without aria-current', async () => {
-    const wrapper = await mountAt('/tournaments/some-comp')
-    const tournaments = wrapper.findAll('a').find(l => l.attributes('href') === '/tournaments')!
+  it('highlights the Tournaments and Venues tabs on their detail pages without aria-current', async () => {
+    const tWrapper = await mountAt('/tournaments/some-comp')
+    const tournaments = tWrapper.findAll('a').find(l => l.attributes('href') === '/tournaments')!
     expect(tournaments.classes()).toContain('text-accent')
     expect(tournaments.attributes('aria-current')).toBeUndefined()
+
+    const vWrapper = await mountAt('/venues/qs-sports-lounge')
+    const venues = vWrapper.findAll('a').find(l => l.attributes('href') === '/venues')!
+    expect(venues.classes()).toContain('text-accent')
+    expect(venues.attributes('aria-current')).toBeUndefined()
   })
 
   it('does not highlight the Home tab on other routes', async () => {

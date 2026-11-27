@@ -9,6 +9,27 @@ const dataDir = resolve(root, 'src/data/tournaments')
 const outFile = resolve(root, 'public/fylde8ball.ics')
 const perTournamentDir = resolve(root, 'public/ics')
 
+const LONDON_VTIMEZONE = [
+  'BEGIN:VTIMEZONE',
+  'TZID:Europe/London',
+  'X-LIC-LOCATION:Europe/London',
+  'BEGIN:DAYLIGHT',
+  'TZOFFSETFROM:+0000',
+  'TZOFFSETTO:+0100',
+  'TZNAME:BST',
+  'DTSTART:19700329T010000',
+  'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU',
+  'END:DAYLIGHT',
+  'BEGIN:STANDARD',
+  'TZOFFSETFROM:+0100',
+  'TZOFFSETTO:+0000',
+  'TZNAME:GMT',
+  'DTSTART:19701025T020000',
+  'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU',
+  'END:STANDARD',
+  'END:VTIMEZONE',
+]
+
 function wrapCalendar(calName, calDesc, eventLines) {
   return [
     'BEGIN:VCALENDAR',
@@ -16,8 +37,10 @@ function wrapCalendar(calName, calDesc, eventLines) {
     'PRODID:-//Fylde 8 Ball//fylde8ball.co.uk//EN',
     fold(`X-WR-CALNAME:${esc(calName)}`),
     fold(`X-WR-CALDESC:${esc(calDesc)}`),
+    'X-WR-TIMEZONE:Europe/London',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
+    ...LONDON_VTIMEZONE,
     ...eventLines,
     'END:VCALENDAR',
     '',
@@ -81,8 +104,8 @@ function buildTournamentEvents(slug, tournament) {
     if (allDay) {
       lines.push(`DTSTART;VALUE=DATE:${dtstart}`)
     } else {
-      lines.push(`DTSTART:${dtstart}`)
-      lines.push(`DTEND:${dtend}`)
+      lines.push(`DTSTART;TZID=Europe/London:${dtstart}`)
+      lines.push(`DTEND;TZID=Europe/London:${dtend}`)
     }
     lines.push(fold(`SUMMARY:${esc(summary)}`))
     if (location) lines.push(fold(`LOCATION:${location}`))

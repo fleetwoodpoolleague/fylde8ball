@@ -34,7 +34,7 @@ function isActive(to: string): boolean {
             :key="link.to"
             :to="link.to"
             :aria-current="route.path === link.to ? 'page' : undefined"
-            class="py-2 transition-colors"
+            class="inline-flex items-center min-h-[44px] transition-colors"
             :class="isActive(link.to) ? 'text-accent border-b-2 border-accent' : 'text-muted hover:text-accent'"
           >
             {{ link.label }}

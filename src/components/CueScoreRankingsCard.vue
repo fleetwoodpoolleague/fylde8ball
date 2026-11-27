@@ -127,17 +127,17 @@ function rankBadgeClass(rank: number): string {
                   {{ player.rank }}
                 </span>
               </td>
-              <td class="py-2.5 pr-3 font-medium text-ink">
+              <td class="py-1.5 pr-3 font-medium text-ink">
                 <a
                   v-if="player.url"
                   :href="player.url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="hover:text-accent hover:underline"
+                  class="inline-flex items-center min-h-[36px] py-1 hover:text-accent hover:underline"
                 >
                   {{ player.name }}
                 </a>
-                <template v-else>{{ player.name }}</template>
+                <span v-else class="inline-flex items-center min-h-[36px] py-1">{{ player.name }}</span>
               </td>
               <td class="py-2.5 px-2 text-right text-muted tabular-nums">
                 {{ player.tournamentCount }}

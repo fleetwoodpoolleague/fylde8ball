@@ -60,9 +60,10 @@ describe('NextEventCard', () => {
     expect(wrapper.text()).toContain('7:00 pm')
   })
 
-  it('does not show a time when event.time is absent', () => {
+  it('shows Time TBC when event.time is absent on a single-day dated event', () => {
     const wrapper = mountCard()
     expect(wrapper.text()).not.toContain('7:00 pm')
+    expect(wrapper.text()).toContain('Time TBC')
   })
 
   it('normalises 8pm to 8:00 pm in the display', () => {
@@ -75,10 +76,20 @@ describe('NextEventCard', () => {
     expect(wrapper.text()).not.toContain('2000')
   })
 
-  it('renders a details link to the tournament page', () => {
-    const link = mountCard().find('a[href="/tournaments/challenger-series"]')
+  it('renders a details link to the tournament page and eligibility pills when format is given', () => {
+    const wrapper = mount(NextEventCard, {
+      props: {
+        ...defaultProps,
+        format: { rules: 'Blackball', entryFee: '£25', handicap: true },
+      },
+      global: { plugins: [router] },
+    })
+    const link = wrapper.find('a[href="/tournaments/challenger-series"]')
     expect(link.exists()).toBe(true)
-    expect(link.text()).toContain('Event details')
+    expect(link.text()).toContain('Entry & schedule')
+    expect(wrapper.text()).toContain('Blackball')
+    expect(wrapper.text()).toContain('Entry £25')
+    expect(wrapper.text()).toContain('Handicapped')
   })
 
   it('shows a helpful message for TBC dates', () => {

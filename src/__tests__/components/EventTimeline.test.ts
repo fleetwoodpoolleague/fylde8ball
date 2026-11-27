@@ -65,4 +65,22 @@ describe('EventTimeline', () => {
     expect(wrapper.text()).toContain('Event 2')
     expect(wrapper.text()).toContain('Event 3')
   })
+
+  it('collapses leading completed dates when more than 2 dates have elapsed and expands on toggle', async () => {
+    const longSeries: TournamentDate[] = [
+      { name: 'Round 1', date: '2026-01-10', completed: true },
+      { name: 'Round 2', date: '2026-02-10', completed: true },
+      { name: 'Round 3', date: '2026-03-10', completed: true },
+      { name: 'Round 4', date: '2026-05-10', completed: false },
+    ]
+    const wrapper = mount(EventTimeline, { props: { dates: longSeries } })
+    expect(wrapper.text()).not.toContain('Round 1')
+    expect(wrapper.text()).toContain('Round 4')
+
+    const toggle = wrapper.find('button')
+    expect(toggle.text()).toContain('Show 3 completed')
+    await toggle.trigger('click')
+    expect(wrapper.text()).toContain('Round 1')
+    expect(toggle.text()).toContain('Hide 3 completed')
+  })
 })

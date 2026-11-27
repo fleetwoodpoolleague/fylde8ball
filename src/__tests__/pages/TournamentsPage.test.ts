@@ -19,7 +19,7 @@ const mockTournaments: Tournament[] = [
   {
     slug: 'challenger-series',
     meta: { name: 'Challenger Series', venue: "Q's Sports Lounge", organiser: "Q's Sports Lounge", logo: 'qs_logo.webp' },
-    format: { rules: 'Blackball', entryFee: '£25' },
+    format: { rules: 'Blackball, 20 minute shot clock', entryFee: '£25', handicap: true },
     dates: [{ name: 'Event 1', date: '2026-04-18', completed: false }],
   },
   {
@@ -80,26 +80,31 @@ describe('TournamentsPage', () => {
     expect(wrapper.text()).toContain('Finished')
   })
 
-  it('filters by venue and rules', async () => {
+  it('filters by venue and normalized rule sets without forcing completed items open on Clear filters', async () => {
     await router.isReady()
     const wrapper = mount(TournamentsPage, { global: { plugins: [router] } })
+
+    // Normalized "Blackball" option matches "Blackball, 20 minute shot clock"
+    await wrapper.find('#filter-rules').trigger('click')
+    const blackballOpt = wrapper.findAll('[role="option"]').find(o => o.text().includes('Blackball'))!
+    await blackballOpt.trigger('click')
+    expect(wrapper.text()).toContain('Challenger Series')
+    expect(wrapper.text()).not.toContain('No Logo Series')
 
     await wrapper.find('#filter-venue').trigger('click')
     const venueOption = wrapper.findAll('[role="option"]').find(o => o.text().includes("Q's Sports Lounge"))!
     await venueOption.trigger('click')
-    expect(wrapper.text()).toContain('Challenger Series')
-    expect(wrapper.text()).not.toContain('No Logo Series')
 
     await wrapper.find('#filter-rules').trigger('click')
     const ruleOption = wrapper.findAll('[role="option"]').find(o => o.text().includes('International Rules'))!
     await ruleOption.trigger('click')
-    expect(wrapper.text()).toContain('No matching tournaments')
+    expect(wrapper.text()).toContain('No active comps match those filters')
 
-    const resetBtn = wrapper.findAll('button').find(b => b.text() === 'Reset filters')!
-    await resetBtn.trigger('click')
+    const clearBtn = wrapper.findAll('button').find(b => b.text() === 'Clear filters')!
+    await clearBtn.trigger('click')
     expect(wrapper.text()).toContain('Challenger Series')
     expect(wrapper.text()).toContain('No Logo Series')
-    expect(wrapper.text()).toContain('Past Series')
+    expect(wrapper.text()).not.toContain('Past Series')
   })
 
   it('renders a decorative logo image when the tournament has one', async () => {

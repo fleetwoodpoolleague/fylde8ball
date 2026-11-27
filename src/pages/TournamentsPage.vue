@@ -4,7 +4,7 @@ import { useHead } from '@unhead/vue'
 import { useTournaments } from '../composables/useTournaments'
 import { useSeo, BASE_URL } from '../composables/useSeo'
 import { getNextEvent, isEventPast, isTournamentActive } from '../utils/tournament'
-import { formatDate, formatDateRange, SHORT_DATE, isToday } from '../utils/format'
+import { formatDate, formatDateRange, formatTime, SHORT_DATE, isToday } from '../utils/format'
 import CalendarSubscribeMenu from '../components/CalendarSubscribeMenu.vue'
 import FilterDropdown from '../components/FilterDropdown.vue'
 import BallBadge from '../components/BallBadge.vue'
@@ -26,12 +26,29 @@ const selectedVenue = ref<string>('all')
 const selectedRules = ref<string>('all')
 const showCompleted = ref<boolean>(false)
 
+// Group rule variants (e.g. "Blackball, 20 minute shot clock") under their canonical rule set for filtering.
+function normalizeRuleSet(rules?: string | null): string | null {
+  if (!rules) return null
+  const clean = rules.trim()
+  if (!clean) return null
+  if (/^blackball\b/i.test(clean)) return 'Blackball'
+  if (/^international\b/i.test(clean)) return 'International Rules'
+  if (/^world rules\b/i.test(clean)) return 'World Rules'
+  return clean
+}
+
 const venues = computed(() =>
   [...new Set(tournaments.map(t => t.meta.venue))].sort()
 )
 
 const rulesOptions = computed(() =>
-  [...new Set(tournaments.map(t => t.format?.rules).filter((r): r is string => Boolean(r)))].sort()
+  [
+    ...new Set(
+      tournaments
+        .map(t => normalizeRuleSet(t.format?.rules))
+        .filter((r): r is string => Boolean(r)),
+    ),
+  ].sort(),
 )
 
 const venueOptions = computed(() => [
@@ -48,7 +65,8 @@ function formatNextDate(d: TournamentDate | undefined, today: Date): string {
   if (!d) return 'Completed'
   if (d.date === 'TBC') return 'Next: Date TBC'
   if (d.endDate) return `Next: ${formatDateRange(d.date, d.endDate, SHORT_DATE)}`
-  return isToday(d.date, today) ? 'Next: Today' : `Next: ${formatDate(d.date, SHORT_DATE)}`
+  const base = isToday(d.date, today) ? 'Next: Today' : `Next: ${formatDate(d.date, SHORT_DATE)}`
+  return d.time ? `${base} · ${formatTime(d.time)}` : base
 }
 
 const enriched = computed(() =>
@@ -61,6 +79,7 @@ const enriched = computed(() =>
       active,
       nextEvent: next,
       nextDateLabel: formatNextDate(next, now.value),
+      ruleCategory: normalizeRuleSet(t.format?.rules),
       sortKey: next ? (next.date === 'TBC' ? '9999-12-31' : next.date) : '9999-99-99',
       remainingCount,
       logoUrl: logoBySlug.get(t.slug) ?? null,
@@ -70,11 +89,15 @@ const enriched = computed(() =>
 
 const completedTotalCount = computed(() => enriched.value.filter(t => !t.active).length)
 
+const hasActiveFilters = computed(
+  () => selectedVenue.value !== 'all' || selectedRules.value !== 'all',
+)
+
 const filtered = computed(() =>
   enriched.value.filter(t => {
     if (!showCompleted.value && !t.active) return false
     if (selectedVenue.value !== 'all' && t.meta.venue !== selectedVenue.value) return false
-    if (selectedRules.value !== 'all' && t.format?.rules !== selectedRules.value) return false
+    if (selectedRules.value !== 'all' && t.ruleCategory !== selectedRules.value) return false
     return true
   })
 )
@@ -87,10 +110,9 @@ const completedCards = computed(() =>
   filtered.value.filter(t => !t.active).sort((a, b) => a.meta.name.localeCompare(b.meta.name))
 )
 
-function resetFilters() {
+function clearFilters() {
   selectedVenue.value = 'all'
   selectedRules.value = 'all'
-  showCompleted.value = true
 }
 
 useSeo({
@@ -123,7 +145,7 @@ useHead({
   <div class="max-w-3xl mx-auto px-4 py-8">
     <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
       <h1 class="font-display text-2xl md:text-3xl text-ink">Tournaments</h1>
-      <CalendarSubscribeMenu />
+      <CalendarSubscribeMenu label="Sync all comps" />
     </div>
 
     <!-- Filter bar -->
@@ -149,6 +171,15 @@ useHead({
         <input v-model="showCompleted" type="checkbox" class="h-4 w-4 accent-[var(--accent)]" />
         Show completed ({{ completedTotalCount }})
       </label>
+
+      <button
+        v-if="hasActiveFilters"
+        type="button"
+        class="inline-flex items-center min-h-[44px] px-2.5 text-xs font-semibold text-muted hover:text-ink transition-colors cursor-pointer"
+        @click="clearFilters"
+      >
+        Clear filters
+      </button>
 
       <RouterLink
         to="/venues"
@@ -196,6 +227,12 @@ useHead({
               </span>
               <span v-if="tournament.format?.entryFee" class="rounded bg-sunken px-2 py-0.5 font-medium text-ink">
                 Entry {{ tournament.format.entryFee }}
+              </span>
+              <span v-if="tournament.format?.handicap === true" class="rounded bg-sunken px-2 py-0.5">
+                Handicapped
+              </span>
+              <span v-else-if="tournament.format?.handicap === false" class="rounded bg-sunken px-2 py-0.5">
+                Scratch
               </span>
               <span class="rounded bg-sunken px-2 py-0.5">
                 {{ tournament.remainingCount }} {{ tournament.remainingCount === 1 ? 'event' : 'events' }} left
@@ -247,15 +284,30 @@ useHead({
       v-if="!activeCards.length && !completedCards.length"
       class="rounded-xl border border-line bg-raised p-8 text-center"
     >
-      <p class="font-semibold text-ink mb-1">No matching tournaments</p>
-      <p class="text-sm text-muted mb-4">Try clearing your filters or including completed competitions.</p>
-      <button
-        type="button"
-        class="inline-flex items-center justify-center min-h-[44px] rounded-full bg-accent text-accent-ink px-5 text-sm font-semibold hover:brightness-110 transition cursor-pointer"
-        @click="resetFilters"
-      >
-        Reset filters
-      </button>
+      <p class="font-semibold text-ink mb-1">
+        {{ showCompleted ? 'No comps match those filters' : 'No active comps match those filters' }}
+      </p>
+      <p class="text-sm text-muted mb-4">
+        Try clearing your venue or rule filters, or include finished competitions.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <button
+          v-if="hasActiveFilters"
+          type="button"
+          class="inline-flex items-center justify-center min-h-[44px] rounded-full bg-accent text-accent-ink px-5 text-sm font-semibold hover:brightness-110 transition cursor-pointer"
+          @click="clearFilters"
+        >
+          Clear filters
+        </button>
+        <button
+          v-if="!showCompleted && completedTotalCount > 0"
+          type="button"
+          class="inline-flex items-center justify-center min-h-[44px] rounded-full border border-line bg-surface px-5 text-sm font-semibold text-ink hover:border-accent hover:text-accent transition cursor-pointer"
+          @click="showCompleted = true"
+        >
+          Include finished comps ({{ completedTotalCount }})
+        </button>
+      </div>
     </div>
   </div>
 </template>

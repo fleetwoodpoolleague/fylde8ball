@@ -7,8 +7,15 @@ const props = defineProps<{
   url: string
 }>()
 
-const status = ref<'idle' | 'copied'>('idle')
+const status = ref<'idle' | 'copied' | 'failed'>('idle')
 let resetTimer: ReturnType<typeof setTimeout> | null = null
+
+function scheduleReset() {
+  if (resetTimer) clearTimeout(resetTimer)
+  resetTimer = setTimeout(() => {
+    status.value = 'idle'
+  }, 2500)
+}
 
 async function handleShare() {
   if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
@@ -29,14 +36,15 @@ async function handleShare() {
     try {
       await navigator.clipboard.writeText(props.url)
       status.value = 'copied'
-      if (resetTimer) clearTimeout(resetTimer)
-      resetTimer = setTimeout(() => {
-        status.value = 'idle'
-      }, 2500)
+      scheduleReset()
+      return
     } catch {
-      // Clipboard unavailable
+      // Fall through to error feedback
     }
   }
+
+  status.value = 'failed'
+  scheduleReset()
 }
 
 onBeforeUnmount(() => {
@@ -68,6 +76,10 @@ onBeforeUnmount(() => {
       <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
       <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
     </svg>
-    <span>{{ status === 'copied' ? 'Link copied!' : 'Share' }}</span>
+    <span>
+      <template v-if="status === 'copied'">Link copied!</template>
+      <template v-else-if="status === 'failed'">Copy failed</template>
+      <template v-else>Share</template>
+    </span>
   </button>
 </template>

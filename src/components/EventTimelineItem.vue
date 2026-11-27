@@ -9,8 +9,10 @@ const props = defineProps<{
   date: TournamentDate
   isNext: boolean
   isPast?: boolean
+  now?: Date
 }>()
 
+const clock = computed(() => props.now ?? new Date())
 const elapsed = computed(() => Boolean(props.isPast || props.date.completed))
 
 const dotColor = computed(() => {
@@ -19,9 +21,9 @@ const dotColor = computed(() => {
 })
 
 const dateLabel = computed(() => {
-  if (isInProgress(props.date)) return 'In progress'
+  if (isInProgress(props.date, clock.value)) return 'In progress'
   if (props.date.endDate) return formatDateRange(props.date.date, props.date.endDate, SHORT_DATE)
-  return isToday(props.date.date) ? 'Today' : formatDate(props.date.date, SHORT_DATE)
+  return isToday(props.date.date, clock.value) ? 'Today' : formatDate(props.date.date, SHORT_DATE)
 })
 
 const timeSummary = computed(() => {
