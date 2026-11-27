@@ -1,0 +1,30 @@
+{
+  "name": "Fylde 8 Ball",
+  "short_name": "Fylde 8 Ball",
+  "description": "Home of pool on the Fylde Coast. Tournaments, leagues and events across Blackpool and Poulton-le-Fylde.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111814",
+  "theme_color": "#f4f6f2",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

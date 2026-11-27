@@ -6,6 +6,7 @@ import { findVenueByName } from '../composables/useVenues'
 import { useSeo, BASE_URL } from '../composables/useSeo'
 import { resolveCueScoreRankingId } from '../utils/cuescore'
 import { logoSrc } from '../utils/assets'
+import { buildTournamentShareCardData } from '../utils/shareCard'
 import EventTimeline from '../components/EventTimeline.vue'
 import CueScoreRankingsCard from '../components/CueScoreRankingsCard.vue'
 import CalendarSubscribeMenu from '../components/CalendarSubscribeMenu.vue'
@@ -86,6 +87,9 @@ const scoreboardUrl = computed(() => sanitizeUrl(tournament?.meta.urls?.scoreboa
 const cuescoreRankingId = computed(() => resolveCueScoreRankingId(tournament?.meta))
 const matchedVenue = computed(() => findVenueByName(tournament?.meta.venue))
 const shareUrl = computed(() => `${BASE_URL}/tournaments/${props.slug}`)
+const shareCard = computed(() =>
+  tournament ? buildTournamentShareCardData(tournament, now.value) : undefined,
+)
 
 const hasEntryActions = computed(() =>
   Boolean(
@@ -120,7 +124,12 @@ const metaDesc = (() => {
   return parts.join(' · ') + '.'
 })()
 
-useSeo({ title: metaTitle, description: metaDesc, path: `/tournaments/${props.slug}` })
+useSeo({
+  title: metaTitle,
+  description: metaDesc,
+  path: `/tournaments/${props.slug}`,
+  image: tournament ? `${BASE_URL}/og/${props.slug}.png` : undefined,
+})
 
 if (tournament) {
   const { meta, format, dates } = tournament
@@ -397,6 +406,8 @@ if (tournament) {
             :title="tournament.meta.name"
             :text="`${tournament.meta.name} at ${tournament.meta.venue}`"
             :url="shareUrl"
+            :card="shareCard"
+            :card-filename="`${props.slug}.png`"
           />
 
           <a

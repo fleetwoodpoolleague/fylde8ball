@@ -41,22 +41,23 @@ describe('useSeo', () => {
     expect(findMeta(head, 'property', 'og:description')?.content).toBe('Local pool tournaments.')
   })
 
-  it('defaults og:image to /favicon.svg when no image is provided', () => {
+  it('defaults og:image to /og/default.png when no image is provided', () => {
     useSeo({ title: 't', description: 'd', path: '/' })
     const [head] = useHead.mock.calls[0]
-    expect(findMeta(head, 'property', 'og:image')?.content).toBe(`${BASE_URL}/favicon.svg`)
+    expect(findMeta(head, 'property', 'og:image')?.content).toBe(`${BASE_URL}/og/default.png`)
   })
 
   it('uses the provided image when one is passed', () => {
     useSeo({ title: 't', description: 'd', path: '/', image: 'https://example.com/card.png' })
     const [head] = useHead.mock.calls[0]
     expect(findMeta(head, 'property', 'og:image')?.content).toBe('https://example.com/card.png')
+    expect(findMeta(head, 'name', 'twitter:image')?.content).toBe('https://example.com/card.png')
   })
 
   it('populates Twitter card meta tags', () => {
     useSeo({ title: 'Home', description: 'desc', path: '/' })
     const [head] = useHead.mock.calls[0]
-    expect(findMeta(head, 'name', 'twitter:card')?.content).toBe('summary')
+    expect(findMeta(head, 'name', 'twitter:card')?.content).toBe('summary_large_image')
     expect(findMeta(head, 'name', 'twitter:title')?.content).toBe('Home')
     expect(findMeta(head, 'name', 'twitter:description')?.content).toBe('desc')
   })
